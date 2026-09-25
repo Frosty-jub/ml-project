@@ -1,0 +1,30 @@
+{
+  "forecast_horizon_days": 7,
+  "preparation": {
+    "exclude_cancelled_invoices": true,
+    "exclude_non_positive_quantity": true,
+    "keep_exact_duplicate_rows": true,
+    "excluded_stock_codes": [
+      "POST",
+      "DOT",
+      "BANK CHARGES",
+      "AMAZONFEE",
+      "ADJUST",
+      "D",
+      "B",
+      "S"
+    ],
+    "fill_missing_sku_days_with_zero": true
+  },
+  "features": {
+    "sales_lags_days": [1, 7, 14, 28],
+    "sales_rolling_windows_days": [7, 14, 28],
+    "minimum_previous_days": 28
+  },
+  "splits": {
+    "train_label_end": "2011-06-30",
+    "validation_start": "2011-07-01",
+    "validation_label_end": "2011-09-30",
+    "test_start": "2011-10-01"
+  }
+}
