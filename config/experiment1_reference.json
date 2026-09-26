@@ -1,0 +1,14 @@
+{
+  "description": "Frozen Experiment 1 best-per-family validation results from artifacts/training/model_comparison.csv",
+  "feature_manifest_sha256": "32cc698723a4f884ecbcaacad6b6589bac2bc5fc241da53234e3805e91c2419c",
+  "source_workbook_sha256": "bcbe73b35f5b7babf197fb0cb983a11f5d9ff929078d4aa53d171b1f2df2e980",
+  "pipeline_config_sha256": "3afac86e6986251e6d499fde26fab38e0394207e1bd4313f35727e8b9e7cb0b6",
+  "split_rows": {"train": 2141532, "validation": 394699},
+  "validation_strategy": "single 2011-07-01..2011-09-23",
+  "rows": [
+    {"model": "historical_7d_sum", "MAE": 19.201480115227046, "RMSE": 83.49306290531115, "WAPE": 87.40578177770335, "hyperparameters": {"feature": "sales_rolling_sum_7"}},
+    {"model": "ridge", "MAE": 19.56022355843648, "RMSE": 68.31323003263974, "WAPE": 89.03879396859585, "hyperparameters": {"alpha": 1.0}},
+    {"model": "random_forest", "MAE": 19.238672612620068, "RMSE": 66.22986908489271, "WAPE": 87.57508327380648, "hyperparameters": {"n_estimators": 60, "max_depth": 16, "min_samples_leaf": 20, "max_features": 0.8, "n_jobs": 4}},
+    {"model": "hist_gradient_boosting", "MAE": 21.63445122253197, "RMSE": 85.275367866897, "WAPE": 98.48074789492011, "hyperparameters": {"loss": "absolute_error", "max_iter": 80, "learning_rate": 0.1, "max_leaf_nodes": 31, "min_samples_leaf": 30, "l2_regularization": 1.0}}
+  ]
+}
