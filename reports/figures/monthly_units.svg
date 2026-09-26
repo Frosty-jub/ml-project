@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" role="img">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="105" y="35" font-family="Arial,sans-serif" font-size="23" font-weight="700" fill="#17212f">Monthly positive units sold</text>
+<line x1="105" y1="355.0" x2="965" y2="355.0" stroke="#e5eaf0"/>
+<text x="93" y="360.0" text-anchor="end" font-family="Arial,sans-serif" font-size="13" fill="#536171">0</text>
+<line x1="105" y1="282.5" x2="965" y2="282.5" stroke="#e5eaf0"/>
+<text x="93" y="287.5" text-anchor="end" font-family="Arial,sans-serif" font-size="13" fill="#536171">208,331</text>
+<line x1="105" y1="210.0" x2="965" y2="210.0" stroke="#e5eaf0"/>
+<text x="93" y="215.0" text-anchor="end" font-family="Arial,sans-serif" font-size="13" fill="#536171">416,663</text>
+<line x1="105" y1="137.5" x2="965" y2="137.5" stroke="#e5eaf0"/>
+<text x="93" y="142.5" text-anchor="end" font-family="Arial,sans-serif" font-size="13" fill="#536171">624,994</text>
+<line x1="105" y1="65.0" x2="965" y2="65.0" stroke="#e5eaf0"/>
+<text x="93" y="70.0" text-anchor="end" font-family="Arial,sans-serif" font-size="13" fill="#536171">833,326</text>
+<polyline points="105.0,199.8 140.8,217.2 176.7,218.3 212.5,170.0 248.3,220.2 284.2,207.0 320.0,210.4 355.8,229.9 391.7,173.1 427.5,148.2 463.3,137.7 499.2,99.7 535.0,165.4 570.8,216.6 606.7,255.2 642.5,221.0 678.3,246.4 714.2,216.0 750.0,217.8 785.8,213.2 821.7,207.1 857.5,154.8 893.3,136.2 929.2,86.5 965.0,245.4" fill="none" stroke="#1769aa" stroke-width="3"/>
+<circle cx="105.0" cy="199.8" r="3" fill="#1769aa"/>
+<circle cx="140.8" cy="217.2" r="3" fill="#1769aa"/>
+<circle cx="176.7" cy="218.3" r="3" fill="#1769aa"/>
+<circle cx="212.5" cy="170.0" r="3" fill="#1769aa"/>
+<circle cx="248.3" cy="220.2" r="3" fill="#1769aa"/>
+<circle cx="284.2" cy="207.0" r="3" fill="#1769aa"/>
+<circle cx="320.0" cy="210.4" r="3" fill="#1769aa"/>
+<circle cx="355.8" cy="229.9" r="3" fill="#1769aa"/>
+<circle cx="391.7" cy="173.1" r="3" fill="#1769aa"/>
+<circle cx="427.5" cy="148.2" r="3" fill="#1769aa"/>
+<circle cx="463.3" cy="137.7" r="3" fill="#1769aa"/>
+<circle cx="499.2" cy="99.7" r="3" fill="#1769aa"/>
+<circle cx="535.0" cy="165.4" r="3" fill="#1769aa"/>
+<circle cx="570.8" cy="216.6" r="3" fill="#1769aa"/>
+<circle cx="606.7" cy="255.2" r="3" fill="#1769aa"/>
+<circle cx="642.5" cy="221.0" r="3" fill="#1769aa"/>
+<circle cx="678.3" cy="246.4" r="3" fill="#1769aa"/>
+<circle cx="714.2" cy="216.0" r="3" fill="#1769aa"/>
+<circle cx="750.0" cy="217.8" r="3" fill="#1769aa"/>
+<circle cx="785.8" cy="213.2" r="3" fill="#1769aa"/>
+<circle cx="821.7" cy="207.1" r="3" fill="#1769aa"/>
+<circle cx="857.5" cy="154.8" r="3" fill="#1769aa"/>
+<circle cx="893.3" cy="136.2" r="3" fill="#1769aa"/>
+<circle cx="929.2" cy="86.5" r="3" fill="#1769aa"/>
+<circle cx="965.0" cy="245.4" r="3" fill="#1769aa"/>
+<text x="105.0" y="398" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#536171">2009-12</text>
+<text x="212.5" y="398" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#536171">2010-03</text>
+<text x="320.0" y="398" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#536171">2010-06</text>
+<text x="427.5" y="398" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#536171">2010-09</text>
+<text x="535.0" y="398" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#536171">2010-12</text>
+<text x="642.5" y="398" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#536171">2011-03</text>
+<text x="750.0" y="398" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#536171">2011-06</text>
+<text x="857.5" y="398" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#536171">2011-09</text>
+<text x="965.0" y="398" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#536171">2011-12</text>
+</svg>

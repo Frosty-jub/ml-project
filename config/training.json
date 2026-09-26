@@ -1,0 +1,50 @@
+{
+  "random_seed": 42,
+  "max_random_forest_train_rows": 150000,
+  "max_hist_gradient_boosting_train_rows": 300000,
+  "ridge_alphas": [1.0, 100.0],
+  "random_forest": {
+    "n_estimators": 60,
+    "max_depth": 16,
+    "min_samples_leaf": 20,
+    "max_features": 0.8,
+    "n_jobs": 4
+  },
+  "hist_gradient_boosting": {
+    "max_iter": 80,
+    "learning_rate": 0.1,
+    "max_leaf_nodes_options": [15, 31],
+    "min_samples_leaf": 30,
+    "l2_regularization": 1.0
+  },
+  "experiment2": {
+    "folds": [
+      {"train_label_end": "2010-09-30", "validation_start": "2010-10-01", "validation_end": "2010-12-23"},
+      {"train_label_end": "2010-12-31", "validation_start": "2011-01-01", "validation_end": "2011-03-23"},
+      {"train_label_end": "2011-03-31", "validation_start": "2011-04-01", "validation_end": "2011-06-23"},
+      {"train_label_end": "2011-06-30", "validation_start": "2011-07-01", "validation_end": "2011-09-23"}
+    ],
+    "random_forest_train_rows": 100000,
+    "random_forest_trials": {
+      "rf_regularized": {"n_estimators": 40, "max_depth": 12, "min_samples_leaf": 40, "min_samples_split": 80, "max_features": 0.7, "n_jobs": 4},
+      "rf_deeper": {"n_estimators": 50, "max_depth": 16, "min_samples_leaf": 20, "min_samples_split": 40, "max_features": 0.8, "n_jobs": 4}
+    },
+    "lightgbm_train_rows": 150000,
+    "lightgbm_l1": {"objective": "regression_l1", "n_estimators": 120, "learning_rate": 0.05, "num_leaves": 31, "min_child_samples": 50, "colsample_bytree": 0.8, "n_jobs": 4, "verbosity": -1, "deterministic": true, "force_col_wise": true},
+    "two_stage": {
+      "classifier_train_rows": 150000,
+      "positive_regressor_train_rows": 120000,
+      "positive_regressor": {"objective": "regression_l1", "n_estimators": 120, "learning_rate": 0.05, "num_leaves": 31, "min_child_samples": 50, "colsample_bytree": 0.8, "n_jobs": 4, "verbosity": -1, "deterministic": true, "force_col_wise": true},
+      "thresholds": [0.35, 0.5, 0.65]
+    }
+  },
+  "experiment3": {
+    "lightgbm_train_rows_per_fold": 150000,
+    "trials": {
+      "l1_more_trees": {"objective": "regression_l1", "n_estimators": 240, "learning_rate": 0.05, "num_leaves": 31, "min_child_samples": 50, "colsample_bytree": 0.8, "subsample": 0.8, "subsample_freq": 1, "reg_alpha": 0.1, "reg_lambda": 1.0, "n_jobs": 4, "verbosity": -1, "deterministic": true, "force_col_wise": true},
+      "l1_capacity": {"objective": "regression_l1", "n_estimators": 200, "learning_rate": 0.05, "num_leaves": 63, "min_child_samples": 30, "colsample_bytree": 0.8, "subsample": 0.8, "subsample_freq": 1, "reg_alpha": 0.1, "reg_lambda": 1.0, "n_jobs": 4, "verbosity": -1, "deterministic": true, "force_col_wise": true},
+      "l1_regularized": {"objective": "regression_l1", "n_estimators": 200, "learning_rate": 0.04, "num_leaves": 15, "max_depth": 8, "min_child_samples": 80, "colsample_bytree": 0.8, "subsample": 0.8, "subsample_freq": 1, "reg_alpha": 0.5, "reg_lambda": 2.0, "n_jobs": 4, "verbosity": -1, "deterministic": true, "force_col_wise": true},
+      "poisson_count": {"objective": "poisson", "n_estimators": 120, "learning_rate": 0.05, "num_leaves": 31, "min_child_samples": 50, "colsample_bytree": 0.8, "n_jobs": 4, "verbosity": -1, "deterministic": true, "force_col_wise": true}
+    }
+  }
+}
