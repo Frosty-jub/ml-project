@@ -17,6 +17,7 @@ from prometheus_client import CONTENT_TYPE_LATEST, CollectorRegistry, Counter, G
 from pydantic import BaseModel, ConfigDict, Field
 
 from app.runtime import InvalidRecords, ModelRuntime
+from app.observations import record_predictions
 
 ROOT = Path(__file__).resolve().parents[1]
 LOGGER = logging.getLogger("serving")
@@ -64,6 +65,9 @@ def create_app(model_dir: str | Path | None = None) -> FastAPI:
         "serving_predictions_total", "Successfully predicted rows", ["model_version"], registry=registry
     )
     failures = Counter("serving_prediction_failures_total", "Inference failures", registry=registry)
+    observation_failures = Counter(
+        "serving_observation_write_failures_total", "Failed monitoring event writes", registry=registry
+    )
     ready = Gauge("serving_model_ready", "1 when model loaded, otherwise 0", registry=registry)
 
     @asynccontextmanager
@@ -170,6 +174,18 @@ def create_app(model_dir: str | Path | None = None) -> FastAPI:
                 status_code=500, content={"error": "prediction_failed", "request_id": request.state.request_id}
             )
         predictions.labels(runtime.manifest.model_version).inc(len(values))
+        event_path = os.environ.get("MONITORING_EVENTS_PATH")
+        if event_path:
+            try:
+                ordered_records = [
+                    {spec.name: row[spec.name] for spec in runtime.manifest.features}
+                    for row in payload.records
+                ]
+                record_predictions(event_path, request.state.request_id, runtime.manifest, ordered_records, values)
+            except (OSError, ValueError) as exc:
+                observation_failures.inc()
+                log_event("observation_write_failed", request_id=request.state.request_id,
+                          error_type=type(exc).__name__)
         return PredictionResponse(
             request_id=request.state.request_id,
             model_name=runtime.manifest.model_name,
