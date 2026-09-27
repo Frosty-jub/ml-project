@@ -129,6 +129,29 @@ def test_metrics_expose_request_latency_prediction_and_validation(client):
     assert 'status="422"' in metrics.text
 
 
+def test_monitoring_events_only_capture_valid_predictions(client, tmp_path, monkeypatch):
+    events = tmp_path / "events.jsonl"
+    monkeypatch.setenv("MONITORING_EVENTS_PATH", str(events))
+    payload = {"records": [VALID["records"][0], VALID["records"][0]]}
+    response = client.post("/predict", json=payload, headers={"X-Request-ID": "monitor-001"})
+    assert response.status_code == 200
+    assert client.post("/predict", json={"records": []}).status_code == 422
+    rows = [json.loads(line) for line in events.read_text("utf-8").splitlines()]
+    assert [(row["request_id"], row["row_index"]) for row in rows] == [
+        ("monitor-001", 0), ("monitor-001", 1)
+    ]
+    assert [row["prediction"] for row in rows] == response.json()["predictions"]
+    assert all(row["data_kind"] == "synthetic_demo_only" for row in rows)
+
+
+def test_observation_write_failure_is_visible_without_losing_prediction(client, tmp_path, monkeypatch):
+    blocker = tmp_path / "not_a_directory"
+    blocker.write_text("block")
+    monkeypatch.setenv("MONITORING_EVENTS_PATH", str(blocker / "events.jsonl"))
+    assert client.post("/predict", json=VALID).status_code == 200
+    assert "serving_observation_write_failures_total 1.0" in client.get("/metrics").text
+
+
 def test_unknown_routes_use_bounded_metric_label(client):
     client.get("/random-route-123")
     metrics = client.get("/metrics").text
