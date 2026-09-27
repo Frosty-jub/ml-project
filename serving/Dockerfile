@@ -6,7 +6,7 @@ RUN pip install --no-cache-dir -r requirements.lock
 COPY app ./app
 COPY scripts ./scripts
 RUN python -m scripts.train_demo
-RUN useradd --uid 10001 --create-home serving
+RUN useradd --uid 10001 --create-home serving && mkdir -p /app/artifacts/monitoring && chown -R serving:serving /app/artifacts/monitoring
 USER serving
 EXPOSE 8000
 HEALTHCHECK --interval=15s --timeout=5s --start-period=20s --retries=3 CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)"
