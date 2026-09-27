@@ -1,5 +1,9 @@
 # ระบบพยากรณ์ยอดขายสินค้า 7 วันล่วงหน้า
 
+## Monitoring, Drift และ Retraining — งานคนที่ 5
+
+มีตัวเก็บ prediction observations จาก `/predict`, ตรวจ data drift และคุณภาพเมื่อ label ครบ 7 วัน, แจ้ง suspected concept drift, ตรวจสถานะบริการ และสร้าง LightGBM candidate หลัง degradation สองช่วงติดกัน พร้อมชุดสาธิตออฟไลน์ อ่านคำสั่งและข้อจำกัดใน [คู่มือ Monitoring และ Retraining](docs/monitoring_retraining.md)
+
 ## FastAPI และ Docker — งานคนที่ 4
 
 ชุด Model Serving อยู่ใน [`serving/`](serving/README_TH.md) มี `/predict`, `/health`, `/schema`, Prometheus `/metrics`, JSON logs และ load test เปิด Docker แล้วรันจาก root:
