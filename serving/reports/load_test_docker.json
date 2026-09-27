@@ -1,0 +1,49 @@
+{
+  "timestamp_utc": "2026-09-27T17:15:33.476957+00:00",
+  "url": "http://127.0.0.1:18005",
+  "environment": "docker-linux",
+  "client_platform": "Windows-11-10.0.26200-SP0",
+  "client_python": "3.13.9",
+  "model": {
+    "status": "ok",
+    "model_loaded": true,
+    "model_name": "synthetic-demand-demo",
+    "model_version": "demo-v1",
+    "data_kind": "synthetic_demo_only"
+  },
+  "requests": 500,
+  "concurrency": 10,
+  "warmup_excluded": 20,
+  "records_per_request": 1,
+  "wall_seconds": 4.695686499999738,
+  "successful_requests": 500,
+  "status_counts": {
+    "200": 500
+  },
+  "measured": {
+    "p50_ms": 92.37079999979869,
+    "p95_ms": 131.2704200000553,
+    "mean_ms": 93.67716859999382,
+    "throughput_rps": 106.4807030878292,
+    "error_rate_percent": 0.0
+  },
+  "slo": {
+    "scope": "Proposed demo SLO: single-record /predict, 500 valid requests, concurrency 10; confirm with the group for the real project.",
+    "p50_ms_max": 100,
+    "p95_ms_max": 250,
+    "throughput_rps_min": 20,
+    "error_rate_percent_max": 1,
+    "records_per_request": 1
+  },
+  "checks": {
+    "p50": true,
+    "p95": true,
+    "throughput": true,
+    "errors": true,
+    "single_record_workload": true
+  },
+  "slo_passed": true,
+  "all_request_p95_ms": 131.2704200000553,
+  "error_samples": [],
+  "limitation": "Short client-observed load test; not proof of long-term availability or performance on other machines."
+}

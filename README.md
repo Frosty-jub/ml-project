@@ -1,5 +1,16 @@
 # ระบบพยากรณ์ยอดขายสินค้า 7 วันล่วงหน้า
 
+## FastAPI และ Docker — งานคนที่ 4
+
+ชุด Model Serving อยู่ใน [`serving/`](serving/README_TH.md) มี `/predict`, `/health`, `/schema`, Prometheus `/metrics`, JSON logs และ load test เปิด Docker แล้วรันจาก root:
+
+```bash
+cd serving
+docker compose up --build -d
+```
+
+เปิด http://localhost:18005/docs โมเดลสังเคราะห์สำหรับสาธิตสร้างใหม่ตอน build จึงไม่ต้องเก็บ model binary ใน Git ชุดนี้ยังต้องเชื่อมโมเดล LightGBM/MLflow และ feature schema ของกลุ่มก่อนใช้จริง ส่วน benchmark Registry เดิมใช้ `/invocations` ซึ่งมีรูปแบบคำขอและ SLO ต่างจากเดโม `/predict` ดูรายละเอียดการส่งต่อในคู่มือ serving
+
 ## MLflow และ Model Registry
 
 หลังรัน Experiment 1–3 แล้ว ใช้คำสั่ง `python -m src.demand_forecasting.registry track`, `check`, `register`, `promote <version>` และ `rollback` เพื่อบันทึกการทดลอง ตรวจคุณภาพ ลงทะเบียน เลื่อนรุ่น และย้อนกลับ รายละเอียดและเกณฑ์อยู่ใน [คู่มือ MLflow](docs/mlflow_registry.md)

@@ -1,0 +1,8 @@
+{
+  "scope": "Proposed demo SLO: single-record /predict, 500 valid requests, concurrency 10; confirm with the group for the real project.",
+  "p50_ms_max": 100,
+  "p95_ms_max": 250,
+  "throughput_rps_min": 20,
+  "error_rate_percent_max": 1,
+  "records_per_request": 1
+}

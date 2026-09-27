@@ -1,0 +1,6 @@
+services:
+  serving:
+    environment:
+      MODEL_DIR: /app/artifacts/group-v1
+    volumes:
+      - ./artifacts/group-v1:/app/artifacts/group-v1:ro

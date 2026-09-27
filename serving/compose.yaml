@@ -1,0 +1,10 @@
+name: cp413008-person4
+services:
+  serving:
+    build: .
+    ports:
+      - "${SERVING_PORT:-18005}:8000"
+    environment:
+      MODEL_DIR: /app/artifacts/demo
+    restart: unless-stopped
+    init: true
