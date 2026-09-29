@@ -1,0 +1,58 @@
+# Course/local demonstration only. Airflow standalone uses local SQLite.
+x-common: &common
+  build:
+    context: .
+    dockerfile: docker/airflow/Dockerfile
+  image: demand-airflow:local
+  user: "50000:0"
+  environment: &environment
+    AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    AIRFLOW__CORE__DAGS_FOLDER: /workspace/dags
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__CORE__PARALLELISM: "1"
+    MLFLOW_TRACKING_URI: sqlite:////state/mlflow.db
+    PRODUCTION_URL: http://serving:5001
+    PYTHONUNBUFFERED: "1"
+  volumes:
+    - .:/workspace:ro
+    - airflow-home:/opt/airflow
+    - mlflow-state:/state
+    - pipeline-data:/workspace/data
+    - pipeline-artifacts:/workspace/artifacts
+    - pipeline-reports:/workspace/reports/generated
+    - mlflow-artifacts:/workspace/mlruns
+
+services:
+  init:
+    <<: *common
+    user: "0:0"
+    entrypoint: /bin/bash
+    command:
+      - -ec
+      - |
+        mkdir -p /state /workspace/data/raw /workspace/data/interim /workspace/data/processed /workspace/artifacts /workspace/reports/generated /workspace/mlruns
+        chown -R 50000:0 /state /workspace/data /workspace/artifacts /workspace/reports/generated /workspace/mlruns /opt/airflow
+  airflow:
+    <<: *common
+    entrypoint: /bin/bash
+    command: ["-ec", "exec /home/airflow/.local/bin/airflow standalone"]
+    ports: ["127.0.0.1:${AIRFLOW_HOST_PORT:-8080}:8080"]
+    depends_on:
+      init:
+        condition: service_completed_successfully
+  serving:
+    <<: *common
+    entrypoint: /opt/ml/bin/python
+    command: ["-m", "src.demand_forecasting.serving_supervisor"]
+    ports: ["127.0.0.1:${SERVING_HOST_PORT:-5003}:5001"]
+    depends_on:
+      init:
+        condition: service_completed_successfully
+
+volumes:
+  airflow-home:
+  mlflow-state:
+  pipeline-data:
+  pipeline-artifacts:
+  pipeline-reports:
+  mlflow-artifacts:

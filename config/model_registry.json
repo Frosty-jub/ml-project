@@ -1,0 +1,15 @@
+{
+  "experiment_name": "demand-forecasting-7d",
+  "registered_model_name": "demand-forecasting-7d",
+  "expected_folds": 4,
+  "minimum_fold_wins": 3,
+  "maximum_champion_mae_regression_pct": 0.0,
+  "maximum_latency_p50_ms": 200.0,
+  "maximum_latency_p95_ms": 500.0,
+  "minimum_throughput_predictions_per_second": 100.0,
+  "benchmark_batch_size": 32,
+  "benchmark_concurrency": 4,
+  "benchmark_warmup_requests": 5,
+  "benchmark_measured_requests": 30,
+  "maximum_benchmark_age_hours": 24
+}
