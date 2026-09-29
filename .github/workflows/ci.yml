@@ -24,7 +24,7 @@ jobs:
     timeout-minutes: 120
     env:
       COMPOSE_PROJECT_NAME: ci-demo
-      PIPELINE_RUN_ID: github_${{ github.run_id }}_${{ github.run_attempt }}
+      PIPELINE_RUN_ID: github-${{ github.run_id }}_${{ github.run_attempt }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -49,7 +49,7 @@ jobs:
       - name: Collect deployment evidence
         if: always() && github.event_name == 'workflow_dispatch' && inputs.deploy_demo
         run: |
-          docker compose -f docker-compose.airflow.yml logs --no-color > evidence/compose.log 2>&1
+          docker compose -f docker-compose.airflow.yml logs --no-color 2>&1 | sed -E "s/(Password for user 'admin': ).*/\1[REDACTED]/" > evidence/compose.log
           docker compose -f docker-compose.airflow.yml cp airflow:/workspace/artifacts/orchestration evidence/orchestration || true
           docker compose -f docker-compose.airflow.yml cp airflow:/workspace/reports/generated evidence/data-reports || true
       - name: Upload evidence
