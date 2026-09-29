@@ -239,6 +239,18 @@ def run_experiment(X: np.ndarray, y: np.ndarray, folds: list[Fold], features: li
     return summaries, fold_metrics, model_by_trial
 
 
+def pipeline_configuration_matches_reference(
+    config_bytes: bytes, manifest_digest: str, reference_digest: str
+) -> bool:
+    current_digest = hashlib.sha256(config_bytes).hexdigest()
+    normalized_config = config_bytes.replace(b"\r\n", b"\n")
+    compatible_digests = {
+        hashlib.sha256(normalized_config).hexdigest(),
+        hashlib.sha256(normalized_config.replace(b"\n", b"\r\n")).hexdigest(),
+    }
+    return manifest_digest == current_digest and reference_digest in compatible_digests
+
+
 def previous_experiment_rows() -> list[dict]:
     path = ROOT / "config" / "experiment1_reference.json"
     reference = json.loads(path.read_text(encoding="utf-8"))
@@ -246,7 +258,10 @@ def previous_experiment_rows() -> list[dict]:
     workbook = ROOT / "data" / "raw" / "online_retail_II.xlsx"
     if not workbook.exists() or sha256(workbook) != reference["source_workbook_sha256"]:
         raise ValueError("Experiment 1 reference requires the original source workbook")
-    if manifest["configuration_sha256"] != reference["pipeline_config_sha256"] or any(
+    config_bytes = (ROOT / "config" / "pipeline.json").read_bytes()
+    if not pipeline_configuration_matches_reference(
+        config_bytes, manifest["configuration_sha256"], reference["pipeline_config_sha256"]
+    ) or any(
         manifest["splits"][name]["rows"] != rows for name, rows in reference["split_rows"].items()
     ):
         raise ValueError("Experiment 1 reference belongs to a different pipeline or split")
