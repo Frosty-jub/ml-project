@@ -101,6 +101,10 @@ PowerShell transcripts, row-level events, model binaries และรหัส�
 
 ## 6. ขอบเขตที่ยังต้องให้ทีมดำเนินการและขั้นถัดไป
 
+**สถานะปิดงาน:** Pipeline Orchestration ในขอบเขต local demonstration ตามรายวิชาเสร็จแล้ว โดยใช้ flow และผลทดสอบที่ระบุในรายงานนี้ โค้ดและหลักฐานอยู่ใน Draft PR #7: https://github.com/Frosty-jub/ml-project/pull/7 (branch integration/real-model-serving → Dec)
+
+เอกสาร integration ปรับแยกหลักฐานเดิม version 1 บน host กับผล Airflow version 4 แล้ว และระบุที่มาของ SLO จากงาน Serving commit e32b994 ตัวเลข SLO และเกณฑ์โมเดลของทีมคงเดิม การมีเกณฑ์สอง workload ไม่ใช่ข้อขัดแย้งที่ต้องแก้ให้ใช้ตัวเลขเดียวกัน
+
 - เจ้าของข้อมูล/โมเดล/API ยืนยัน docs/pipeline_integration.md และเกณฑ์ SLO; ระบบเก็บสถานะ pending ตามจริง
 - Daily monitoring รอ reference/events/labels ที่ครบ horizon 7 วัน; เมื่อพร้อมตั้ง monitoring_inputs.json ตามคู่มือ ไม่สร้าง labels แทนข้อมูลจริง
 - ผล benchmark เป็นการทดสอบช่วงสั้นบนเครื่องนี้ ไม่ยืนยันความพร้อมใช้งานระยะยาว

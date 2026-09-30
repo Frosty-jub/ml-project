@@ -1,7 +1,10 @@
 # Pipeline Integration Contract
 
-**สถานะ:** ร่าง รอเจ้าของข้อมูล โมเดล และ API ยืนยัน  
-**วันที่:** 2026-09-29
+**สถานะทางเทคนิค:** Integration และ Pipeline Orchestration ผ่านการทดสอบ local demonstration แล้ว
+
+**สถานะข้อตกลงทีม:** รอเจ้าของข้อมูล โมเดล และ API ยืนยัน
+
+**ปรับปรุงล่าสุด:** 2026-09-30
 
 **ส่วนต่อยอด 2026-09-30:** ชุด Airflow แยกที่ `orchestration/airflow/compose.yaml` เชื่อม candidate จากแต่ละ run กับ Registry/bundle/candidate API/policy approval/production/rollback และ Monitoring ดู [คู่มือ orchestration](pipeline_orchestration.md) สถานะร่างและ owner sign-off ของเอกสารนี้ยังคงต้องยืนยันตามจริง
 
@@ -35,7 +38,7 @@ Endpoint มาตรฐานที่เสนอ: `POST /predict`
 ```
 
 - `records` มีหนึ่ง record ต่อหนึ่ง SKU ณ วันตัดข้อมูล
-- แต่ละ record ต้องมีฟีเจอร์ครบตาม schema และลำดับใน manifest
+- แต่ละ record ต้องมีฟีเจอร์ครบตาม schema; runtime จัดคอลัมน์ DataFrame ตามลำดับ manifest ก่อนส่งเข้าโมเดล (ไม่อาศัยลำดับ key ของ JSON)
 - ต้องยืนยันชนิดข้อมูล ค่าว่าง และขอบเขตค่าของแต่ละฟีเจอร์กับเจ้าของข้อมูลและโมเดล
 
 ### Response เมื่อสำเร็จ
@@ -95,8 +98,10 @@ bundle ของกลุ่มบันทึก `FeatureOrderedModel` จา�
 
 ส่วน `serving/slo.json` ระบุ SLO สำหรับเดโมเป็น p50 ≤ 100 ms, p95 ≤ 250 ms, throughput ≥ 20 requests/second และ error rate ≤ 1%
 
-- [ ] ทีมยืนยัน SLO ชุดเดียวสำหรับบริการจริง (ตัวเลขปัจจุบันผ่านทั้ง 2 ชุด แต่ threshold และหน่วย throughput ยังต่างกัน)
-- [ ] ทีมยืนยันว่าจะใช้ requests/second หรือ predictions/second เป็นเกณฑ์หลัก; benchmark บันทึกทั้งสองหน่วยและ batch size แล้ว
+- `serving/slo.json` มีอยู่ก่อนงานคนที่ 6 ใน commit `e32b994` ของชุด FastAPI/Serving/Docker บน branch `Dec`; ตัวเลขไม่ได้ตั้งใหม่ในงาน orchestration
+- Registry benchmark ใช้ batch 32, concurrency 4, measured 30 requests เพื่อเป็น serving promotion gate; API SLO ใช้ 1 record/request, concurrency 10, measured 500 requests เพื่อประเมินบริการ ทั้งสองต้องผ่านใน DAG ปัจจุบัน
+- [ ] ทีมยืนยันการใช้เกณฑ์เดิมทั้งสองชุดตาม workload และหน้าที่ที่ระบุ ไม่จำเป็นต้องทำให้ตัวเลขหรือหน่วยเหมือนกัน
+- [ ] ทีมยืนยันสถานะ SLO ทางการ; ไฟล์เดิมยังระบุ Proposed demo SLO และงานคนที่ 6 ไม่ลงชื่ออนุมัติแทนทีม
 - [x] benchmark วัด API ที่ใช้โมเดลจริง ไม่ใช่ synthetic demo
 
 ## 5. ขั้นตอนส่งต่อระหว่างส่วนงาน
@@ -115,7 +120,7 @@ bundle ของกลุ่มบันทึก `FeatureOrderedModel` จา�
   → ให้บริการและส่ง prediction observations ไป Monitoring
 ```
 
-การเปลี่ยน Registry alias ไม่ได้เปลี่ยนโมเดลที่ API โหลดอยู่โดยอัตโนมัติ ต้องกำหนดขั้นตอน reload หรือ restart บริการหลังอนุมัติเวอร์ชันใหม่
+การเปลี่ยน Registry alias เพียงอย่างเดียวไม่ได้เปลี่ยนโมเดลที่ API โหลดอยู่ ชุด Airflow ปัจจุบันจึงเปลี่ยน deployment pointer หลังผ่าน gate และให้ selector ตรวจ bundle/name/version/checksum ก่อนโหลด พร้อมตรวจ health และ prediction parity หลังสลับ และทดสอบ rollback/restore จริง
 
 ## 6. หลักฐานว่า Integration ผ่าน
 
@@ -130,7 +135,7 @@ bundle ของกลุ่มบันทึก `FeatureOrderedModel` จา�
 - [x] load test แยกด้วย `serving/scripts/load_test.py` ใช้ payload จาก bundle จริงครบ 500 requests
 - [x] คู่มือระบุวิธีสร้าง bundle เลือกเวอร์ชัน และเริ่มบริการด้วย bundle นั้น
 
-### สถานะการดำเนินงาน
+### หลักฐาน Integration เดิม วันที่ 2026-09-29 (Registry บน host)
 
 - Candidate Registry version `1` ผ่าน quality gate: validation MAE 16.2275 เทียบ baseline 20.8549 และชนะครบ 4/4 folds
 - ลงทะเบียนเป็น `demand-forecasting-7d` version `1` แล้ว โดยยังไม่มี alias สำหรับ production
@@ -138,9 +143,21 @@ bundle ของกลุ่มบันทึก `FeatureOrderedModel` จา�
 - Docker image build และ container start ด้วย `model.joblib` bundle version `1` สำเร็จ; HTTP evidence ผ่านครบใน `serving/reports/http_evidence.json`
 - Registry-versus-HTTP parity benchmark ผ่านทุก gate: p50 `12.80 ms`, p95 `30.56 ms`, throughput `8,792.56 predictions/s` (`274.77 requests/s`), batch size `32`, concurrency `4`, `30/30` measured requests สำเร็จ
 - Load test ของ bundle `model.joblib` ผ่าน proposed demo SLO: 500/500 requests สำเร็จ, concurrency `10`, p50 `23.99 ms`, p95 `28.81 ms`, throughput `411.66 requests/s`, error rate `0%`; หลักฐานอยู่ใน `serving/reports/load_test_group_v1.json`
-- ผล benchmark รอบล่าสุดผ่านทั้งตัวเลขใน `config/model_registry.json` และ `serving/slo.json` แต่สองไฟล์ยังตั้ง threshold/หน่วย throughput ต่างกัน จึงต้องให้ทีมเลือก SLO ทางการก่อนอนุมัติใช้จริง
+- ผล benchmark ของรอบนี้ผ่านทั้งสองชุดเกณฑ์; การยืนยัน SLO ทางการเป็นสถานะข้อตกลงของทีม แยกจากผลผ่านทางเทคนิค
 - ตรวจ monitoring volume แล้วพบ observation records ที่มี `request_id`, `row_index`, model version, features และ prediction
-- Technical integration checks ผ่านในเครื่องนี้; owner sign-off ของสัญญาและ SLO ยัง pending และ Registry version `1` ยังไม่มี production alias จึงยังไม่ promote
+- ณ รอบหลักฐานเดิม version `1` ยังไม่มี production alias ข้อมูลนี้เป็นประวัติของ Registry บน host ไม่ใช่สถานะของ Airflow stack ด้านล่าง
+
+### ผล Pipeline Orchestration วันที่ 2026-09-30 (Registry ใน Airflow stack)
+
+- รอบ `acceptance_normal_20260930_final` ผ่าน 16/16 tasks ตั้งแต่ข้อมูลดิบจนถึง serving และรายงาน
+- Candidate version `4` ถูก deploy ตาม quality/serving policy เดิม; rollback ไป version `3` และ restore version `4` ผ่าน prediction parity ทั้งคู่ ตัวเลข version มาจาก Registry ของ stack นี้
+- Production API ของ stack อยู่ที่ port `18015`; candidate API อยู่ที่ `18016`; Airflow อยู่ที่ `18090` แยกจาก serving เดิม port `18005`
+- Load test 500/500 requests, p50 34.28 ms, p95 50.25 ms, throughput 281.05 requests/s, error 0%; ตรวจ Monitoring events ตรงกับ receipts 520/520 รวม warmup
+- `bad_data` หยุดที่ prepare_data และ `bad_quality` หยุดที่ candidate_quality_gate พร้อม failure alerts โดยไม่ลงทะเบียนหรือเปลี่ยน production
+- Clean-volume bootstrap ผ่าน 16/16 tasks และ automated tests ผ่าน 17 ข้อ
+- Drift/retraining เป็น simulation ที่ระบุ synthetic_demo_only ตามการสาธิตที่รายวิชาอนุญาต; daily monitoring รายงาน pending_inputs เมื่อยังไม่มี inputs จริง ไม่สร้าง labels ขึ้นเอง
+- หลักฐานรวม: `reports/orchestration/acceptance_index.json`; รายงานอธิบาย: `reports/pipeline_orchestration_completed_20260930.md`; ขอบเขตและที่มาของโค้ด: `docs/orchestration_scope_check.md` และ `docs/orchestration_source_map.md`
+- งานทางเทคนิคของ Pipeline Orchestration สำหรับ local demonstration เสร็จแล้ว การยืนยันของเจ้าของงานยังบันทึกตามจริงในหัวข้อ 7 และ CI/CD เป็นขั้นถัดไป
 
 ## 7. การยืนยันจากเจ้าของงาน
 
