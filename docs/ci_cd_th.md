@@ -2,6 +2,22 @@
 
 ใช้ GitHub Actions เรียก automated tests และ Docker Compose เชื่อมงานเดิมของทีม Airflow ยัง orchestrate ตาม DAG เดิม ส่วน CI เรียก stage runner เดียวกันบน environment แยก
 
+```mermaid
+flowchart LR
+  A[PR หรือ push] --> B[ตรวจโค้ดและ tests]
+  B --> C[ตรวจข้อมูล]
+  C --> D[ฝึกโมเดลและ quality gate]
+  D --> E[Registry และ Docker integration]
+  E --> F[Deploy / rollback / Monitoring]
+  F --> G[สร้างและตรวจชุดส่งมอบ]
+  G --> H[เก็บ artifact]
+  B -. ไม่ผ่าน .-> X[หยุดและบันทึกหลักฐาน]
+  C -. ไม่ผ่าน .-> X
+  D -. ไม่ผ่าน .-> X
+  E -. ไม่ผ่าน .-> X
+  G -. ไม่ผ่าน .-> X
+```
+
 ## ลำดับงาน
 
 1. อ่านโค้ดของ PR หรือ branch ที่ push และบันทึก commit จริง
@@ -59,6 +75,16 @@
 CD เป็น continuous delivery: สร้างชุดผ่านการตรวจและทดสอบ deploy ใน Docker ของ CI พร้อม rollback ยังไม่มี server production ของทีมที่ระบุไว้สำหรับ deploy อัตโนมัติ
 
 Artifacts เก็บ 14 วัน ควรดาวน์โหลดก่อนหมดอายุ รายงานใน repository เก็บ run URL, commit และผลแต่ละด่าน ไม่ commit ข้อมูลดิบหรือ model binary
+
+เปิด [หน้า workflow บน GitHub](https://github.com/Frosty-jub/ml-project/actions/workflows/ml-ci.yml) เลือกรอบ → คลิก job เพื่อดูคำสั่งและผลภาษาไทยของแต่ละด่าน ส่วน Artifacts อยู่หน้าสรุปรอบ ป้ายแดงของ branch bad-code/bad-data/bad-model หมายถึงระบบตรวจพบ fixture ที่ตั้งใจทำให้ผิด ต้องอ่านชื่อ branch และด่านที่ล้มเหลวประกอบ
+
+การตรวจ PR ใช้ merge commit ชั่วคราวที่ GitHub สร้างสำหรับทดสอบร่วมกับ base branch; provenance บันทึก SHA ที่ checkout จริง ส่วน acceptance index เก็บทั้ง head SHA และ tested checkout SHA จึงอาจเป็นคนละค่าได้ โดยยังไม่มีการ merge PR จริง
+
+Unit tests ก่อนฝึกอาจข้ามการตรวจ artifact ของ Experiment 3 หนึ่งข้อ เพราะเริ่มจาก workspace ว่าง จากนั้นด่าน model จะฝึกจริง ตรวจ full folds และ quality gate และด่าน integration ตรวจ schema/metadata/parity ของ artifact ที่สร้างแล้ว
+
+## การแก้ปัญหาข้าม Windows/Linux
+
+รอบ CI พบว่า Experiment 1 reference เก็บ SHA-256 ของ config แบบ CRLF แต่ GitHub checkout เป็น LF จึงเพิ่มการเทียบที่ยอมรับเฉพาะความต่างของ newline โดย manifest ยังต้องตรง bytes ของไฟล์ปัจจุบัน ส่วนข้อมูลต้นฉบับและจำนวนแถวของ split ยังตรวจเหมือนเดิม วิธีนี้นำกลับมาจากโค้ดในประวัติ Git ของโครงการที่มีอยู่ใน commit `1357cb9d775201091e5c9ed97dc4e189b24ee7eb` และเพิ่ม tests ให้ปฏิเสธ config ที่เปลี่ยนเนื้อหาจริง ไม่มีการแก้ reference metric หรือเกณฑ์เลือกโมเดล
 
 Codex ช่วยเพิ่ม workflow, ตัวเรียก CI, Docker packaging และเอกสาร สมาชิกต้องอ่านและอธิบายลำดับได้ โค้ดข้อมูล/เลือกโมเดล/เกณฑ์อนุมัติใช้ของทีมตาม source map เดิม
 

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import tempfile
 import unittest
 from pathlib import Path
@@ -25,6 +26,24 @@ from src.demand_forecasting.training.train import Split, predict_nonnegative
 
 
 class FoldTests(unittest.TestCase):
+    def test_pipeline_config_reference_accepts_lf_and_crlf(self) -> None:
+        from src.demand_forecasting.training.experiment2 import pipeline_configuration_matches_reference
+        config = b'{\n  "forecast_horizon_days": 7\n}\n'
+        for source_ending in (b'\n', b'\r\n'):
+            reference = hashlib.sha256(config.replace(b'\n', source_ending)).hexdigest()
+            for current_ending in (b'\n', b'\r\n'):
+                current = config.replace(b'\n', current_ending)
+                current_digest = hashlib.sha256(current).hexdigest()
+                self.assertTrue(pipeline_configuration_matches_reference(current, current_digest, reference))
+                self.assertFalse(pipeline_configuration_matches_reference(current, 'stale-manifest', reference))
+
+    def test_pipeline_config_reference_rejects_changed_content(self) -> None:
+        from src.demand_forecasting.training.experiment2 import pipeline_configuration_matches_reference
+        original = b'{"forecast_horizon_days": 7}\n'
+        changed = b'{"forecast_horizon_days": 14}\n'
+        self.assertFalse(pipeline_configuration_matches_reference(
+            changed, hashlib.sha256(changed).hexdigest(), hashlib.sha256(original).hexdigest()))
+
     def test_expanding_folds_keep_labels_before_validation(self) -> None:
         dates = np.arange(np.datetime64("2020-01-01"), np.datetime64("2020-03-01"), dtype="datetime64[D]")
         definitions = [
