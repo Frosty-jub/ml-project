@@ -153,6 +153,12 @@ def report():
         for path in FLOW_OUT.glob('*.json'):
             if path.name not in excluded and not path.name.endswith('_parity.json'):
                 shutil.copy2(path, OUT / ('flow_' + path.name))
+            elif path.name.endswith('_parity.json'):
+                parity = read(path)
+                write(OUT / ('flow_' + path.name), {
+                    'passed': parity['passed'], 'health': parity['health'],
+                    'compared_records': len(parity['expected']),
+                    'scope': 'ตรวจ Registry/API ด้วยข้อมูลเดียวกัน; ไม่แนบ features รายแถวในรายงานสาธารณะ'})
     lines = ['# ผล CI/CD', '', f'รอบ: `{RUN_ID}`', f'สถานการณ์: `{SCENARIO}`', '',
              '| ด่าน | ผล |', '|---|---|']
     lines += [f'| {name} | {value["status"]} |' for name, value in statuses.items()]
@@ -177,7 +183,8 @@ def main():
             if read(OUT / (previous + '.json'))['status'] != 'success':
                 raise ValueError('ด่านก่อนหน้ายังไม่ผ่าน: ' + previous)
         result = globals()[args.stage]()
-        write(OUT / (args.stage + '.json'), {'status': 'success', 'started_at_utc': started, 'result': result})
+        write(OUT / (args.stage + '.json'), {'status': 'success', 'started_at_utc': started,
+              'finished_at_utc': datetime.now(timezone.utc).isoformat(), 'result': result})
     except Exception as exc:
         write(OUT / (args.stage + '.json'), {'status': 'failed', 'started_at_utc': started,
               'error_type': type(exc).__name__, 'error': str(exc)})

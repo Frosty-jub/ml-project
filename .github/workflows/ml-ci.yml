@@ -78,10 +78,12 @@ jobs:
         shell: bash
         run: |
           mkdir -p ci-evidence
-          docker compose -f ci/compose.yaml exec -T runner python scripts/ci_pipeline.py report || true
+          report_status=0
+          docker compose -f ci/compose.yaml exec -T runner python scripts/ci_pipeline.py report || report_status=$?
           docker compose -f ci/compose.yaml cp runner:/project/reports/ci/. ci-evidence/ || true
           docker compose -f ci/compose.yaml logs --no-color > ci-evidence/containers.log 2>&1 || true
           if [ -f ci-evidence/summary.md ]; then cat ci-evidence/summary.md >> "$GITHUB_STEP_SUMMARY"; fi
+          exit "$report_status"
       - name: เก็บหลักฐานการตรวจ
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7

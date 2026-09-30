@@ -14,7 +14,8 @@ class CiPipelineTests(unittest.TestCase):
             out = Path(directory)
             ci.write(out / 'code.json', {'status': 'failed'})
             with patch.object(ci, 'OUT', out), patch.object(ci, 'data') as data, \
-                    patch('sys.argv', ['ci_pipeline.py', 'data']):
+                    patch('sys.argv', ['ci_pipeline.py', 'data']), \
+                    patch('builtins.print'), patch('traceback.print_exc'):
                 with self.assertRaises(SystemExit) as result:
                     ci.main()
                 self.assertEqual(result.exception.code, 1)
