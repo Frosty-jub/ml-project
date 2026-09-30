@@ -1,7 +1,17 @@
-# การเทียบกับข้อกำหนดรายวิชา
+# การเทียบข้อกำหนดรายวิชากับงานคนที่ 6
 
-ผู้ใช้ระบุไฟล์ `โครงงานรายวิชา CP413008 Machine Learning Engineering for Production.docx` ที่ path `/mnt/data/` แต่ไม่พบไฟล์ดังกล่าวใน workspace Windows นี้ และแชตที่อ้างอิงมาก็ไม่มี attachment ให้เปิด จึงยังตรวจข้อความและรายการส่งงานใน rubric โดยตรงไม่ได้
+ตรวจจากเอกสาร `โครงงานรายวิชา CP413008 Machine Learning Engineering for Production.docx` ที่ผู้ใช้ให้จาก Downloads และภาพแบ่งหน้าที่ วันที่ 30 กันยายน 2026 ข้อความนี้แทนบันทึกเดิมที่เคยระบุว่าไม่พบไฟล์ข้อกำหนด
 
-บริบทจากแชตเดิมสรุปภาพรวมว่าโครงงานต้องครอบคลุมวงจร ML production ตั้งแต่ข้อมูลดิบ, data checks, train/evaluate, model registry, API serving, monitoring, drift, retraining และ rollback รวมทั้งรัน pipeline ซ้ำได้ แต่สรุปนี้ไม่ใช่ตัวแทนเอกสารข้อกำหนดฉบับเต็ม
+| ข้อกำหนดที่เกี่ยวข้อง | งานคนที่ 6 | เอกสารประกอบ |
+|---|---|---|
+| Pipeline ครบจากข้อมูลถึง serving และรันซ้ำได้ | เชื่อมงานทีมเป็น Airflow DAG | pipeline_orchestration.md |
+| ข้อมูลผิดต้องหยุดและแจ้งเตือน | เรียก validator เดิมและพิสูจน์ failure path | orchestration_scope_check.md |
+| Registry/gate/version และ rollback | เชื่อมโมดูล Registry กับ API | pipeline_integration.md |
+| Docker/compose และ dependencies ที่ระบุเวอร์ชัน | environment และ bundle | pipeline_orchestration.md |
+| CI/CD รันจริง ตรวจ code/data/model มีหลักฐานผ่านและไม่ผ่าน | GitHub Actions, automated tests, delivery | ci_cd_th.md |
+| Monitoring/drift/retraining | เชื่อม trigger ของคนที่ 5 | orchestration_source_map.md |
+| Branch/PR คำอธิบายและการใช้ AI | Draft PR และรายงาน | reports/ |
 
-ชุดเริ่มต้นนี้จึงครอบคลุมเฉพาะการนิยามโจทย์ การเลือก/เตรียมข้อมูล และโครงสร้าง repository ในขั้นตอนที่ 1 ก่อนเริ่มส่วนระบบ ML production ให้สมาชิกนำไฟล์ rubric มาใส่ใน `docs/` แล้วเทียบ deliverables, metric, ข้อจำกัดเครื่องมือ และเกณฑ์การประเมินทุกข้อกับอาจารย์
+รายวิชาให้เลือกเครื่องมือ ภาพคนที่ 6 ระบุ Prefect/Airflow, GitHub Actions, automated tests, docker-compose/integration และ end-to-end run ผู้ใช้เลือก Airflow จึงใช้ Airflow
+
+ผลทดสอบทางเทคนิคแยกจากการยืนยัน SLO/สัญญาของเจ้าของงาน เอกสารนี้ไม่แทนการลงชื่อยืนยันของทีม และไม่เปลี่ยนหน้าที่เลือกโมเดลหรือพัฒนา Monitoring มาเป็นของคนที่ 6

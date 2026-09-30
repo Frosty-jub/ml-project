@@ -36,6 +36,9 @@ venv/
 /mlflow.db*
 /mlartifacts/
 /artifacts/
+/delivery/
+/ci-evidence/
+/reports/ci/
 
 # Generated reports and local OS files
 /reports/generated/*
