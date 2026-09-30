@@ -1,5 +1,5 @@
 {
-  "scope": "ตรวจ GitHub Actions บน branch Petch",
+  "scope": "รอบปกติทดสอบบน branch Petch; รอบ failure fixture อ้างอิงจาก branch ci/evidence/* และแยกจากรอบปกติ",
   "runs": {
     "normal": {
       "run_id": 36706218694,
@@ -121,5 +121,49 @@
       }
     }
   },
-  "complete": true
+  "complete": true,
+  "intentional_failure_runs": {
+    "bad_code": {
+      "run_id": 36660579656,
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36660579656",
+      "branch": "ci/evidence/bad-code-20260930",
+      "tested_checkout_sha": "1cd75312a035def3f968e948e9996bbbda1aae13",
+      "conclusion": "failure",
+      "expected_failed_stage": "code",
+      "fixture": "Python syntax error fixture",
+      "downstream_stages": "not_run",
+      "delivery_allowed": false,
+      "head_sha": "1cd75312a035def3f968e948e9996bbbda1aae13",
+      "expected_failure": true
+    },
+    "bad_data": {
+      "run_id": 36660583185,
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36660583185",
+      "branch": "ci/evidence/bad-data-20260930",
+      "tested_checkout_sha": "1cd75312a035def3f968e948e9996bbbda1aae13",
+      "conclusion": "failure",
+      "expected_failed_stage": "data",
+      "fixture": "invalid sales data fixture",
+      "code_stage": "success",
+      "downstream_stages": "not_run",
+      "delivery_allowed": false,
+      "head_sha": "1cd75312a035def3f968e948e9996bbbda1aae13",
+      "expected_failure": true
+    },
+    "bad_model": {
+      "run_id": 36660585806,
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36660585806",
+      "branch": "ci/evidence/bad-model-20260930",
+      "tested_checkout_sha": "1cd75312a035def3f968e948e9996bbbda1aae13",
+      "conclusion": "failure",
+      "expected_failed_stage": "model",
+      "fixture": "degraded candidate metrics for quality-gate test",
+      "code_stage": "success",
+      "data_stage": "success",
+      "downstream_stages": "not_run",
+      "delivery_allowed": false,
+      "head_sha": "1cd75312a035def3f968e948e9996bbbda1aae13",
+      "expected_failure": true
+    }
+  }
 }

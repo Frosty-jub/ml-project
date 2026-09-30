@@ -16,6 +16,17 @@
 
 สร้าง artifact 2 ชุด: หลักฐาน CI และ verified delivery package ตัวตรวจ collector เทียบ checksum ของไฟล์ใน delivery package ผ่าน 31 ไฟล์; bundle ที่บันทึกในหลักฐานเป็น candidate version `2` และ fallback version `1` รายละเอียด run, stage และ digest อยู่ใน [`github_actions/acceptance_index.json`](./github_actions/acceptance_index.json) และ [`github_actions/normal/summary.json`](./github_actions/normal/summary.json)
 
+### CI failure fixtures ที่ตั้งใจทดสอบ
+
+รอบต่อไปนี้เป็นการทดสอบ failure gate โดยตั้งใจ ใช้ tested checkout 1cd75312a035def3f968e948e9996bbbda1aae13 บน branch ci/evidence/* แยกจากรอบปกติบน Petch:
+
+| Fixture | Branch / GitHub Actions | ผลที่คาดและพบ |
+|---|---|---|
+| bad_code | ci/evidence/bad-code-20260930 · [run 36660579656](https://github.com/Frosty-jub/ml-project/actions/runs/36660579656) | code ล้มเหลวจาก syntax fixture; ด่านถัดไปไม่รันและไม่อนุญาต delivery |
+| bad_data | ci/evidence/bad-data-20260930 · [run 36660583185](https://github.com/Frosty-jub/ml-project/actions/runs/36660583185) | code ผ่าน แล้ว data ล้มเหลวจากข้อมูล fixture; ด่านถัดไปไม่รันและไม่อนุญาต delivery |
+| bad_model | ci/evidence/bad-model-20260930 · [run 36660585806](https://github.com/Frosty-jub/ml-project/actions/runs/36660585806) | code และ data ผ่าน แล้ว model ล้มเหลวที่ quality gate; integration/package/delivery ไม่รัน |
+
+สถานะ failure ของสามรอบนี้เป็นผลที่ตั้งใจให้เกิดเพื่อพิสูจน์ว่า CI หยุดที่ด่านที่ผิด ไม่ใช่ความล้มเหลวของรอบปกติบน Petch ซึ่งผ่านครบทุกด่าน หลักฐาน machine-readable อยู่ใน github_actions/acceptance_index.json ใต้ intentional_failure_runs.
 ## Airflow / End-to-end
 
 ทดสอบ DAG จาก source archive ของ commit `ce5f95f...` ใน Docker Compose project แยกชื่อ `ml-petch-proof-20260930` ใช้พอร์ตทดสอบแยกจาก service อื่น เมื่อจบรันได้หยุดเฉพาะ service ใน project ทดสอบนั้น

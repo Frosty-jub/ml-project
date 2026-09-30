@@ -183,8 +183,8 @@ Bundles เป็น immutable directory ใช้ SHA-256 ของ bundle file
 docker compose -f orchestration/airflow/compose.yaml stop
 ```
 
-## ลำดับก่อน CI/CD และการใช้ AI
+## การตรวจ orchestration, CI/CD และการใช้ AI
 
-ตรวจ happy path, bad-data path, failed-gate path, rollback/restore, drift-to-candidate และการเริ่มจาก volume ว่าง จากนั้นเก็บโค้ดและหลักฐานที่ไม่เป็นข้อมูลลับใน commit/PR และ review กับสมาชิกตามหน้าที่ CI/CD สามารถเรียก automated checks ที่ยืนยันแล้ว โดยต้องตรวจคุณภาพโค้ด ข้อมูล และโมเดลตามรายวิชา
+การทดสอบ orchestration ครอบคลุม happy path, bad-data path, failed-gate path, rollback/restore, drift-to-candidate และการเริ่มจาก volume ว่าง ส่วน GitHub Actions CI/CD เรียก automated checks เพื่อตรวจคุณภาพโค้ด ข้อมูล โมเดล, integration และ delivery ตามรายวิชา โดยเก็บหลักฐานรอบปกติและ failure fixtures ไว้ในรายงาน Petch ก่อนส่ง commit/PR ให้สมาชิกตรวจ
 
 OpenAI Codex ช่วยออกแบบและเขียน Airflow DAG/stage runner, deployment selector, scripts, tests และเอกสารชุดนี้ สมาชิกต้องอ่านและอธิบายโค้ดที่ส่งได้ตามข้อกำหนดรายวิชา
