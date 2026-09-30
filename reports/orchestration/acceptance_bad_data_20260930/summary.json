@@ -1,0 +1,75 @@
+{
+  "status": "failed",
+  "run_id": "acceptance_bad_data_20260930",
+  "scenario": "bad_data",
+  "steps": {
+    "initialize": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T00:50:05.550402+00:00",
+      "finished_at_utc": "2026-09-30T00:50:07.008184+00:00",
+      "result": {
+        "workspace": "/project/artifacts/orchestration/runs/acceptance_bad_data_20260930/project",
+        "source_files": 74
+      }
+    },
+    "prepare_data": {
+      "status": "failed",
+      "started_at_utc": "2026-09-30T00:50:07.638281+00:00",
+      "error_type": "CalledProcessError",
+      "error": "Command '['/opt/project-venv/bin/python', 'scripts/validate_data.py']' returned non-zero exit status 1."
+    },
+    "experiment_2": {
+      "status": "not_run"
+    },
+    "experiment_3": {
+      "status": "not_run"
+    },
+    "verify_full_folds": {
+      "status": "not_run"
+    },
+    "candidate_quality_gate": {
+      "status": "not_run"
+    },
+    "register_models": {
+      "status": "not_run"
+    },
+    "export_bundles": {
+      "status": "not_run"
+    },
+    "benchmark_candidates": {
+      "status": "not_run"
+    },
+    "approve_and_deploy": {
+      "status": "not_run"
+    },
+    "rollback_drill": {
+      "status": "not_run"
+    },
+    "verify_monitoring": {
+      "status": "not_run"
+    },
+    "simulate_drift": {
+      "status": "not_run"
+    },
+    "check_drift": {
+      "status": "not_run"
+    },
+    "retrain_candidate": {
+      "status": "not_run"
+    }
+  },
+  "production_after": {
+    "model_name": "demand-forecasting-7d",
+    "model_version": "4",
+    "source_model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054",
+    "bundle_dir": "/project/artifacts/orchestration/bundles/v4-f4a0bdbd9741",
+    "model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054",
+    "airflow_run_id": "acceptance_normal_20260930_final",
+    "revision": "bc376f1f163e4fa1ae8cb84e0533b8ba"
+  },
+  "production_unchanged": true,
+  "demo_limitations": [
+    "Team owner sign-off pending; automated policy approval is local demo only",
+    "Drift-to-retraining uses explicitly synthetic delayed labels; candidate is never auto-promoted"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "checks": {
+    "feature_schema": true,
+    "metrics_finite": true,
+    "beats_baseline": true,
+    "complete_folds": true,
+    "validation_protocol": true,
+    "aggregate_matches_folds": true,
+    "wins_required_folds": true,
+    "pretest_only": true,
+    "prediction_integrity": true,
+    "rejects_wrong_feature_order": true
+  },
+  "candidate_mae": 16.22751974883882,
+  "baseline_mae": 20.854926254439675,
+  "folds_won": 4,
+  "expected_folds": 4,
+  "model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054",
+  "metadata_sha256": "32ed6b7f3bf6ce3a8fdca6e45c00065e9d3bcfbbe24dc558577673f5a6a9ddcf",
+  "policy_sha256": "89ab4f0e568fc097e93131bd9c572c3353421dbcbee282eec3956ddbc252cfaa",
+  "validation_folds_sha256": "ad48125c00d88f9e6fd192bf7b0f50c92cab8339784dfe6c3c9322d14ffc04b1"
+}

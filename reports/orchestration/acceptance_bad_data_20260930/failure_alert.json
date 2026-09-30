@@ -1,0 +1,8 @@
+{
+  "run_id": "acceptance_bad_data_20260930",
+  "severity": "error",
+  "failed_tasks": [
+    "prepare_data"
+  ],
+  "production_unchanged": true
+}

@@ -1,0 +1,8 @@
+﻿{
+    "actual_state":  "success",
+    "expected_state":  "success",
+    "passed":  true,
+    "scenario":  "monitoring",
+    "checked_at":  "2026-09-30T00:52:50.8062922Z",
+    "run_id":  "acceptance_monitoring_20260930"
+}

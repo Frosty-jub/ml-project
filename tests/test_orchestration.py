@@ -16,7 +16,18 @@ sys.path.insert(0, str(ROOT / 'serving'))
 from app.main import create_app
 from app.selector import BundleSelector
 from serving.scripts.export_model import export_bundle
-from orchestration.airflow.run_stage import Flow, read, write, reconcile_events
+from orchestration.airflow.run_stage import Flow, read, write, reconcile_events, compatible_environment
+
+
+class EnvironmentTests(unittest.TestCase):
+    def test_missing_environment_cannot_reuse_version(self):
+        self.assertFalse(compatible_environment({}, {'scikit-learn': '1.7.2'}))
+
+    def test_different_environment_cannot_reuse_version(self):
+        self.assertFalse(compatible_environment({'runtime_scikit-learn': '1.9.1'}, {'scikit-learn': '1.7.2'}))
+
+    def test_matching_environment_can_reuse_version(self):
+        self.assertTrue(compatible_environment({'runtime_scikit-learn': '1.7.2'}, {'scikit-learn': '1.7.2'}))
 
 
 class DeploymentTests(unittest.TestCase):

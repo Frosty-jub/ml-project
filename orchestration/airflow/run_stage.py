@@ -45,6 +45,10 @@ def require(condition, message):
         raise ValueError(message)
 
 
+def compatible_environment(tags, versions):
+    return all(tags.get('runtime_' + name) == version for name, version in versions.items())
+
+
 def reconcile_events(receipts, events, records):
     wanted = {(r['request_id'], i): (r, value) for r in receipts for i, value in enumerate(r['predictions'])}
     require(len(wanted) == sum(len(r['predictions']) for r in receipts), 'Duplicate receipt keys')
@@ -94,6 +98,11 @@ class Flow:
         })
         freeze = subprocess.check_output([sys.executable, '-m', 'pip', 'freeze'], text=True)
         (self.out / 'environment.txt').write_text(freeze, encoding='utf-8')
+        import sklearn
+        require(Path(sklearn.__file__).resolve().is_relative_to(Path(sys.prefix).resolve()),
+                'Airflow packages leaked into the project interpreter')
+        write(self.out / 'interpreter.json', {'executable': sys.executable, 'prefix': sys.prefix,
+              'sklearn_version': sklearn.__version__, 'sklearn_path': sklearn.__file__})
         before = read(STORE / 'production.json') if (STORE / 'production.json').exists() else None
         fixture = None
         if self.scenario != 'normal':
@@ -155,6 +164,7 @@ class Flow:
         return gate
 
     def register_models(self):
+        from importlib.metadata import version as package_version
         import joblib
         import mlflow
         import mlflow.sklearn
@@ -191,6 +201,7 @@ class Flow:
         gate2['validation_folds_sha256'] = canonical_sha256(meta2['folds'])
         require(gate2['passed'], 'Experiment 2 fallback did not pass quality gate')
         selected = {}
+        versions = {name: package_version(name) for name in ('scikit-learn', 'lightgbm', 'numpy', 'pandas', 'joblib')}
         # Record every Experiment 2/3 trial and the current code/data/environment lineage.
         for number in (2, 3):
             for record in read(training / f'experiment{number}_trials.json'):
@@ -212,6 +223,7 @@ class Flow:
             existing = [v for v in client.search_model_versions(f"name='{name}'")
                         if v.tags.get('source_model_sha256') == source_hash
                         and v.tags.get('validation_folds_sha256') == gate['validation_folds_sha256']
+                        and compatible_environment(v.tags, versions)
                         and v.tags.get('gate_passed') == 'true']
             if existing:
                 version = str(max(existing, key=lambda v: int(v.version)).version)
@@ -231,7 +243,8 @@ class Flow:
                 for k, v in {'gate_passed': 'true', 'source_model_sha256': source_hash,
                              'validation_mae': gate['candidate_mae'], 'baseline_mae': gate['baseline_mae'],
                              'folds_won': gate['folds_won'], 'validation_folds_sha256': gate['validation_folds_sha256'],
-                             'airflow_run_id': self.run_id}.items():
+                             'airflow_run_id': self.run_id,
+                             **{'runtime_' + k: v for k, v in versions.items()}}.items():
                     client.set_model_version_tag(name, version, k, str(v))
             selected[role] = {'model_name': name, 'model_version': version, 'source_model_sha256': source_hash}
         write(self.out / 'registered.json', selected)

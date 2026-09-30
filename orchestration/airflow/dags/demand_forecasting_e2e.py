@@ -29,7 +29,13 @@ def invoke(stage):
                '--run-id', context['dag_run'].run_id,
                '--scenario', context['params'].get('scenario', 'normal')]
     print('COMMAND:', subprocess.list2cmdline(command), flush=True)
-    subprocess.run(command, cwd=ROOT, check=True)
+    # Airflow's task runner exports its own site-packages through PYTHONPATH.
+    # Do not let those packages shadow the project's pinned virtual environment.
+    environment = os.environ.copy()
+    environment.pop('PYTHONPATH', None)
+    environment.pop('PYTHONHOME', None)
+    environment['PYTHONNOUSERSITE'] = '1'
+    subprocess.run(command, cwd=ROOT, env=environment, check=True)
 
 
 @dag(dag_id='demand_forecasting_e2e', schedule=None, catchup=False,

@@ -1,0 +1,112 @@
+{
+  "status": "failed",
+  "run_id": "acceptance_bad_quality_20260930",
+  "scenario": "bad_quality",
+  "steps": {
+    "initialize": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T00:50:58.754523+00:00",
+      "finished_at_utc": "2026-09-30T00:51:00.264897+00:00",
+      "result": {
+        "workspace": "/project/artifacts/orchestration/runs/acceptance_bad_quality_20260930/project",
+        "source_files": 74
+      }
+    },
+    "prepare_data": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T00:51:00.675343+00:00",
+      "finished_at_utc": "2026-09-30T00:51:57.505543+00:00",
+      "result": {
+        "status": "passed",
+        "horizon_days": 7,
+        "full_daily_rows": 3078994,
+        "labeled_rows": 3044168,
+        "full_daily_skus": 4976,
+        "labeled_skus": 4975,
+        "first_date": "2009-12-01",
+        "last_observed_date": "2011-12-09",
+        "last_origin_date": "2011-12-02",
+        "duplicate_keys": 0,
+        "missing_required_values": 0,
+        "negative_or_fractional_units": 0,
+        "incorrect_targets": 0,
+        "daily_sha256": "22a7c774fae7aac084b19eb22693c2f9dabccffd9c1ff63819cc98f76972ed60",
+        "labels_sha256": "1b898cef0cb3c5ababa2c424ab80c1f8319a5a72c70d47cdb075042e3a9ccb5c",
+        "configuration_sha256": "3afac86e6986251e6d499fde26fab38e0394207e1bd4313f35727e8b9e7cb0b6"
+      }
+    },
+    "experiment_2": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T00:51:57.994672+00:00",
+      "finished_at_utc": "2026-09-30T00:51:57.994685+00:00",
+      "result": {
+        "experiment": 2,
+        "mode": "isolated_copy_of_successful_run_for_failure_test"
+      }
+    },
+    "experiment_3": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T00:51:59.061442+00:00",
+      "finished_at_utc": "2026-09-30T00:51:59.061455+00:00",
+      "result": {
+        "experiment": 3,
+        "mode": "isolated_copy_of_successful_run_for_failure_test"
+      }
+    },
+    "verify_full_folds": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T00:52:00.228941+00:00",
+      "finished_at_utc": "2026-09-30T00:52:00.228953+00:00",
+      "result": {
+        "mode": "isolated_copy_of_successful_run_for_failure_test"
+      }
+    },
+    "candidate_quality_gate": {
+      "status": "failed",
+      "started_at_utc": "2026-09-30T00:52:00.821978+00:00",
+      "error_type": "ValueError",
+      "error": "Candidate quality gate rejected: {'feature_schema': True, 'metrics_finite': True, 'beats_baseline': False, 'complete_folds': True, 'validation_protocol': True, 'aggregate_matches_folds': False, 'wins_required_folds': True, 'pretest_only': True, 'prediction_integrity': True, 'rejects_wrong_feature_order': True}"
+    },
+    "register_models": {
+      "status": "not_run"
+    },
+    "export_bundles": {
+      "status": "not_run"
+    },
+    "benchmark_candidates": {
+      "status": "not_run"
+    },
+    "approve_and_deploy": {
+      "status": "not_run"
+    },
+    "rollback_drill": {
+      "status": "not_run"
+    },
+    "verify_monitoring": {
+      "status": "not_run"
+    },
+    "simulate_drift": {
+      "status": "not_run"
+    },
+    "check_drift": {
+      "status": "not_run"
+    },
+    "retrain_candidate": {
+      "status": "not_run"
+    }
+  },
+  "production_after": {
+    "model_name": "demand-forecasting-7d",
+    "model_version": "4",
+    "source_model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054",
+    "bundle_dir": "/project/artifacts/orchestration/bundles/v4-f4a0bdbd9741",
+    "model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054",
+    "airflow_run_id": "acceptance_normal_20260930_final",
+    "revision": "bc376f1f163e4fa1ae8cb84e0533b8ba"
+  },
+  "production_unchanged": true,
+  "demo_limitations": [
+    "Team owner sign-off pending; automated policy approval is local demo only",
+    "Drift-to-retraining uses explicitly synthetic delayed labels; candidate is never auto-promoted"
+  ]
+}

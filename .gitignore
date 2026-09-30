@@ -14,6 +14,7 @@ venv/
 /reports/orchestration/*/verified_events.jsonl
 /reports/orchestration/*/load_receipts.json
 /reports/orchestration/*/request_mapping.json
+/reports/orchestration/*/task_logs/
 /reports/orchestration/*_powershell.txt
 /reports/orchestration/bootstrap_powershell.txt
 

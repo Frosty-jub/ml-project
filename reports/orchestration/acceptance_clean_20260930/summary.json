@@ -1,0 +1,275 @@
+{
+  "status": "passed",
+  "run_id": "acceptance_clean_20260930",
+  "scenario": "normal",
+  "steps": {
+    "initialize": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T00:37:03.439565+00:00",
+      "finished_at_utc": "2026-09-30T00:37:04.920346+00:00",
+      "result": {
+        "workspace": "/project/artifacts/orchestration/runs/acceptance_clean_20260930/project",
+        "source_files": 73
+      }
+    },
+    "prepare_data": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T00:37:05.520958+00:00",
+      "finished_at_utc": "2026-09-30T00:42:46.236202+00:00",
+      "result": {
+        "status": "passed",
+        "horizon_days": 7,
+        "full_daily_rows": 3078994,
+        "labeled_rows": 3044168,
+        "full_daily_skus": 4976,
+        "labeled_skus": 4975,
+        "first_date": "2009-12-01",
+        "last_observed_date": "2011-12-09",
+        "last_origin_date": "2011-12-02",
+        "duplicate_keys": 0,
+        "missing_required_values": 0,
+        "negative_or_fractional_units": 0,
+        "incorrect_targets": 0,
+        "daily_sha256": "c44ebb54d6d1b0b0d8304a6f33d1963695a55954fc403557dc56227f37344c52",
+        "labels_sha256": "49152c28a387038c468b6a8a12c7ddceef2ae01b3723d44669bb16415d86d3b3",
+        "configuration_sha256": "3afac86e6986251e6d499fde26fab38e0394207e1bd4313f35727e8b9e7cb0b6"
+      }
+    },
+    "experiment_2": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T00:42:47.421879+00:00",
+      "finished_at_utc": "2026-09-30T00:43:31.279173+00:00",
+      "result": {
+        "experiment": 2
+      }
+    },
+    "experiment_3": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T00:43:32.228555+00:00",
+      "finished_at_utc": "2026-09-30T00:44:31.622599+00:00",
+      "result": {
+        "experiment": 3
+      }
+    },
+    "verify_full_folds": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T00:44:32.331525+00:00",
+      "finished_at_utc": "2026-09-30T00:45:33.079145+00:00",
+      "result": {
+        "full_folds_verified": true
+      }
+    },
+    "candidate_quality_gate": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T00:45:33.512722+00:00",
+      "finished_at_utc": "2026-09-30T00:45:34.989928+00:00",
+      "result": {
+        "passed": true,
+        "checks": {
+          "feature_schema": true,
+          "metrics_finite": true,
+          "beats_baseline": true,
+          "complete_folds": true,
+          "validation_protocol": true,
+          "aggregate_matches_folds": true,
+          "wins_required_folds": true,
+          "pretest_only": true,
+          "prediction_integrity": true,
+          "rejects_wrong_feature_order": true
+        },
+        "candidate_mae": 16.22751974883882,
+        "baseline_mae": 20.854926254439675,
+        "folds_won": 4,
+        "expected_folds": 4,
+        "model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054",
+        "metadata_sha256": "32ed6b7f3bf6ce3a8fdca6e45c00065e9d3bcfbbe24dc558577673f5a6a9ddcf",
+        "policy_sha256": "89ab4f0e568fc097e93131bd9c572c3353421dbcbee282eec3956ddbc252cfaa",
+        "validation_folds_sha256": "ad48125c00d88f9e6fd192bf7b0f50c92cab8339784dfe6c3c9322d14ffc04b1"
+      }
+    },
+    "register_models": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T00:45:35.863142+00:00",
+      "finished_at_utc": "2026-09-30T00:45:47.191941+00:00",
+      "result": {
+        "fallback": {
+          "model_name": "demand-forecasting-7d",
+          "model_version": "1",
+          "source_model_sha256": "4d45b3c5617f05ba401195107a2a466aaf815459a5aa5c6cb2ff5d2c6d8ddd5f"
+        },
+        "candidate": {
+          "model_name": "demand-forecasting-7d",
+          "model_version": "2",
+          "source_model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054"
+        }
+      }
+    },
+    "export_bundles": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T00:45:49.004385+00:00",
+      "finished_at_utc": "2026-09-30T00:45:52.208904+00:00",
+      "result": {
+        "fallback": {
+          "model_name": "demand-forecasting-7d",
+          "model_version": "1",
+          "source_model_sha256": "4d45b3c5617f05ba401195107a2a466aaf815459a5aa5c6cb2ff5d2c6d8ddd5f",
+          "bundle_dir": "/project/artifacts/orchestration/bundles/v1-4d45b3c5617f",
+          "model_sha256": "4d45b3c5617f05ba401195107a2a466aaf815459a5aa5c6cb2ff5d2c6d8ddd5f"
+        },
+        "candidate": {
+          "model_name": "demand-forecasting-7d",
+          "model_version": "2",
+          "source_model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054",
+          "bundle_dir": "/project/artifacts/orchestration/bundles/v2-f4a0bdbd9741",
+          "model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054"
+        }
+      }
+    },
+    "benchmark_candidates": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T00:45:53.170967+00:00",
+      "finished_at_utc": "2026-09-30T00:45:59.204850+00:00",
+      "result": {
+        "registry_gate_passed": true,
+        "http_passed": true,
+        "single_record_slo_passed": true
+      }
+    },
+    "approve_and_deploy": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T00:46:00.448301+00:00",
+      "finished_at_utc": "2026-09-30T00:46:03.694773+00:00",
+      "result": {
+        "approved": true,
+        "approval_mode": "existing_quality_and_serving_policy_for_local_demo",
+        "team_document_signoff": "pending",
+        "model": {
+          "model_name": "demand-forecasting-7d",
+          "model_version": "2",
+          "source_model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054",
+          "bundle_dir": "/project/artifacts/orchestration/bundles/v2-f4a0bdbd9741",
+          "model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054"
+        },
+        "policy_sha256": "89ab4f0e568fc097e93131bd9c572c3353421dbcbee282eec3956ddbc252cfaa",
+        "slo_sha256": "765424d8c3e0d1e2cb504f8abac306c88f191664ee79627ba357bd0e2fb08a52",
+        "production_url": "http://production:8000"
+      }
+    },
+    "rollback_drill": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T00:46:04.575152+00:00",
+      "finished_at_utc": "2026-09-30T00:46:07.718163+00:00",
+      "result": {
+        "rollback_version": "1",
+        "restored_version": "2",
+        "rollback_parity": true,
+        "restored_parity": true
+      }
+    },
+    "verify_monitoring": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T00:46:09.026356+00:00",
+      "finished_at_utc": "2026-09-30T00:46:12.012509+00:00",
+      "result": {
+        "expected": 3,
+        "matched_exactly": 3,
+        "request_id": "db9bf9dee12f4a0c827cc8afa81c5ca8",
+        "service": {
+          "health": {
+            "status": "ok",
+            "model_loaded": true,
+            "model_name": "demand-forecasting-7d",
+            "model_version": "2",
+            "data_kind": "group_project",
+            "model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054"
+          },
+          "http_5xx_rate_since_restart": 0.0,
+          "http_requests_since_restart": 16.0,
+          "observation_write_failures_since_restart": 0.0,
+          "http_p95_bucket_upper_bound_seconds_since_restart": null,
+          "alerts": []
+        },
+        "live_labels": "No mature live labels yet; historical replay mapping is recorded separately"
+      }
+    },
+    "simulate_drift": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T00:46:13.163131+00:00",
+      "finished_at_utc": "2026-09-30T00:46:14.792863+00:00",
+      "result": {
+        "data_kind": "synthetic_demo_only",
+        "purpose": "Demonstrate drift and delayed-label orchestration"
+      }
+    },
+    "check_drift": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T00:46:15.964347+00:00",
+      "finished_at_utc": "2026-09-30T00:46:16.597093+00:00",
+      "result": {
+        "trigger": true,
+        "data_drift_without_labels_detected": true,
+        "data_kind": "synthetic_demo_only"
+      }
+    },
+    "retrain_candidate": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T00:46:17.017183+00:00",
+      "finished_at_utc": "2026-09-30T00:46:18.610223+00:00",
+      "result": {
+        "source_model": {
+          "model_name": "simulated-demand-7d",
+          "model_version": "sim-v1",
+          "data_kind": "synthetic_demo_only",
+          "feature_names": [
+            "sales_lag_1",
+            "sales_rolling_sum_7"
+          ]
+        },
+        "trigger_report_sha256": "3610a1d0313d1496e056abfbe3140ce7c91c701cfe8cd7f9da6f45d14a12a0ee",
+        "source_events_sha256": "63d598f0dfdae495220679c6a7cadbb422e35b580193e2fd86547f09450bf637",
+        "source_labels_sha256": "545aba8ad2dc0f4829b4cd9d0cfc51837b406013aa0cfd8475004731709caea0",
+        "training_rows": 600,
+        "holdout_rows": 240,
+        "embargo_days": 7,
+        "holdout_start": "2026-02-06T00:00:00+00:00",
+        "champion": {
+          "MAE": 15.127185259389007,
+          "RMSE": 15.212038970883372,
+          "WAPE": 26.49664902173674
+        },
+        "candidate": {
+          "MAE": 15.045708447878532,
+          "RMSE": 15.136725949493817,
+          "WAPE": 26.35393493177322
+        },
+        "candidate_beats_champion": true,
+        "registered_or_promoted": false,
+        "model_type": "LightGBM",
+        "parameters": {
+          "objective": "regression_l1",
+          "n_estimators": 60,
+          "learning_rate": 0.08,
+          "num_leaves": 15,
+          "verbosity": -1,
+          "n_jobs": 1
+        },
+        "data_kind": "synthetic_demo_only",
+        "lightgbm_version": "4.6.0"
+      }
+    }
+  },
+  "production_after": {
+    "model_name": "demand-forecasting-7d",
+    "model_version": "2",
+    "source_model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054",
+    "bundle_dir": "/project/artifacts/orchestration/bundles/v2-f4a0bdbd9741",
+    "model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054",
+    "airflow_run_id": "acceptance_clean_20260930",
+    "revision": "a6268d79f8244be2a12710ad90a07e15"
+  },
+  "production_unchanged": false,
+  "demo_limitations": [
+    "Team owner sign-off pending; automated policy approval is local demo only",
+    "Drift-to-retraining uses explicitly synthetic delayed labels; candidate is never auto-promoted"
+  ]
+}

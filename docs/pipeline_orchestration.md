@@ -1,5 +1,7 @@
 # Pipeline Orchestration ด้วย Apache Airflow
 
+ดู `docs/orchestration_scope_check.md` สำหรับตารางเทียบข้อกำหนดรายวิชา และ `docs/orchestration_source_map.md` สำหรับแยกโค้ดทีมที่เรียกใช้กับส่วนที่ Codex เพิ่ม
+
 ## เครื่องมือและขอบเขต
 
 งานคนที่ 6 ใช้ Airflow ควบคุม DAG, Docker Compose เชื่อมบริการ, Python/unittest/HTTP checks ตรวจระบบ และ MLflow/FastAPI/Monitoring ของคนที่ 3–5 เป็นส่วนต่อประสาน เลือก Airflow เพราะเห็น task/dependency/logs/run history และ failure status ใน UI ชัดเจน และอยู่ในเครื่องมือที่เอกสารรายวิชาอนุญาต
@@ -31,7 +33,11 @@ powershell -ExecutionPolicy Bypass -File .\scripts\run_orchestration.ps1
 
 ทุก normal run สร้าง workspace ใหม่ที่มีเฉพาะโค้ด/config แล้วดาวน์โหลดข้อมูล สร้าง features และเทรนเอง ไม่คัดลอก dataset/model จาก run เดิม Registry และ immutable bundles ใช้ร่วมกันเพื่อมีประวัติรุ่นและ rollback รุ่นที่ hash และ validation protocol เดียวกันสามารถ reuse ได้
 
+การ reuse ยังต้องตรงเวอร์ชัน scikit-learn, LightGBM, NumPy, pandas และ joblib ที่บันทึกใน Registry tags ด้วย รุ่นเก่าที่ไม่มี tags เหล่านี้จะไม่ถูก reuse แม้ source hash ตรงกัน เพราะ bundle อาจผูกกับ dependency คนละเวอร์ชัน
+
 Dockerfile ใช้ `orchestration/airflow/requirements.lock` ที่บันทึก dependencies ทั้งหมดของ project interpreter; ตัว Airflow ใช้ environment ของ image แยกต่างหาก Serving และ training ใช้ project interpreter ชุดเดียวกันใน stack ใหม่นี้ Environment จริงของแต่ละ run เก็บเป็น `environment.txt`
+
+DAG ล้าง `PYTHONPATH` และ `PYTHONHOME` ที่ส่งต่อมาจาก Airflow ก่อนเรียก project interpreter และกำหนด `PYTHONNOUSERSITE=1` เพื่อป้องกัน dependency ของ Airflow ทับเวอร์ชันใน lock file ขั้น initialize ตรวจตำแหน่ง scikit-learn ว่าอยู่ใน virtual environment และเก็บ `interpreter.json` ไว้ตรวจสอบ
 
 ## เปิดหน้าเว็บ
 
@@ -143,6 +149,14 @@ events และ reference ต้องเป็นโมเดล/version/schem
 .\scripts\verify_orchestration.ps1 -Scenario monitoring
 ```
 
+ตรวจเริ่มจาก Docker volumes ว่างด้วย image ที่ build ไว้แล้ว:
+
+```powershell
+.\scripts\verify_clean_orchestration.ps1
+```
+
+สคริปต์สร้าง Compose project ชื่อใหม่ ใช้พอร์ต 18091/18026/18025 ตรวจว่าไม่มี volumes เดิมก่อนเริ่ม แล้วรัน normal DAG ทั้งชุด หลังสำเร็จหยุดเฉพาะ stack ทดสอบเพิ่มเติมและเก็บ volumes/หลักฐานไว้ หากต้องการ build จาก checkout ก่อนทดสอบ ให้เรียก `start_orchestration.ps1 -BuildOnly` ก่อน
+
 ต้องมี normal run ที่ผ่านก่อน bad_data และ bad_quality ใช้สำเนาข้อมูลจาก normal run ที่ผ่านใน workspace แยกเพื่อทดสอบ failure boundary โดยไม่ต้องดาวน์โหลดและเทรนซ้ำ bad_data ใส่ยอดขายติดลบเพื่อพิสูจน์ว่า validator หยุดจริง bad_quality ใช้สำเนา candidate/metrics และเปลี่ยน MAE ให้แย่กว่า baseline ก่อน gate; tasks ฝึกของ scenario นี้ระบุชัดว่าเป็น test fixture ทั้งสองไม่แก้ production dataset/model/Registry ของ run ที่สำเร็จ script ต้องเห็น DAG failed, register_models ไม่ถูกเรียก, production pointer ไม่เปลี่ยน และมี failure_alert.json จึงถือว่าทดสอบผ่าน
 
 ทดสอบ boundary ที่เกี่ยวข้องโดยตรง:
@@ -154,6 +168,8 @@ docker compose -f orchestration/airflow/compose.yaml exec -T -w /project airflow
 หลักฐานใน `reports/orchestration/<run_id>/` ประกอบด้วย summary.json/md, ผลราย task, lineage hashes, environment.txt, quality_gate.json, registered.json, bundles.json, candidate/fallback benchmark, load_test.json, load_event_reconciliation.json, approval.json, rollback/restored parity และ drift_demo/retrained/candidate_review.json กรณีล้มเหลวมี alert_<stage>.json และ failure_alert.json
 
 Airflow เก็บ task logs ใน state volume ใช้หน้า task → Logs หรือคัดลอกออกมาพร้อมหลักฐาน สคริปต์ PowerShell เก็บ transcript บน host และคัดลอก reports เมื่อ run จบ ไม่เก็บรหัสผ่าน, ข้อมูลดิบ, model binaries หรือ event features ทั้งชุดลง Git
+
+สคริปต์ verification เก็บ `airflow_run.json`, `airflow_tasks.json` และ `task_logs/` เพิ่มเติม เพื่อเทียบ summary ของ stage runner กับสถานะจริงที่ Airflow รายงานได้ Task logs ใช้ตรวจในเครื่อง ส่วนหลักฐานที่นำเข้า Git เลือกเฉพาะรายงานที่ตรวจเนื้อหาแล้ว
 
 ## ความคงทนและการกู้คืน
 

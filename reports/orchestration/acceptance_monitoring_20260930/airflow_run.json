@@ -1,0 +1,9 @@
+﻿{
+    "dag_id":  "demand_monitoring",
+    "run_id":  "acceptance_monitoring_20260930",
+    "state":  "success",
+    "run_after":  "2026-09-30T00:52:30.396414+00:00",
+    "logical_date":  "",
+    "start_date":  "2026-09-30T00:52:32.824645+00:00",
+    "end_date":  "2026-09-30T00:52:36.732568+00:00"
+}
