@@ -1,0 +1,11 @@
+﻿{
+    "image":  "demand-orchestration:petch-proof",
+    "branch":  "Petch",
+    "compose_project":  "ml-petch-proof-20260930",
+    "passed":  true,
+    "commit":  "ce5f95f5433a55efaeaf829f27fc3c7c61c0b7a4",
+    "candidate_port":  18037,
+    "production_port":  18038,
+    "run_id":  "acceptance_petch_ce5f95f_20260930",
+    "airflow_port":  18093
+}

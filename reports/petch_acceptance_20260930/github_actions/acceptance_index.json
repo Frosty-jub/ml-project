@@ -1,0 +1,125 @@
+{
+  "scope": "ตรวจ GitHub Actions บน branch Petch",
+  "runs": {
+    "normal": {
+      "run_id": 36706218694,
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36706218694",
+      "head_sha": "ce5f95f5433a55efaeaf829f27fc3c7c61c0b7a4",
+      "tested_checkout_sha": "ce5f95f5433a55efaeaf829f27fc3c7c61c0b7a4",
+      "branch": "Petch",
+      "conclusion": "success",
+      "created_at": "2026-09-30T11:03:54Z",
+      "updated_at": "2026-09-30T11:12:52Z",
+      "jobs": [
+        {
+          "id": 109856981967,
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "อ่านโค้ดจาก branch ที่กำลังตรวจ",
+              "conclusion": "success"
+            },
+            {
+              "name": "กำหนดสถานการณ์และบันทึก commit",
+              "conclusion": "success"
+            },
+            {
+              "name": "สร้าง environment จาก dependency lock ของโครงการ",
+              "conclusion": "success"
+            },
+            {
+              "name": "เปิด container แยกสำหรับรอบ CI",
+              "conclusion": "success"
+            },
+            {
+              "name": "ด่าน 1: คุณภาพโค้ดและ automated tests",
+              "conclusion": "success"
+            },
+            {
+              "name": "ด่าน 2: ตรวจข้อมูลด้วย validator ของทีม",
+              "conclusion": "success"
+            },
+            {
+              "name": "ด่าน 3: ฝึกและตรวจ model quality gate",
+              "conclusion": "success"
+            },
+            {
+              "name": "ด่าน 4: API จริง, SLO, Monitoring และ rollback",
+              "conclusion": "success"
+            },
+            {
+              "name": "เตรียมชุดส่งมอบจากโมเดลที่ผ่านทุกด่าน",
+              "conclusion": "success"
+            },
+            {
+              "name": "สร้าง image จากชุดส่งมอบและเปิดทั้ง candidate กับ fallback",
+              "conclusion": "success"
+            },
+            {
+              "name": "ด่าน 5: ตรวจชุดส่งมอบเทียบ Registry",
+              "conclusion": "success"
+            },
+            {
+              "name": "สรุปและคัดลอกหลักฐานแม้รอบล้มเหลว",
+              "conclusion": "success"
+            },
+            {
+              "name": "เก็บหลักฐานการตรวจ",
+              "conclusion": "success"
+            },
+            {
+              "name": "ส่งมอบเฉพาะรอบที่ผ่าน",
+              "conclusion": "success"
+            },
+            {
+              "name": "ปิด container ชั่วคราวของรอบ CI",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post อ่านโค้ดจาก branch ที่กำลังตรวจ",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 11092910575,
+          "name": "verified-delivery-36706218694-1",
+          "sha256": "fac2b6f23604e6b610bb8a923f3e6c41473f2b1b2dd7a4d68229442a5fd3685a",
+          "expires_at": "2026-10-14T11:12:36Z"
+        },
+        {
+          "id": 11091994856,
+          "name": "ci-evidence-36706218694-1",
+          "sha256": "aaf720f734b29357c72d6d752aad293fc9589aeff42ad305463a835de371a799",
+          "expires_at": "2026-10-14T11:12:35Z"
+        }
+      ],
+      "extra_evidence": {
+        "delivery_checksums_verified": 31,
+        "delivery_model_versions": {
+          "candidate": "2",
+          "fallback": "1"
+        },
+        "flow_quality_gate.json": "reports\\petch_acceptance_20260930\\github_actions\\normal\\flow_quality_gate.json",
+        "flow_load_test.json": "reports\\petch_acceptance_20260930\\github_actions\\normal\\flow_load_test.json",
+        "flow_load_event_reconciliation.json": "reports\\petch_acceptance_20260930\\github_actions\\normal\\flow_load_event_reconciliation.json",
+        "flow_delivery_candidate_parity.json": "reports\\petch_acceptance_20260930\\github_actions\\normal\\flow_delivery_candidate_parity.json",
+        "flow_delivery_fallback_parity.json": "reports\\petch_acceptance_20260930\\github_actions\\normal\\flow_delivery_fallback_parity.json",
+        "flow_rollback_drill.json": "reports\\petch_acceptance_20260930\\github_actions\\normal\\flow_rollback_drill.json",
+        "flow_verify_monitoring.json": "reports\\petch_acceptance_20260930\\github_actions\\normal\\flow_verify_monitoring.json",
+        "serving-tests.xml": "reports\\petch_acceptance_20260930\\github_actions\\normal\\serving-tests.xml"
+      }
+    }
+  },
+  "complete": true
+}
