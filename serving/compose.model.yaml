@@ -1,0 +1,6 @@
+services:
+  serving:
+    environment:
+      MODEL_DIR: /app/artifacts/group-v1-joblib
+    volumes:
+      - ./artifacts/group-v1-joblib:/app/artifacts/group-v1-joblib:ro

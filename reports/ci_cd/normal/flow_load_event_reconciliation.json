@@ -1,0 +1,5 @@
+{
+  "expected": 520,
+  "matched_once": 520,
+  "scope": "All successful load-test and warmup requests by request_id + row_index"
+}

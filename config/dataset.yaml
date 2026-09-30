@@ -1,0 +1,21 @@
+dataset:
+  name: Online Retail II
+  repository: UCI Machine Learning Repository
+  uci_id: 502
+  landing_page: https://archive.ics.uci.edu/dataset/502/online+retail+ii
+  download_url: https://archive.ics.uci.edu/static/public/502/online+retail+ii.zip
+  license: CC BY 4.0
+  citation: "Chen, D. (2012). Online Retail II [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5CG6D"
+  expected_sheets:
+    - Year 2009-2010
+    - Year 2010-2011
+
+forecast: # คำอธิบายโจทย์; ค่าที่สคริปต์ใช้งานจริงอยู่ใน pipeline_config ด้านล่าง
+  entity_key: sku_id
+  time_grain: calendar_day
+  horizon_days: 7
+  target: demand_next_7d_units
+  origin_day_included_in_target: false
+  label_days_inclusive: true
+
+pipeline_config: config/pipeline.json # กฎ clean, feature และ time split ที่สคริปต์ใช้งานจริง

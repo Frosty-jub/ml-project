@@ -1,0 +1,140 @@
+{
+  "url": "http://127.0.0.1:18005",
+  "checks": [
+    {
+      "endpoint": "/health",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "body": {
+        "status": "ok",
+        "model_loaded": true,
+        "model_name": "synthetic-demand-demo",
+        "model_version": "demo-v1",
+        "data_kind": "synthetic_demo_only"
+      }
+    },
+    {
+      "endpoint": "/schema",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "body": {
+        "model_name": "synthetic-demand-demo",
+        "model_version": "demo-v1",
+        "data_kind": "synthetic_demo_only",
+        "max_batch_size": 64,
+        "features": [
+          {
+            "name": "lag_1",
+            "type": "number",
+            "nullable": true,
+            "minimum": 0.0,
+            "maximum": null,
+            "choices": null
+          },
+          {
+            "name": "lag_7",
+            "type": "number",
+            "nullable": false,
+            "minimum": 0.0,
+            "maximum": null,
+            "choices": null
+          },
+          {
+            "name": "rolling_mean_7",
+            "type": "number",
+            "nullable": false,
+            "minimum": 0.0,
+            "maximum": null,
+            "choices": null
+          },
+          {
+            "name": "day_of_week",
+            "type": "integer",
+            "nullable": false,
+            "minimum": 0.0,
+            "maximum": 6.0,
+            "choices": null
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "/openapi.json",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "body": {
+        "title": "CP413008 — Person 4 Model Serving"
+      }
+    },
+    {
+      "endpoint": "/predict",
+      "example": "valid_request.json",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "body": {
+        "request_id": "a3a01bd9fea34429ac326a8188dec286",
+        "model_name": "synthetic-demand-demo",
+        "model_version": "demo-v1",
+        "data_kind": "synthetic_demo_only",
+        "predictions": [
+          164.12619525112018
+        ]
+      }
+    },
+    {
+      "endpoint": "/predict",
+      "example": "missing_value_request.json",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "body": {
+        "request_id": "303b74d6a52c473bb8518d013f75cc0c",
+        "model_name": "synthetic-demand-demo",
+        "model_version": "demo-v1",
+        "data_kind": "synthetic_demo_only",
+        "predictions": [
+          154.4780982498747
+        ]
+      }
+    },
+    {
+      "endpoint": "/predict",
+      "example": "invalid_request.json",
+      "status": 422,
+      "expected": 422,
+      "passed": true,
+      "body": {
+        "error": "validation_error",
+        "details": [
+          {
+            "row": 0,
+            "field": "lag_1",
+            "message": "Expected a JSON number (numeric strings/booleans are not accepted)"
+          },
+          {
+            "row": 0,
+            "field": "lag_7",
+            "message": "Must be >= 0.0"
+          },
+          {
+            "row": 0,
+            "field": "day_of_week",
+            "message": "Must be <= 6.0"
+          }
+        ],
+        "request_id": "a91af44d197e44aaa040e8d2eb9a8a56"
+      }
+    },
+    {
+      "endpoint": "/metrics",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    }
+  ],
+  "all_passed": true
+}

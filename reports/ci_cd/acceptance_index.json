@@ -1,0 +1,427 @@
+{
+  "scope": "ตรวจ GitHub Actions จริงของ branch งานคนที่ 6; ไม่มีการ merge main/Dec",
+  "runs": {
+    "normal": {
+      "run_id": 36661484161,
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36661484161",
+      "head_sha": "dfa2a427ed238c0cdda5f63eb31fda3f94739819",
+      "tested_checkout_sha": "feadca5dfd9593cc9ffa4e3b3597908867401b29",
+      "branch": "integration/real-model-serving",
+      "conclusion": "success",
+      "created_at": "2026-09-30T02:47:53Z",
+      "updated_at": "2026-09-30T02:55:08Z",
+      "jobs": [
+        {
+          "id": 109717021028,
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "อ่านโค้ดจาก branch ที่กำลังตรวจ",
+              "conclusion": "success"
+            },
+            {
+              "name": "กำหนดสถานการณ์และบันทึก commit",
+              "conclusion": "success"
+            },
+            {
+              "name": "สร้าง environment จาก dependency lock ของโครงการ",
+              "conclusion": "success"
+            },
+            {
+              "name": "เปิด container แยกสำหรับรอบ CI",
+              "conclusion": "success"
+            },
+            {
+              "name": "ด่าน 1: คุณภาพโค้ดและ automated tests",
+              "conclusion": "success"
+            },
+            {
+              "name": "ด่าน 2: ตรวจข้อมูลด้วย validator ของทีม",
+              "conclusion": "success"
+            },
+            {
+              "name": "ด่าน 3: ฝึกและตรวจ model quality gate",
+              "conclusion": "success"
+            },
+            {
+              "name": "ด่าน 4: API จริง, SLO, Monitoring และ rollback",
+              "conclusion": "success"
+            },
+            {
+              "name": "เตรียมชุดส่งมอบจากโมเดลที่ผ่านทุกด่าน",
+              "conclusion": "success"
+            },
+            {
+              "name": "สร้าง image จากชุดส่งมอบและเปิดทั้ง candidate กับ fallback",
+              "conclusion": "success"
+            },
+            {
+              "name": "ด่าน 5: ตรวจชุดส่งมอบเทียบ Registry",
+              "conclusion": "success"
+            },
+            {
+              "name": "สรุปและคัดลอกหลักฐานแม้รอบล้มเหลว",
+              "conclusion": "success"
+            },
+            {
+              "name": "เก็บหลักฐานการตรวจ",
+              "conclusion": "success"
+            },
+            {
+              "name": "ส่งมอบเฉพาะรอบที่ผ่าน",
+              "conclusion": "success"
+            },
+            {
+              "name": "ปิด container ชั่วคราวของรอบ CI",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post อ่านโค้ดจาก branch ที่กำลังตรวจ",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 11074831706,
+          "name": "ci-evidence-36661484161-1",
+          "sha256": "0f8d7be75977cb8e3c7cb811ec3ae975b9bb03628ee8dda7cba4189ce463b785",
+          "expires_at": "2026-10-14T02:54:53Z"
+        },
+        {
+          "id": 11074449385,
+          "name": "verified-delivery-36661484161-1",
+          "sha256": "b1048f3970e98c8cf4d7f5a5865e0e47aa8b74f665b8ba41629d52ee88b9d056",
+          "expires_at": "2026-10-14T02:54:54Z"
+        }
+      ],
+      "extra_evidence": {
+        "flow_quality_gate.json": "reports\\ci_cd\\normal\\flow_quality_gate.json",
+        "flow_load_test.json": "reports\\ci_cd\\normal\\flow_load_test.json",
+        "flow_load_event_reconciliation.json": "reports\\ci_cd\\normal\\flow_load_event_reconciliation.json",
+        "flow_delivery_candidate_parity.json": "reports\\ci_cd\\normal\\flow_delivery_candidate_parity.json",
+        "flow_delivery_fallback_parity.json": "reports\\ci_cd\\normal\\flow_delivery_fallback_parity.json",
+        "flow_rollback_drill.json": "reports\\ci_cd\\normal\\flow_rollback_drill.json",
+        "flow_verify_monitoring.json": "reports\\ci_cd\\normal\\flow_verify_monitoring.json",
+        "serving-tests.xml": "reports\\ci_cd\\normal\\serving-tests.xml",
+        "delivery_checksums_verified": 31,
+        "delivery_model_versions": {
+          "candidate": "2",
+          "fallback": "1"
+        }
+      }
+    },
+    "bad_code": {
+      "run_id": 36660579656,
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36660579656",
+      "head_sha": "1cd75312a035def3f968e948e9996bbbda1aae13",
+      "tested_checkout_sha": "1cd75312a035def3f968e948e9996bbbda1aae13",
+      "branch": "ci/evidence/bad-code-20260930",
+      "conclusion": "failure",
+      "created_at": "2026-09-30T02:35:54Z",
+      "updated_at": "2026-09-30T02:37:15Z",
+      "jobs": [
+        {
+          "id": 109714203751,
+          "conclusion": "failure",
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "อ่านโค้ดจาก branch ที่กำลังตรวจ",
+              "conclusion": "success"
+            },
+            {
+              "name": "กำหนดสถานการณ์และบันทึก commit",
+              "conclusion": "success"
+            },
+            {
+              "name": "สร้าง environment จาก dependency lock ของโครงการ",
+              "conclusion": "success"
+            },
+            {
+              "name": "เปิด container แยกสำหรับรอบ CI",
+              "conclusion": "success"
+            },
+            {
+              "name": "ด่าน 1: คุณภาพโค้ดและ automated tests",
+              "conclusion": "failure"
+            },
+            {
+              "name": "ด่าน 2: ตรวจข้อมูลด้วย validator ของทีม",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "ด่าน 3: ฝึกและตรวจ model quality gate",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "ด่าน 4: API จริง, SLO, Monitoring และ rollback",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "เตรียมชุดส่งมอบจากโมเดลที่ผ่านทุกด่าน",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "สร้าง image จากชุดส่งมอบและเปิดทั้ง candidate กับ fallback",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "ด่าน 5: ตรวจชุดส่งมอบเทียบ Registry",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "สรุปและคัดลอกหลักฐานแม้รอบล้มเหลว",
+              "conclusion": "success"
+            },
+            {
+              "name": "เก็บหลักฐานการตรวจ",
+              "conclusion": "success"
+            },
+            {
+              "name": "ส่งมอบเฉพาะรอบที่ผ่าน",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "ปิด container ชั่วคราวของรอบ CI",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post อ่านโค้ดจาก branch ที่กำลังตรวจ",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 11074037177,
+          "name": "ci-evidence-36660579656-1",
+          "sha256": "e6dcc6a0fc99cb4a78f206c673bfeb8c2826026674416684697c152dafee4bad",
+          "expires_at": "2026-10-14T02:37:01Z"
+        }
+      ],
+      "extra_evidence": {}
+    },
+    "bad_data": {
+      "run_id": 36660583185,
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36660583185",
+      "head_sha": "1cd75312a035def3f968e948e9996bbbda1aae13",
+      "tested_checkout_sha": "1cd75312a035def3f968e948e9996bbbda1aae13",
+      "branch": "ci/evidence/bad-data-20260930",
+      "conclusion": "failure",
+      "created_at": "2026-09-30T02:35:57Z",
+      "updated_at": "2026-09-30T02:39:10Z",
+      "jobs": [
+        {
+          "id": 109714214012,
+          "conclusion": "failure",
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "อ่านโค้ดจาก branch ที่กำลังตรวจ",
+              "conclusion": "success"
+            },
+            {
+              "name": "กำหนดสถานการณ์และบันทึก commit",
+              "conclusion": "success"
+            },
+            {
+              "name": "สร้าง environment จาก dependency lock ของโครงการ",
+              "conclusion": "success"
+            },
+            {
+              "name": "เปิด container แยกสำหรับรอบ CI",
+              "conclusion": "success"
+            },
+            {
+              "name": "ด่าน 1: คุณภาพโค้ดและ automated tests",
+              "conclusion": "success"
+            },
+            {
+              "name": "ด่าน 2: ตรวจข้อมูลด้วย validator ของทีม",
+              "conclusion": "failure"
+            },
+            {
+              "name": "ด่าน 3: ฝึกและตรวจ model quality gate",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "ด่าน 4: API จริง, SLO, Monitoring และ rollback",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "เตรียมชุดส่งมอบจากโมเดลที่ผ่านทุกด่าน",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "สร้าง image จากชุดส่งมอบและเปิดทั้ง candidate กับ fallback",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "ด่าน 5: ตรวจชุดส่งมอบเทียบ Registry",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "สรุปและคัดลอกหลักฐานแม้รอบล้มเหลว",
+              "conclusion": "success"
+            },
+            {
+              "name": "เก็บหลักฐานการตรวจ",
+              "conclusion": "success"
+            },
+            {
+              "name": "ส่งมอบเฉพาะรอบที่ผ่าน",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "ปิด container ชั่วคราวของรอบ CI",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post อ่านโค้ดจาก branch ที่กำลังตรวจ",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 11073859007,
+          "name": "ci-evidence-36660583185-1",
+          "sha256": "e0a0b5af0899f7d98f10a283a221c56c32d0b43bd6d436841361147285ef5799",
+          "expires_at": "2026-10-14T02:38:56Z"
+        }
+      ],
+      "extra_evidence": {
+        "serving-tests.xml": "reports\\ci_cd\\bad_data\\serving-tests.xml"
+      }
+    },
+    "bad_model": {
+      "run_id": 36660585806,
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36660585806",
+      "head_sha": "1cd75312a035def3f968e948e9996bbbda1aae13",
+      "tested_checkout_sha": "1cd75312a035def3f968e948e9996bbbda1aae13",
+      "branch": "ci/evidence/bad-model-20260930",
+      "conclusion": "failure",
+      "created_at": "2026-09-30T02:35:59Z",
+      "updated_at": "2026-09-30T02:43:18Z",
+      "jobs": [
+        {
+          "id": 109714222033,
+          "conclusion": "failure",
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "อ่านโค้ดจาก branch ที่กำลังตรวจ",
+              "conclusion": "success"
+            },
+            {
+              "name": "กำหนดสถานการณ์และบันทึก commit",
+              "conclusion": "success"
+            },
+            {
+              "name": "สร้าง environment จาก dependency lock ของโครงการ",
+              "conclusion": "success"
+            },
+            {
+              "name": "เปิด container แยกสำหรับรอบ CI",
+              "conclusion": "success"
+            },
+            {
+              "name": "ด่าน 1: คุณภาพโค้ดและ automated tests",
+              "conclusion": "success"
+            },
+            {
+              "name": "ด่าน 2: ตรวจข้อมูลด้วย validator ของทีม",
+              "conclusion": "success"
+            },
+            {
+              "name": "ด่าน 3: ฝึกและตรวจ model quality gate",
+              "conclusion": "failure"
+            },
+            {
+              "name": "ด่าน 4: API จริง, SLO, Monitoring และ rollback",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "เตรียมชุดส่งมอบจากโมเดลที่ผ่านทุกด่าน",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "สร้าง image จากชุดส่งมอบและเปิดทั้ง candidate กับ fallback",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "ด่าน 5: ตรวจชุดส่งมอบเทียบ Registry",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "สรุปและคัดลอกหลักฐานแม้รอบล้มเหลว",
+              "conclusion": "success"
+            },
+            {
+              "name": "เก็บหลักฐานการตรวจ",
+              "conclusion": "success"
+            },
+            {
+              "name": "ส่งมอบเฉพาะรอบที่ผ่าน",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "ปิด container ชั่วคราวของรอบ CI",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post อ่านโค้ดจาก branch ที่กำลังตรวจ",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 11074277347,
+          "name": "ci-evidence-36660585806-1",
+          "sha256": "88e32d4dd02eef6f816af0cd08fed9edbe03556252fa0c7fa4b6dd76211534a3",
+          "expires_at": "2026-10-14T02:43:05Z"
+        }
+      ],
+      "extra_evidence": {
+        "flow_quality_gate.json": "reports\\ci_cd\\bad_model\\flow_quality_gate.json",
+        "serving-tests.xml": "reports\\ci_cd\\bad_model\\serving-tests.xml"
+      }
+    }
+  },
+  "complete": true
+}

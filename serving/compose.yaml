@@ -1,0 +1,17 @@
+name: cp413008-person4
+services:
+  serving:
+    build:
+      context: ..
+      dockerfile: serving/Dockerfile
+    ports:
+      - "${SERVING_PORT:-18005}:8000"
+    environment:
+      MODEL_DIR: /app/artifacts/demo
+      MONITORING_EVENTS_PATH: /app/artifacts/monitoring/events.jsonl
+    volumes:
+      - monitoring_events:/app/artifacts/monitoring
+    restart: unless-stopped
+    init: true
+volumes:
+  monitoring_events:

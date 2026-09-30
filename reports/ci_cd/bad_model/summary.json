@@ -1,0 +1,57 @@
+{
+  "run_id": "github-36660585806-1",
+  "scenario": "bad_model",
+  "passed": false,
+  "commit": "1cd75312a035def3f968e948e9996bbbda1aae13",
+  "stages": {
+    "code": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T02:37:00.785487+00:00",
+      "finished_at_utc": "2026-09-30T02:37:14.028593+00:00",
+      "result": {
+        "syntax_files": 45,
+        "project_unittests": "passed",
+        "serving_tests": "passed"
+      }
+    },
+    "data": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T02:37:14.194921+00:00",
+      "finished_at_utc": "2026-09-30T02:40:15.166668+00:00",
+      "result": {
+        "status": "passed",
+        "horizon_days": 7,
+        "full_daily_rows": 3078994,
+        "labeled_rows": 3044168,
+        "full_daily_skus": 4976,
+        "labeled_skus": 4975,
+        "first_date": "2009-12-01",
+        "last_observed_date": "2011-12-09",
+        "last_origin_date": "2011-12-02",
+        "duplicate_keys": 0,
+        "missing_required_values": 0,
+        "negative_or_fractional_units": 0,
+        "incorrect_targets": 0,
+        "daily_sha256": "6034108b05498503b166388ca6eb725a8594d8ef69cd5eace679cc283e997d91",
+        "labels_sha256": "0d158699802689b8cf9b5e3bf7b65a010485b713fd0c919fbf036d949b80d816",
+        "configuration_sha256": "5e63cd70535905fcd0bc9d538b39731f1acca72c2dfce36002a3ad361d2cd2ea"
+      }
+    },
+    "model": {
+      "status": "failed",
+      "started_at_utc": "2026-09-30T02:40:15.339951+00:00",
+      "error_type": "CalledProcessError",
+      "error": "Command '['/opt/project-venv/bin/python', '/project/orchestration/airflow/run_stage.py', 'candidate_quality_gate', '--run-id', 'github-36660585806-1', '--scenario', 'bad_quality']' returned non-zero exit status 1."
+    },
+    "integration": {
+      "status": "not_run"
+    },
+    "package": {
+      "status": "not_run"
+    },
+    "delivery": {
+      "status": "not_run"
+    }
+  },
+  "delivery_allowed": false
+}

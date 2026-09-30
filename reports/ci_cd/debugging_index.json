@@ -1,0 +1,40 @@
+{
+  "description": "บันทึกรอบระหว่างพัฒนา แยกจากหลักฐาน acceptance ฉบับสุดท้าย",
+  "runs": [
+    {
+      "run_id": 36659509660,
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36659509660",
+      "conclusion": "failure",
+      "reason": "Python 3.12 unittest discovery ต้องมี tests/__init__.py",
+      "resolution_commit": "6c058360aeaaf033faf1ef76d5eab3df32e0694e"
+    },
+    {
+      "run_id": 36659822249,
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36659822249",
+      "conclusion": "cancelled",
+      "reason": "มี commit ใหม่บน PR เดียวกัน จึงใช้รอบใหม่ตาม concurrency policy"
+    },
+    {
+      "run_id": 36659960414,
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36659960414",
+      "conclusion": "failure",
+      "reason": "Experiment 1 reference ใช้ hash แบบ CRLF แต่ GitHub checkout เป็น LF",
+      "resolution_commit": "1cd75312a035def3f968e948e9996bbbda1aae13"
+    },
+    {
+      "run_id": 36659965695,
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36659965695",
+      "conclusion": "failure",
+      "reason": "รอบ bad_model หยุดที่ปัญหา newline ก่อนถึง quality gate จึงไม่นับเป็นหลักฐาน gate rejection"
+    },
+    {
+      "run_id": 36660581446,
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36660581446",
+      "conclusion": "success",
+      "post_download_check": "ตรวจ ZIP แล้วพบ placeholder .gitkeep หายจาก artifact แต่ยังอยู่ใน checksums.json จำนวน 5 ไฟล์",
+      "model_file_mismatch": false,
+      "resolution": "ตัด .gitkeep ในขั้นแพ็กก่อนคำนวณ checksum และเพิ่ม unit test; ใช้รอบใหม่เป็นชุดส่งมอบสุดท้าย",
+      "resolution_commit": "dfa2a427ed238c0cdda5f63eb31fda3f94739819"
+    }
+  ]
+}

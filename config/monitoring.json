@@ -1,0 +1,13 @@
+{
+  "forecast_horizon_days": 7,
+  "window_days": 7,
+  "minimum_window_rows": 30,
+  "minimum_labelled_rows": 30,
+  "numeric_psi_alert": 0.2,
+  "categorical_tvd_alert": 0.2,
+  "mae_ratio_alert": 1.25,
+  "mae_absolute_increase_alert": 2.0,
+  "consecutive_degraded_windows_to_retrain": 2,
+  "maximum_http_error_rate": 0.01,
+  "maximum_http_p95_seconds": 0.25
+}

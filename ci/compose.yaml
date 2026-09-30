@@ -1,0 +1,44 @@
+x-common: &common
+  image: ${CI_IMAGE:-ml-project-ci:local}
+  volumes: [workspace:/project]
+  environment: &environment
+    AIRFLOW_PROJECT_ROOT: /project
+    CANDIDATE_URL: http://candidate:8000
+    PRODUCTION_URL: http://production:8000
+    CI_RUN_ID: ${CI_RUN_ID:-local}
+    CI_SCENARIO: ${CI_SCENARIO:-normal}
+
+services:
+  init:
+    <<: *common
+    command: [sh, -c, "cp -a /opt/project-template/. /project/ && mkdir -p /project/reports/ci /project/artifacts/orchestration"]
+  runner:
+    <<: *common
+    command: [sleep, infinity]
+    depends_on:
+      init: {condition: service_completed_successfully}
+  candidate:
+    <<: *common
+    working_dir: /project/serving
+    command: [python, -m, uvicorn, app.main:app, --host, 0.0.0.0, --port, "8000", --no-access-log]
+    environment:
+      <<: *environment
+      MODEL_POINTER: /project/artifacts/orchestration/candidate.json
+      BUNDLE_ROOT: /project/artifacts/orchestration/bundles
+      MONITORING_EVENTS_PATH: /project/artifacts/orchestration/candidate_events.jsonl
+    depends_on:
+      init: {condition: service_completed_successfully}
+  production:
+    <<: *common
+    working_dir: /project/serving
+    command: [python, -m, uvicorn, app.main:app, --host, 0.0.0.0, --port, "8000", --no-access-log]
+    environment:
+      <<: *environment
+      MODEL_POINTER: /project/artifacts/orchestration/production.json
+      BUNDLE_ROOT: /project/artifacts/orchestration/bundles
+      MONITORING_EVENTS_PATH: /project/artifacts/orchestration/production_events.jsonl
+    depends_on:
+      init: {condition: service_completed_successfully}
+
+volumes:
+  workspace:

@@ -1,0 +1,8 @@
+{
+  "run_id": "acceptance_bad_quality_20260930",
+  "severity": "error",
+  "failed_tasks": [
+    "candidate_quality_gate"
+  ],
+  "production_unchanged": true
+}

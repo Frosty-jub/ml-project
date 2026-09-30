@@ -1,0 +1,8 @@
+﻿{
+    "existing_volumes":  [
+
+                         ],
+    "project":  "ml-orchestration-clean",
+    "image_id":  "sha256:be987fd6cc2dcc80f5895086ea405f4703b7980a33e2c00d350368dfe1b77dc9",
+    "started_at":  "2026-09-30T00:36:27.8925589Z"
+}

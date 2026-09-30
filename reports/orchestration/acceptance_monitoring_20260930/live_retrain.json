@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "started_at_utc": "2026-09-30T00:52:35.812606+00:00",
+  "finished_at_utc": "2026-09-30T00:52:35.812929+00:00",
+  "result": {
+    "status": "not_triggered",
+    "reason": "Provide real reference, events and mature labels; see the orchestration guide"
+  }
+}

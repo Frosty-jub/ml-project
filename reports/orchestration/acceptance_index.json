@@ -1,0 +1,41 @@
+{
+  "normal": {
+    "run_id": "acceptance_normal_20260930_final",
+    "state": "success",
+    "task_count": 16,
+    "verified": true,
+    "evidence": "C:\\Users\\User\\ml-project\\reports\\orchestration\\acceptance_normal_20260930_final"
+  },
+  "bad_data": {
+    "run_id": "acceptance_bad_data_20260930",
+    "state": "failed",
+    "task_count": 16,
+    "verified": true,
+    "evidence": "C:\\Users\\User\\ml-project\\reports\\orchestration\\acceptance_bad_data_20260930"
+  },
+  "bad_quality": {
+    "run_id": "acceptance_bad_quality_20260930",
+    "state": "failed",
+    "task_count": 16,
+    "verified": true,
+    "evidence": "C:\\Users\\User\\ml-project\\reports\\orchestration\\acceptance_bad_quality_20260930"
+  },
+  "monitoring": {
+    "run_id": "acceptance_monitoring_20260930",
+    "state": "success",
+    "task_count": 3,
+    "verified": true,
+    "evidence": "C:\\Users\\User\\ml-project\\reports\\orchestration\\acceptance_monitoring_20260930"
+  },
+  "clean": {
+    "run_id": "acceptance_clean_20260930",
+    "state": "success",
+    "task_count": 16,
+    "verified": true,
+    "evidence": "C:\\Users\\User\\ml-project\\reports\\orchestration\\acceptance_clean_20260930"
+  },
+  "unit_tests": {
+    "passed": true,
+    "count": 17
+  }
+}

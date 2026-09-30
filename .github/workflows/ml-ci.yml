@@ -1,0 +1,107 @@
+name: ตรวจและส่งมอบระบบ ML
+run-name: CI/CD • ${{ github.event_name }} • ${{ github.head_ref || github.ref_name }}
+
+on:
+  pull_request:
+    branches: [main, Dec]
+  push:
+    branches: [main, Dec, 'ci/evidence/**']
+  workflow_dispatch:
+    inputs:
+      scenario:
+        description: สถานการณ์ทดสอบ (รอบผิดพลาดจะต้องเป็นสีแดง)
+        type: choice
+        default: normal
+        options: [normal, bad_code, bad_data, bad_model]
+
+permissions:
+  contents: read
+concurrency:
+  group: ml-ci-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality-and-delivery:
+    name: ตรวจโค้ด → ข้อมูล → โมเดล → Docker → ส่งมอบ
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      COMPOSE_PROJECT_NAME: ml-ci-${{ github.run_id }}-${{ github.run_attempt }}
+      CI_RUN_ID: github-${{ github.run_id }}-${{ github.run_attempt }}
+      CI_IMAGE: ml-project-ci:${{ github.run_id }}
+      DELIVERY_IMAGE: ml-project-delivery:${{ github.run_id }}
+      REQUESTED_SCENARIO: ${{ inputs.scenario }}
+      SOURCE_BRANCH: ${{ github.ref_name }}
+    steps:
+      - name: อ่านโค้ดจาก branch ที่กำลังตรวจ
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: กำหนดสถานการณ์และบันทึก commit
+        shell: bash
+        run: |
+          scenario="${REQUESTED_SCENARIO:-normal}"
+          case "$SOURCE_BRANCH" in
+            ci/evidence/bad-code-*) scenario=bad_code ;;
+            ci/evidence/bad-data-*) scenario=bad_data ;;
+            ci/evidence/bad-model-*) scenario=bad_model ;;
+          esac
+          case "$scenario" in normal|bad_code|bad_data|bad_model) ;; *) exit 1 ;; esac
+          echo "CI_SCENARIO=$scenario" >> "$GITHUB_ENV"
+          echo "PROJECT_GIT_COMMIT=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+          mkdir -p ci-evidence delivery
+      - name: สร้าง environment จาก dependency lock ของโครงการ
+        run: docker build -f ci/Dockerfile --build-arg PROJECT_GIT_COMMIT="$PROJECT_GIT_COMMIT" -t "$CI_IMAGE" .
+      - name: เปิด container แยกสำหรับรอบ CI
+        run: docker compose -f ci/compose.yaml up -d runner candidate production
+      - name: "ด่าน 1: คุณภาพโค้ดและ automated tests"
+        run: docker compose -f ci/compose.yaml exec -T runner python scripts/ci_pipeline.py code
+      - name: "ด่าน 2: ตรวจข้อมูลด้วย validator ของทีม"
+        run: docker compose -f ci/compose.yaml exec -T runner python scripts/ci_pipeline.py data
+      - name: "ด่าน 3: ฝึกและตรวจ model quality gate"
+        run: docker compose -f ci/compose.yaml exec -T runner python scripts/ci_pipeline.py model
+      - name: "ด่าน 4: API จริง, SLO, Monitoring และ rollback"
+        run: docker compose -f ci/compose.yaml exec -T runner python scripts/ci_pipeline.py integration
+      - name: เตรียมชุดส่งมอบจากโมเดลที่ผ่านทุกด่าน
+        run: |
+          docker compose -f ci/compose.yaml exec -T runner python scripts/ci_pipeline.py package
+          docker compose -f ci/compose.yaml cp runner:/project/delivery/. delivery/
+      - name: สร้าง image จากชุดส่งมอบและเปิดทั้ง candidate กับ fallback
+        run: |
+          docker build -t "$DELIVERY_IMAGE" delivery
+          docker run -d --name delivery-candidate --network "${COMPOSE_PROJECT_NAME}_default" "$DELIVERY_IMAGE"
+          docker run -d --name delivery-fallback --network "${COMPOSE_PROJECT_NAME}_default" -e MODEL_DIR=/app/bundles/fallback "$DELIVERY_IMAGE"
+      - name: "ด่าน 5: ตรวจชุดส่งมอบเทียบ Registry"
+        run: docker compose -f ci/compose.yaml exec -T runner python scripts/ci_pipeline.py delivery
+      - name: สรุปและคัดลอกหลักฐานแม้รอบล้มเหลว
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p ci-evidence
+          report_status=0
+          docker compose -f ci/compose.yaml exec -T runner python scripts/ci_pipeline.py report || report_status=$?
+          docker compose -f ci/compose.yaml cp runner:/project/reports/ci/. ci-evidence/ || true
+          docker compose -f ci/compose.yaml logs --no-color > ci-evidence/containers.log 2>&1 || true
+          if [ -f ci-evidence/summary.md ]; then cat ci-evidence/summary.md >> "$GITHUB_STEP_SUMMARY"; fi
+          exit "$report_status"
+      - name: เก็บหลักฐานการตรวจ
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: ci-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ci-evidence/
+          retention-days: 14
+          if-no-files-found: error
+      - name: ส่งมอบเฉพาะรอบที่ผ่าน
+        if: success() && env.CI_SCENARIO == 'normal'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: verified-delivery-${{ github.run_id }}-${{ github.run_attempt }}
+          path: delivery/
+          retention-days: 14
+          if-no-files-found: error
+      - name: ปิด container ชั่วคราวของรอบ CI
+        if: always()
+        run: |
+          docker rm -f delivery-candidate delivery-fallback 2>/dev/null || true
+          docker compose -f ci/compose.yaml down --volumes --remove-orphans

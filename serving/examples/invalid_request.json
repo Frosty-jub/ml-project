@@ -1,0 +1,5 @@
+{
+  "records": [
+    {"lag_1": "bad-data", "lag_7": -1, "rolling_mean_7": 150.0, "day_of_week": 8}
+  ]
+}

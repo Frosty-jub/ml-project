@@ -1,0 +1,12 @@
+serving-1  | INFO:     Started server process [7]
+serving-1  | INFO:     Waiting for application startup.
+serving-1  | {"timestamp": "2026-09-27T17:20:52Z", "event": "model_loaded", "model_version": "demo-v1", "data_kind": "synthetic_demo_only"}
+serving-1  | INFO:     Application startup complete.
+serving-1  | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+serving-1  | {"timestamp": "2026-09-27T17:20:55Z", "event": "http_request", "request_id": "c5a50751cfdd47bf843f083b688de044", "method": "GET", "route": "/health", "status": 200, "latency_ms": 1.275}
+serving-1  | {"timestamp": "2026-09-27T17:20:56Z", "event": "http_request", "request_id": "216ee06059a94912aa220a28961c7b9e", "method": "GET", "route": "/health", "status": 200, "latency_ms": 0.798}
+serving-1  | {"timestamp": "2026-09-27T17:20:56Z", "event": "http_request", "request_id": "4758f2da21bd4fe595b89606cb63bb68", "method": "GET", "route": "/schema", "status": 200, "latency_ms": 0.718}
+serving-1  | {"timestamp": "2026-09-27T17:20:56Z", "event": "http_request", "request_id": "bbb049979b4640278678869695db706d", "method": "GET", "route": "unmatched", "status": 200, "latency_ms": 7.242}
+serving-1  | {"timestamp": "2026-09-27T17:20:56Z", "event": "http_request", "request_id": "fdfe71ecf1964d57b6d9e7e02de4cf4b", "method": "POST", "route": "/predict", "status": 200, "latency_ms": 5.738}
+serving-1  | {"timestamp": "2026-09-27T17:20:56Z", "event": "http_request", "request_id": "3ccc22f5953b45cfbf8387c01deeba02", "method": "POST", "route": "/predict", "status": 200, "latency_ms": 5.413}
+serving-1  | {"timestamp": "2026-09-27T17:20:56Z", "event": "http_request", "request_id": "a81bf9a2241649f5904a91a9351f2a90", "method": "POST", "route": "/predict", "status": 422, "latency_ms": 1.091}

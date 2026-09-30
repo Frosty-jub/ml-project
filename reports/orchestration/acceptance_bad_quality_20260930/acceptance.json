@@ -1,0 +1,8 @@
+﻿{
+    "actual_state":  "failed",
+    "expected_state":  "failed",
+    "passed":  true,
+    "scenario":  "bad_quality",
+    "checked_at":  "2026-09-30T00:52:24.3291583Z",
+    "run_id":  "acceptance_bad_quality_20260930"
+}

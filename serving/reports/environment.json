@@ -1,0 +1,69 @@
+{
+  "timestamp_utc": "2026-09-27T17:20:57.315151+00:00",
+  "client_python": "3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:09:58) [MSC v.1929 64 bit (AMD64)]",
+  "client_platform": "Windows-11-10.0.26200-SP0",
+  "client_packages": {
+    "annotated-doc": "0.0.5",
+    "annotated-types": "0.8.0",
+    "anyio": "4.15.1",
+    "certifi": "2026.7.22",
+    "click": "8.5.0",
+    "colorama": "0.4.6",
+    "fastapi": "0.141.1",
+    "h11": "0.16.0",
+    "httpcore": "1.0.9",
+    "httpx": "0.28.1",
+    "idna": "3.20",
+    "iniconfig": "2.3.0",
+    "joblib": "1.5.2",
+    "numpy": "2.3.5",
+    "packaging": "26.3",
+    "pandas": "2.3.3",
+    "pip": "25.2",
+    "pluggy": "1.6.0",
+    "prometheus_client": "0.21.1",
+    "pydantic": "2.13.5",
+    "pydantic_core": "2.46.5",
+    "Pygments": "2.21.0",
+    "pytest": "8.4.2",
+    "python-dateutil": "2.9.0.post0",
+    "pytz": "2026.4",
+    "ruff": "0.16.9",
+    "scikit-learn": "1.7.2",
+    "scipy": "1.18.1",
+    "six": "1.17.0",
+    "starlette": "1.7.0",
+    "threadpoolctl": "3.7.0",
+    "typing_extensions": "4.16.0",
+    "typing-inspection": "0.4.4",
+    "tzdata": "2026.4",
+    "uvicorn": "0.54.0"
+  },
+  "docker_status": {
+    "command": [
+      "docker",
+      "compose",
+      "ps",
+      "--format",
+      "json"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"Command\":\"\\\"python -m uvicorn a…\\\"\",\"CreatedAt\":\"2026-09-28 00:20:49 +0700 +07\",\"ExitCode\":0,\"Health\":\"healthy\",\"ID\":\"66eb5b622f6a\",\"Image\":\"cp413008-person4-serving\",\"Labels\":\"com.docker.compose.project.config_files=C:\\\\Users\\\\WINDOWS 10\\\\Downloads\\\\CP413008_Person4_Serving\\\\compose.yaml,desktop.docker.io/binds/0/Source=C:\\\\Users\\\\WINDOWS 10\\\\Downloads\\\\CP413008_Person4_Serving\\\\artifacts,desktop.docker.io/binds/0/SourceKind=hostFile,desktop.docker.io/binds/0/Target=/app/artifacts,desktop.docker.io/ports/8000/tcp=:18005,com.docker.compose.container-number=1,com.docker.compose.project.working_dir=C:\\\\Users\\\\WINDOWS 10\\\\Downloads\\\\CP413008_Person4_Serving,com.docker.compose.oneoff=False,com.docker.compose.project=cp413008-person4,com.docker.compose.service=serving,com.docker.compose.version=5.3.0,com.docker.compose.config-hash=1e43c02f2ec464e7198aaf1e3f809a068b79b5ace23e6cfe9dd5e3f95aea7577,com.docker.compose.depends_on=,com.docker.compose.image=sha256:a2163bf285fbd104fab8f8a48edac83490f0d219b2cb7d6d97d6804cf6345bc0,com.docker.compose.replace=serving-1,desktop.docker.io/ports.scheme=v2\",\"LocalVolumes\":\"0\",\"Mounts\":\"/run/desktop/m…\",\"Name\":\"cp413008-person4-serving-1\",\"Names\":\"cp413008-person4-serving-1\",\"Networks\":\"cp413008-person4_default\",\"Ports\":\"0.0.0.0:18005-\\u003e8000/tcp, [::]:18005-\\u003e8000/tcp\",\"Project\":\"cp413008-person4\",\"Publishers\":[{\"URL\":\"0.0.0.0\",\"TargetPort\":8000,\"PublishedPort\":18005,\"Protocol\":\"tcp\"},{\"URL\":\"::\",\"TargetPort\":8000,\"PublishedPort\":18005,\"Protocol\":\"tcp\"}],\"RunningFor\":\"7 seconds ago\",\"Service\":\"serving\",\"Size\":\"0B\",\"State\":\"running\",\"Status\":\"Up 6 seconds (healthy)\"}\n",
+    "stderr": ""
+  },
+  "server_environment": {
+    "command": [
+      "docker",
+      "compose",
+      "exec",
+      "-T",
+      "serving",
+      "python",
+      "-c",
+      "import sys,platform,json,importlib.metadata as m; print(json.dumps({'python':sys.version,'platform':platform.platform(),'versions':{p:m.version(p) for p in ['fastapi','uvicorn','scikit-learn','pandas','numpy','prometheus-client']}}))"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"python\": \"3.13.9 (main, Nov 18 2025, 05:56:58) [GCC 14.2.0]\", \"platform\": \"Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.41\", \"versions\": {\"fastapi\": \"0.141.1\", \"uvicorn\": \"0.54.0\", \"scikit-learn\": \"1.7.2\", \"pandas\": \"2.3.3\", \"numpy\": \"2.3.5\", \"prometheus-client\": \"0.21.1\"}}\n",
+    "stderr": ""
+  }
+}

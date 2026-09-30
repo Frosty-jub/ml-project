@@ -1,0 +1,24 @@
+{
+  "measured_at_utc": "2026-09-30T00:45:56.505977+00:00",
+  "url": "http://candidate:8000/predict",
+  "batch_size": 32,
+  "warmup_requests": 5,
+  "measured_requests": 30,
+  "concurrency": 4,
+  "latency_p50_ms": 16.64790399991034,
+  "latency_p95_ms": 21.25269395005488,
+  "throughput_predictions_per_second": 7387.914372527462,
+  "throughput_requests_per_second": 230.87232414148318,
+  "environment": "http_serving",
+  "gate": {
+    "passed": true,
+    "checks": {
+      "latency_p50": true,
+      "latency_p95": true,
+      "throughput": true,
+      "request_count": true,
+      "batch_size": true,
+      "concurrency": true
+    }
+  }
+}

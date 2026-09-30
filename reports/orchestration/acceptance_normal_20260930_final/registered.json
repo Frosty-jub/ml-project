@@ -1,0 +1,12 @@
+{
+  "fallback": {
+    "model_name": "demand-forecasting-7d",
+    "model_version": "3",
+    "source_model_sha256": "4d45b3c5617f05ba401195107a2a466aaf815459a5aa5c6cb2ff5d2c6d8ddd5f"
+  },
+  "candidate": {
+    "model_name": "demand-forecasting-7d",
+    "model_version": "4",
+    "source_model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054"
+  }
+}

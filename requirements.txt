@@ -1,0 +1,6 @@
+pandas==3.0.1
+openpyxl==3.1.5
+scikit-learn==1.7.2
+lightgbm==4.6.0
+mlflow>=3.7,<4
+uvicorn>=0.30,<1

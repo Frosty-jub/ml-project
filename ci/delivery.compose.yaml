@@ -1,0 +1,10 @@
+services:
+  serving:
+    build: .
+    ports: ["127.0.0.1:${SERVING_PORT:-18025}:8000"]
+    environment:
+      MODEL_DIR: /app/bundles/${BUNDLE_ROLE:-candidate}
+      MONITORING_EVENTS_PATH: /app/events/events.jsonl
+    volumes: [events:/app/events]
+volumes:
+  events:

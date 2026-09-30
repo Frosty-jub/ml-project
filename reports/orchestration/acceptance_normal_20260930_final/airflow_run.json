@@ -1,0 +1,9 @@
+﻿{
+    "dag_id":  "demand_forecasting_e2e",
+    "run_id":  "acceptance_normal_20260930_final",
+    "state":  "success",
+    "run_after":  "2026-09-30T00:39:59.917498+00:00",
+    "logical_date":  "",
+    "start_date":  "2026-09-30T00:40:00.239056+00:00",
+    "end_date":  "2026-09-30T00:49:41.403223+00:00"
+}

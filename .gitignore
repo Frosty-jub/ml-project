@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local orchestration runtime evidence containing row-level observations or credentials.
+/reports/orchestration/*/drift_demo/
+/reports/orchestration/*/verified_events.jsonl
+/reports/orchestration/*/load_receipts.json
+/reports/orchestration/*/request_mapping.json
+/reports/orchestration/*/task_logs/
+/reports/orchestration/*_powershell.txt
+/reports/orchestration/bootstrap_powershell.txt
+
+# Notebook and editor files
+.ipynb_checkpoints/
+.vscode/
+.idea/
+
+# Dataset and generated model artifacts
+/data/raw/*
+/data/interim/*
+/data/processed/*
+!/data/raw/.gitkeep
+!/data/interim/.gitkeep
+!/data/processed/.gitkeep
+/models/*
+!/models/.gitkeep
+/mlruns/
+/mlflow.db*
+/mlartifacts/
+/artifacts/
+/delivery/
+/ci-evidence/
+/reports/ci/
+
+# Generated reports and local OS files
+/reports/generated/*
+Thumbs.db
+.DS_Store
