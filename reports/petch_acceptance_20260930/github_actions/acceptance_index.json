@@ -1,7 +1,7 @@
 {
-  "scope": "รอบ normal ล่าสุดทดสอบบน branch Petch; มี bad_data ปัจจุบันที่ dispatch บน Petch และ historical failure fixtures จาก branch ci/evidence/*",
+  "scope": "ผล CI normal ล่าสุดของโค้ด Petch commit 97f6252 และผล failure fixtures ที่ตั้งใจทดสอบบน Petch/ci/evidence",
   "runs": {
-    "normal": {
+    "normal_prepatch_1b7a338": {
       "run_id": 36714002555,
       "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36714002555",
       "head_sha": "1b7a3380163fe2f22b43dce5d9d0641a5fb00267",
@@ -33,6 +33,41 @@
           "name": "verified-delivery-36714002555-1",
           "size": "365 KB",
           "sha256": "dff29f6a018f6626b300fc1112afdb7324b35f902b2edd22236b61f65e23d9ec"
+        }
+      ]
+    },
+    "normal": {
+      "run_id": 36741213662,
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36741213662",
+      "head_sha": "97f62528d2ac1edc63bf863cfaa597d53b4c4a5f",
+      "tested_checkout_sha": "97f62528d2ac1edc63bf863cfaa597d53b4c4a5f",
+      "branch": "Petch",
+      "event": "push",
+      "scenario": "normal",
+      "conclusion": "success",
+      "created_at": "2026-09-30T23:01:58+07:00",
+      "duration": "6m 12s",
+      "job_id": 109975785059,
+      "stage_results": {
+        "code": "success",
+        "data": "success",
+        "model": "success",
+        "integration": "success",
+        "package": "success",
+        "delivery": "success"
+      },
+      "artifacts": [
+        {
+          "id": 11110608250,
+          "name": "ci-evidence-36741213662-1",
+          "size": "42.5 KB",
+          "sha256": "bd2c86c1bfd56d91574e3a4fe296d3abbfea1e6a4ec3cb3d78812edbb48f4a17"
+        },
+        {
+          "id": 11110074248,
+          "name": "verified-delivery-36741213662-1",
+          "size": "365 KB",
+          "sha256": "3f57523753797be697a138a4086f37d39185e3e4350a2e1323324d6fd8d2331a"
         }
       ]
     },

@@ -1,0 +1,396 @@
+{"timestamp":"2026-09-30T16:16:39.373586Z","level":"info","event":"::group::Pre Execute","logger":"task","filename":"task_runner.py","lineno":2412}
+{"timestamp":"2026-09-30T16:16:39.379321Z","level":"info","event":"DAG bundles loaded: dags-folder","map_index":-1,"task_id":"check_drift","try_number":1,"ti_id":"01a0f312-36e0-7f22-aaec-0ecffb401fc8","dag_id":"demand_forecasting_e2e","run_id":"acceptance_petch_97f6252_20260930","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":304}
+{"timestamp":"2026-09-30T16:16:39.379938Z","level":"info","event":"Filling up the DagBag from /project/orchestration/airflow/dags/demand_forecasting_e2e.py","map_index":-1,"task_id":"check_drift","try_number":1,"ti_id":"01a0f312-36e0-7f22-aaec-0ecffb401fc8","dag_id":"demand_forecasting_e2e","run_id":"acceptance_petch_97f6252_20260930","logger":"airflow.dag_processing.dagbag.BundleDagBag","filename":"dagbag.py","lineno":460}
+{"timestamp":"2026-09-30T16:16:39.416776Z","level":"info","event":"Worker startup parse complete","bundle_name":"dags-folder","bundle_version":null,"dag_file":"demand_forecasting_e2e.py","dag_id":"demand_forecasting_e2e","bundle_prepare_ms":1,"dag_file_parse_ms":36,"map_index":-1,"task_id":"check_drift","try_number":1,"ti_id":"01a0f312-36e0-7f22-aaec-0ecffb401fc8","run_id":"acceptance_petch_97f6252_20260930","logger":"task","filename":"task_runner.py","lineno":1073}
+{"timestamp":"2026-09-30T16:16:39.434307Z","level":"info","event":"::endgroup::","map_index":-1,"task_id":"check_drift","try_number":1,"ti_id":"01a0f312-36e0-7f22-aaec-0ecffb401fc8","dag_id":"demand_forecasting_e2e","run_id":"acceptance_petch_97f6252_20260930","logger":"task","filename":"task_runner.py","lineno":2232}
+{"timestamp":"2026-09-30T16:16:39.436255Z","level":"info","event":"COMMAND: /opt/project-venv/bin/python /project/artifacts/orchestration/runs/acceptance_petch_97f6252_20260930/project/orchestration/airflow/run_stage.py check_drift --run-id acceptance_petch_97f6252_20260930 --scenario normal","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.480619Z","level":"info","event":"COMMAND: /opt/project-venv/bin/python -m src.demand_forecasting.monitoring reference --events /project/reports/orchestration/acceptance_petch_97f6252_20260930/drift_demo/reference_events.jsonl --labels /project/reports/orchestration/acceptance_petch_97f6252_20260930/drift_demo/reference_labels.csv --output /project/reports/orchestration/acceptance_petch_97f6252_20260930/drift_demo/reference.json","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.672098Z","level":"info","event":"{","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.672339Z","level":"info","event":"  \"identity\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.672472Z","level":"info","event":"    \"model_name\": \"simulated-demand-7d\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.672608Z","level":"info","event":"    \"model_version\": \"sim-v1\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.672832Z","level":"info","event":"    \"data_kind\": \"synthetic_demo_only\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.673000Z","level":"info","event":"    \"feature_names\": [","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.673127Z","level":"info","event":"      \"sales_lag_1\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.673249Z","level":"info","event":"      \"sales_rolling_sum_7\"","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.673369Z","level":"info","event":"    ]","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.673495Z","level":"info","event":"  },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.673617Z","level":"info","event":"  \"rows\": 560,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.673747Z","level":"info","event":"  \"metrics\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.673874Z","level":"info","event":"    \"rows\": 560,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.674015Z","level":"info","event":"    \"MAE\": 1.1494432865656263,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.674149Z","level":"info","event":"    \"RMSE\": 1.4820128371741739,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.674268Z","level":"info","event":"    \"WAPE\": 2.8204946242415554","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.674404Z","level":"info","event":"  },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.674525Z","level":"info","event":"  \"distribution\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.674644Z","level":"info","event":"    \"sales_lag_1\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.674766Z","level":"info","event":"      \"kind\": \"numeric\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.674886Z","level":"info","event":"      \"edges\": [","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.675098Z","level":"info","event":"        4.434215879440307,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.675240Z","level":"info","event":"        5.414096832275391,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.675370Z","level":"info","event":"        8.128656387329102,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.675495Z","level":"info","event":"        10.526957130432129,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.675614Z","level":"info","event":"        12.799783706665039,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.675731Z","level":"info","event":"        15.14290885925293,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.675897Z","level":"info","event":"        17.230618286132813,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.676016Z","level":"info","event":"        19.868593215942383,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.676136Z","level":"info","event":"        23.06827163696289","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.676255Z","level":"info","event":"      ],","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.676373Z","level":"info","event":"      \"proportions\": [","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.676492Z","level":"info","event":"        0.1,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.676613Z","level":"info","event":"        0.09821428571428571,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.676731Z","level":"info","event":"        0.1,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.676850Z","level":"info","event":"        0.10178571428571428,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.677013Z","level":"info","event":"        0.09642857142857143,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.677164Z","level":"info","event":"        0.10357142857142858,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.677286Z","level":"info","event":"        0.1,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.677405Z","level":"info","event":"        0.1,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.677523Z","level":"info","event":"        0.09821428571428571,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.677641Z","level":"info","event":"        0.10178571428571428","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.677767Z","level":"info","event":"      ],","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.677887Z","level":"info","event":"      \"null_ratio\": 0.0","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.678005Z","level":"info","event":"    },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.678129Z","level":"info","event":"    \"sales_rolling_sum_7\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.678269Z","level":"info","event":"      \"kind\": \"numeric\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.678417Z","level":"info","event":"      \"edges\": [","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.678553Z","level":"info","event":"        36.30306625366211,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.678689Z","level":"info","event":"        50.00363693237305,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.678849Z","level":"info","event":"        65.35160598754884,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.679044Z","level":"info","event":"        80.53024139404297,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.679255Z","level":"info","event":"        97.72262191772461,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.679482Z","level":"info","event":"        114.13639984130862,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.679780Z","level":"info","event":"        130.66077728271486,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.680016Z","level":"info","event":"        147.78435974121095,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.680238Z","level":"info","event":"        166.77403259277344","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.680441Z","level":"info","event":"      ],","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.680709Z","level":"info","event":"      \"proportions\": [","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.680946Z","level":"info","event":"        0.09821428571428571,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.681295Z","level":"info","event":"        0.10178571428571428,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.681563Z","level":"info","event":"        0.1,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.681898Z","level":"info","event":"        0.1,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.682113Z","level":"info","event":"        0.1,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.682317Z","level":"info","event":"        0.1,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.682568Z","level":"info","event":"        0.1,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.682846Z","level":"info","event":"        0.1,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.683113Z","level":"info","event":"        0.09642857142857143,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.683344Z","level":"info","event":"        0.10357142857142858","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.683522Z","level":"info","event":"      ],","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.683675Z","level":"info","event":"      \"null_ratio\": 0.0","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.683844Z","level":"info","event":"    }","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.684029Z","level":"info","event":"  },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.684173Z","level":"info","event":"  \"period\": [","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.684380Z","level":"info","event":"    \"2026-01-01T00:00:00+00:00\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.684549Z","level":"info","event":"    \"2026-01-14T00:00:00+00:00\"","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.684721Z","level":"info","event":"  ]","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.684861Z","level":"info","event":"}","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.700362Z","level":"info","event":"COMMAND: /opt/project-venv/bin/python -m src.demand_forecasting.monitoring check --events /project/reports/orchestration/acceptance_petch_97f6252_20260930/drift_demo/live_events.jsonl --labels /project/reports/orchestration/acceptance_petch_97f6252_20260930/drift_demo/live_labels.csv --reference /project/reports/orchestration/acceptance_petch_97f6252_20260930/drift_demo/reference.json --output /project/reports/orchestration/acceptance_petch_97f6252_20260930/drift_demo/report.json","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.910849Z","level":"info","event":"{","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.911122Z","level":"info","event":"  \"identity\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.911299Z","level":"info","event":"    \"model_name\": \"simulated-demand-7d\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.911483Z","level":"info","event":"    \"model_version\": \"sim-v1\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.911689Z","level":"info","event":"    \"data_kind\": \"synthetic_demo_only\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.911879Z","level":"info","event":"    \"feature_names\": [","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.912066Z","level":"info","event":"      \"sales_lag_1\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.912274Z","level":"info","event":"      \"sales_rolling_sum_7\"","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.912466Z","level":"info","event":"    ]","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.912668Z","level":"info","event":"  },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.912855Z","level":"info","event":"  \"windows\": [","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.913057Z","level":"info","event":"    {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.913260Z","level":"info","event":"      \"window\": 0,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.913459Z","level":"info","event":"      \"rows\": 280,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.913666Z","level":"info","event":"      \"start\": \"2026-01-15T00:00:00+00:00\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.913882Z","level":"info","event":"      \"end\": \"2026-01-21T00:00:00+00:00\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.914104Z","level":"info","event":"      \"labelled_rows\": 280,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.914281Z","level":"info","event":"      \"alerts\": [],","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.914451Z","level":"info","event":"      \"drift\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.914667Z","level":"info","event":"        \"sales_lag_1\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.914807Z","level":"info","event":"          \"metric\": \"PSI\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.914953Z","level":"info","event":"          \"value\": 0.062492","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.915129Z","level":"info","event":"        },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.915327Z","level":"info","event":"        \"sales_rolling_sum_7\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.915559Z","level":"info","event":"          \"metric\": \"PSI\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.915718Z","level":"info","event":"          \"value\": 0.035712","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.915894Z","level":"info","event":"        }","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.916032Z","level":"info","event":"      },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.916188Z","level":"info","event":"      \"metrics\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.916368Z","level":"info","event":"        \"rows\": 280,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.916556Z","level":"info","event":"        \"MAE\": 1.1801112178341064,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.916717Z","level":"info","event":"        \"RMSE\": 1.5138434884323053,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.916868Z","level":"info","event":"        \"WAPE\": 2.8911673957307245","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.917037Z","level":"info","event":"      },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.917202Z","level":"info","event":"      \"status\": \"ok\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.917349Z","level":"info","event":"      \"consecutive_degraded_windows\": 0","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.917506Z","level":"info","event":"    },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.917657Z","level":"info","event":"    {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.917832Z","level":"info","event":"      \"window\": 1,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.918022Z","level":"info","event":"      \"rows\": 280,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.918191Z","level":"info","event":"      \"start\": \"2026-01-22T00:00:00+00:00\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.918370Z","level":"info","event":"      \"end\": \"2026-01-28T00:00:00+00:00\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.918549Z","level":"info","event":"      \"labelled_rows\": 280,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.918749Z","level":"info","event":"      \"alerts\": [],","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.918956Z","level":"info","event":"      \"drift\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.919120Z","level":"info","event":"        \"sales_lag_1\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.919260Z","level":"info","event":"          \"metric\": \"PSI\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.919405Z","level":"info","event":"          \"value\": 0.023557","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.919588Z","level":"info","event":"        },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.919726Z","level":"info","event":"        \"sales_rolling_sum_7\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.919833Z","level":"info","event":"          \"metric\": \"PSI\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.920027Z","level":"info","event":"          \"value\": 0.041992","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.920167Z","level":"info","event":"        }","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.920339Z","level":"info","event":"      },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.920472Z","level":"info","event":"      \"metrics\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.920637Z","level":"info","event":"        \"rows\": 280,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.920770Z","level":"info","event":"        \"MAE\": 1.0952220530853383,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.920916Z","level":"info","event":"        \"RMSE\": 1.4859455811875786,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.921052Z","level":"info","event":"        \"WAPE\": 2.6189568829036327","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.921192Z","level":"info","event":"      },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.921335Z","level":"info","event":"      \"status\": \"ok\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.921472Z","level":"info","event":"      \"consecutive_degraded_windows\": 0","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.921616Z","level":"info","event":"    },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.921738Z","level":"info","event":"    {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.921881Z","level":"info","event":"      \"window\": 2,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.922010Z","level":"info","event":"      \"rows\": 280,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.922170Z","level":"info","event":"      \"start\": \"2026-01-29T00:00:00+00:00\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.922338Z","level":"info","event":"      \"end\": \"2026-02-04T00:00:00+00:00\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.922504Z","level":"info","event":"      \"labelled_rows\": 280,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.922730Z","level":"info","event":"      \"alerts\": [","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.922904Z","level":"info","event":"        {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.923069Z","level":"info","event":"          \"type\": \"performance_degradation\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.923246Z","level":"info","event":"          \"MAE\": 15.004241975753631","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.923403Z","level":"info","event":"        },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.923562Z","level":"info","event":"        {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.923720Z","level":"info","event":"          \"type\": \"suspected_concept_drift\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.923867Z","level":"info","event":"          \"reason\": \"MAE increased while monitored feature distribution stayed stable\"","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.924028Z","level":"info","event":"        }","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.924226Z","level":"info","event":"      ],","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.924407Z","level":"info","event":"      \"drift\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.924569Z","level":"info","event":"        \"sales_lag_1\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.924721Z","level":"info","event":"          \"metric\": \"PSI\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.924871Z","level":"info","event":"          \"value\": 0.030618","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.925020Z","level":"info","event":"        },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.925172Z","level":"info","event":"        \"sales_rolling_sum_7\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.925320Z","level":"info","event":"          \"metric\": \"PSI\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.925482Z","level":"info","event":"          \"value\": 0.025668","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.925619Z","level":"info","event":"        }","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.925752Z","level":"info","event":"      },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.925890Z","level":"info","event":"      \"metrics\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.926016Z","level":"info","event":"        \"rows\": 280,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.926130Z","level":"info","event":"        \"MAE\": 15.004241975753631,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.926253Z","level":"info","event":"        \"RMSE\": 15.061816654661198,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.926405Z","level":"info","event":"        \"WAPE\": 26.961209740246186","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.926539Z","level":"info","event":"      },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.926674Z","level":"info","event":"      \"status\": \"alert\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.926807Z","level":"info","event":"      \"consecutive_degraded_windows\": 1","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.926940Z","level":"info","event":"    },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.927070Z","level":"info","event":"    {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.927199Z","level":"info","event":"      \"window\": 3,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.927329Z","level":"info","event":"      \"rows\": 280,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.927451Z","level":"info","event":"      \"start\": \"2026-02-05T00:00:00+00:00\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.927573Z","level":"info","event":"      \"end\": \"2026-02-11T00:00:00+00:00\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.927706Z","level":"info","event":"      \"labelled_rows\": 280,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.927837Z","level":"info","event":"      \"alerts\": [","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.927966Z","level":"info","event":"        {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.928101Z","level":"info","event":"          \"type\": \"performance_degradation\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.928243Z","level":"info","event":"          \"MAE\": 15.128377453717414","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.928388Z","level":"info","event":"        },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.928522Z","level":"info","event":"        {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.928673Z","level":"info","event":"          \"type\": \"suspected_concept_drift\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.928820Z","level":"info","event":"          \"reason\": \"MAE increased while monitored feature distribution stayed stable\"","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.928970Z","level":"info","event":"        }","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.929100Z","level":"info","event":"      ],","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.929241Z","level":"info","event":"      \"drift\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.929391Z","level":"info","event":"        \"sales_lag_1\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.929550Z","level":"info","event":"          \"metric\": \"PSI\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.929705Z","level":"info","event":"          \"value\": 0.057163","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.929860Z","level":"info","event":"        },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.930004Z","level":"info","event":"        \"sales_rolling_sum_7\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.930153Z","level":"info","event":"          \"metric\": \"PSI\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.930318Z","level":"info","event":"          \"value\": 0.055786","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.930482Z","level":"info","event":"        }","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.930634Z","level":"info","event":"      },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.930786Z","level":"info","event":"      \"metrics\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.930941Z","level":"info","event":"        \"rows\": 280,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.931104Z","level":"info","event":"        \"MAE\": 15.128377453717414,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.931272Z","level":"info","event":"        \"RMSE\": 15.20765600404479,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.931434Z","level":"info","event":"        \"WAPE\": 26.208844919749552","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.931585Z","level":"info","event":"      },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.931710Z","level":"info","event":"      \"status\": \"alert\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.931845Z","level":"info","event":"      \"consecutive_degraded_windows\": 2","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.931994Z","level":"info","event":"    }","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.932167Z","level":"info","event":"  ],","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.932331Z","level":"info","event":"  \"retraining_trigger\": true,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.932492Z","level":"info","event":"  \"policy\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.932621Z","level":"info","event":"    \"forecast_horizon_days\": 7,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.932757Z","level":"info","event":"    \"window_days\": 7,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.932917Z","level":"info","event":"    \"minimum_window_rows\": 30,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.933062Z","level":"info","event":"    \"minimum_labelled_rows\": 30,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.933214Z","level":"info","event":"    \"numeric_psi_alert\": 0.2,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.933388Z","level":"info","event":"    \"categorical_tvd_alert\": 0.2,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.933537Z","level":"info","event":"    \"mae_ratio_alert\": 1.25,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.933702Z","level":"info","event":"    \"mae_absolute_increase_alert\": 2.0,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.933912Z","level":"info","event":"    \"consecutive_degraded_windows_to_retrain\": 2,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.934048Z","level":"info","event":"    \"maximum_http_error_rate\": 0.01,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.934180Z","level":"info","event":"    \"maximum_http_p95_seconds\": 0.25","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.934337Z","level":"info","event":"  },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.934480Z","level":"info","event":"  \"source_sha256\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.934642Z","level":"info","event":"    \"events\": \"63d598f0dfdae495220679c6a7cadbb422e35b580193e2fd86547f09450bf637\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.934776Z","level":"info","event":"    \"labels\": \"545aba8ad2dc0f4829b4cd9d0cfc51837b406013aa0cfd8475004731709caea0\"","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.934928Z","level":"info","event":"  }","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.935082Z","level":"info","event":"}","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:39.963581Z","level":"info","event":"COMMAND: /opt/project-venv/bin/python -m src.demand_forecasting.monitoring check --events /project/reports/orchestration/acceptance_petch_97f6252_20260930/drift_demo/shifted_events.jsonl --reference /project/reports/orchestration/acceptance_petch_97f6252_20260930/drift_demo/reference.json --output /project/reports/orchestration/acceptance_petch_97f6252_20260930/drift_demo/feature_drift_report.json","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.168712Z","level":"info","event":"{","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.168942Z","level":"info","event":"  \"identity\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.169077Z","level":"info","event":"    \"model_name\": \"simulated-demand-7d\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.169205Z","level":"info","event":"    \"model_version\": \"sim-v1\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.169329Z","level":"info","event":"    \"data_kind\": \"synthetic_demo_only\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.169452Z","level":"info","event":"    \"feature_names\": [","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.169559Z","level":"info","event":"      \"sales_lag_1\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.169651Z","level":"info","event":"      \"sales_rolling_sum_7\"","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.169741Z","level":"info","event":"    ]","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.169827Z","level":"info","event":"  },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.169913Z","level":"info","event":"  \"windows\": [","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.169997Z","level":"info","event":"    {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.170081Z","level":"info","event":"      \"window\": 0,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.170164Z","level":"info","event":"      \"rows\": 280,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.170246Z","level":"info","event":"      \"start\": \"2026-01-15T00:00:00+00:00\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.170328Z","level":"info","event":"      \"end\": \"2026-01-21T00:00:00+00:00\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.170499Z","level":"info","event":"      \"labelled_rows\": 0,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.170629Z","level":"info","event":"      \"alerts\": [","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.170749Z","level":"info","event":"        {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.170846Z","level":"info","event":"          \"type\": \"data_drift\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.170935Z","level":"info","event":"          \"features\": [","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.171020Z","level":"info","event":"            \"sales_lag_1\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.171104Z","level":"info","event":"            \"sales_rolling_sum_7\"","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.171191Z","level":"info","event":"          ]","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.171276Z","level":"info","event":"        }","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.171359Z","level":"info","event":"      ],","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.171441Z","level":"info","event":"      \"drift\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.171522Z","level":"info","event":"        \"sales_lag_1\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.171602Z","level":"info","event":"          \"metric\": \"PSI\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.171683Z","level":"info","event":"          \"value\": 12.391677","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.171763Z","level":"info","event":"        },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.171844Z","level":"info","event":"        \"sales_rolling_sum_7\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.171926Z","level":"info","event":"          \"metric\": \"PSI\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.172007Z","level":"info","event":"          \"value\": 12.349583","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.172116Z","level":"info","event":"        }","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.172253Z","level":"info","event":"      },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.172353Z","level":"info","event":"      \"metrics\": null,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.172439Z","level":"info","event":"      \"label_status\": \"pending_mature_labels\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.172523Z","level":"info","event":"      \"status\": \"alert\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.172607Z","level":"info","event":"      \"consecutive_degraded_windows\": 0","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.172690Z","level":"info","event":"    },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.172771Z","level":"info","event":"    {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.172871Z","level":"info","event":"      \"window\": 1,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.172965Z","level":"info","event":"      \"rows\": 280,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.173051Z","level":"info","event":"      \"start\": \"2026-01-22T00:00:00+00:00\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.173136Z","level":"info","event":"      \"end\": \"2026-01-28T00:00:00+00:00\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.173218Z","level":"info","event":"      \"labelled_rows\": 0,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.173300Z","level":"info","event":"      \"alerts\": [","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.173381Z","level":"info","event":"        {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.173463Z","level":"info","event":"          \"type\": \"data_drift\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.173545Z","level":"info","event":"          \"features\": [","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.173627Z","level":"info","event":"            \"sales_lag_1\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.173709Z","level":"info","event":"            \"sales_rolling_sum_7\"","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.173802Z","level":"info","event":"          ]","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.173884Z","level":"info","event":"        }","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.173983Z","level":"info","event":"      ],","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.174084Z","level":"info","event":"      \"drift\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.174200Z","level":"info","event":"        \"sales_lag_1\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.174291Z","level":"info","event":"          \"metric\": \"PSI\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.174375Z","level":"info","event":"          \"value\": 12.391677","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.174459Z","level":"info","event":"        },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.174541Z","level":"info","event":"        \"sales_rolling_sum_7\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.174623Z","level":"info","event":"          \"metric\": \"PSI\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.174705Z","level":"info","event":"          \"value\": 12.349583","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.174787Z","level":"info","event":"        }","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.174868Z","level":"info","event":"      },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.174949Z","level":"info","event":"      \"metrics\": null,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.175029Z","level":"info","event":"      \"label_status\": \"pending_mature_labels\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.175110Z","level":"info","event":"      \"status\": \"alert\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.175190Z","level":"info","event":"      \"consecutive_degraded_windows\": 0","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.175271Z","level":"info","event":"    },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.175414Z","level":"info","event":"    {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.175599Z","level":"info","event":"      \"window\": 2,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.175745Z","level":"info","event":"      \"rows\": 280,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.175867Z","level":"info","event":"      \"start\": \"2026-01-29T00:00:00+00:00\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.175988Z","level":"info","event":"      \"end\": \"2026-02-04T00:00:00+00:00\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.176175Z","level":"info","event":"      \"labelled_rows\": 0,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.176344Z","level":"info","event":"      \"alerts\": [","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.176501Z","level":"info","event":"        {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.176642Z","level":"info","event":"          \"type\": \"data_drift\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.176783Z","level":"info","event":"          \"features\": [","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.176926Z","level":"info","event":"            \"sales_lag_1\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.177078Z","level":"info","event":"            \"sales_rolling_sum_7\"","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.177230Z","level":"info","event":"          ]","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.177384Z","level":"info","event":"        }","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.177531Z","level":"info","event":"      ],","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.177678Z","level":"info","event":"      \"drift\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.177825Z","level":"info","event":"        \"sales_lag_1\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.177999Z","level":"info","event":"          \"metric\": \"PSI\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.178156Z","level":"info","event":"          \"value\": 12.391677","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.178299Z","level":"info","event":"        },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.178450Z","level":"info","event":"        \"sales_rolling_sum_7\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.178595Z","level":"info","event":"          \"metric\": \"PSI\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.178737Z","level":"info","event":"          \"value\": 12.349583","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.178870Z","level":"info","event":"        }","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.179003Z","level":"info","event":"      },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.179156Z","level":"info","event":"      \"metrics\": null,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.179289Z","level":"info","event":"      \"label_status\": \"pending_mature_labels\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.179423Z","level":"info","event":"      \"status\": \"alert\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.179559Z","level":"info","event":"      \"consecutive_degraded_windows\": 0","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.179692Z","level":"info","event":"    },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.179829Z","level":"info","event":"    {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.179989Z","level":"info","event":"      \"window\": 3,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.180143Z","level":"info","event":"      \"rows\": 280,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.180283Z","level":"info","event":"      \"start\": \"2026-02-05T00:00:00+00:00\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.180423Z","level":"info","event":"      \"end\": \"2026-02-11T00:00:00+00:00\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.180576Z","level":"info","event":"      \"labelled_rows\": 0,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.180732Z","level":"info","event":"      \"alerts\": [","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.180892Z","level":"info","event":"        {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.181031Z","level":"info","event":"          \"type\": \"data_drift\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.181165Z","level":"info","event":"          \"features\": [","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.181306Z","level":"info","event":"            \"sales_lag_1\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.181440Z","level":"info","event":"            \"sales_rolling_sum_7\"","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.181573Z","level":"info","event":"          ]","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.181709Z","level":"info","event":"        }","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.181842Z","level":"info","event":"      ],","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.181994Z","level":"info","event":"      \"drift\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.182132Z","level":"info","event":"        \"sales_lag_1\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.182264Z","level":"info","event":"          \"metric\": \"PSI\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.182411Z","level":"info","event":"          \"value\": 12.391677","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.182542Z","level":"info","event":"        },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.182686Z","level":"info","event":"        \"sales_rolling_sum_7\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.182819Z","level":"info","event":"          \"metric\": \"PSI\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.182967Z","level":"info","event":"          \"value\": 12.349583","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.183100Z","level":"info","event":"        }","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.183233Z","level":"info","event":"      },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.183365Z","level":"info","event":"      \"metrics\": null,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.183495Z","level":"info","event":"      \"label_status\": \"pending_mature_labels\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.183634Z","level":"info","event":"      \"status\": \"alert\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.183771Z","level":"info","event":"      \"consecutive_degraded_windows\": 0","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.183905Z","level":"info","event":"    }","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.184057Z","level":"info","event":"  ],","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.184201Z","level":"info","event":"  \"retraining_trigger\": false,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.184339Z","level":"info","event":"  \"policy\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.184477Z","level":"info","event":"    \"forecast_horizon_days\": 7,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.184613Z","level":"info","event":"    \"window_days\": 7,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.184750Z","level":"info","event":"    \"minimum_window_rows\": 30,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.184886Z","level":"info","event":"    \"minimum_labelled_rows\": 30,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.185021Z","level":"info","event":"    \"numeric_psi_alert\": 0.2,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.185171Z","level":"info","event":"    \"categorical_tvd_alert\": 0.2,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.185307Z","level":"info","event":"    \"mae_ratio_alert\": 1.25,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.185623Z","level":"info","event":"    \"mae_absolute_increase_alert\": 2.0,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.185767Z","level":"info","event":"    \"consecutive_degraded_windows_to_retrain\": 2,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.185904Z","level":"info","event":"    \"maximum_http_error_rate\": 0.01,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.186065Z","level":"info","event":"    \"maximum_http_p95_seconds\": 0.25","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.186218Z","level":"info","event":"  },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.186371Z","level":"info","event":"  \"source_sha256\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.186507Z","level":"info","event":"    \"events\": \"82ea5a6d84153070ad3b3d100a8cad13c0129d342d36abde20365e77746f7ceb\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.186645Z","level":"info","event":"    \"labels\": null","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.186785Z","level":"info","event":"  }","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.186925Z","level":"info","event":"}","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.197183Z","level":"info","event":"ALERT: monitoring policy triggered retraining (synthetic demonstration)","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.198108Z","level":"info","event":"{\"stage\": \"check_drift\", \"status\": \"success\", \"evidence\": \"/project/reports/orchestration/acceptance_petch_97f6252_20260930\"}","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.205535Z","level":"info","event":"Done. Returned value was: None","map_index":-1,"task_id":"check_drift","try_number":1,"ti_id":"01a0f312-36e0-7f22-aaec-0ecffb401fc8","dag_id":"demand_forecasting_e2e","run_id":"acceptance_petch_97f6252_20260930","logger":"airflow.task.operators.airflow.providers.standard.decorators.python._PythonDecoratedOperator","filename":"python.py","lineno":233}
+{"timestamp":"2026-09-30T16:16:40.205738Z","level":"info","event":"::group::Post Execute","map_index":-1,"task_id":"check_drift","try_number":1,"ti_id":"01a0f312-36e0-7f22-aaec-0ecffb401fc8","dag_id":"demand_forecasting_e2e","run_id":"acceptance_petch_97f6252_20260930","logger":"task","filename":"task_runner.py","lineno":1580}
+{"timestamp":"2026-09-30T16:16:40.218697Z","level":"info","event":"::endgroup::","map_index":-1,"task_id":"check_drift","try_number":1,"ti_id":"01a0f312-36e0-7f22-aaec-0ecffb401fc8","dag_id":"demand_forecasting_e2e","run_id":"acceptance_petch_97f6252_20260930","logger":"task","filename":"task_runner.py","lineno":2379}
