@@ -94,7 +94,7 @@ def package():
     target = ROOT / 'delivery'
     target.mkdir(exist_ok=False)
     for name, source in [('app', ROOT / 'serving/app'), ('src', ROOT / 'src')]:
-        shutil.copytree(source, target / name, ignore=shutil.ignore_patterns('__pycache__'))
+        shutil.copytree(source, target / name, ignore=shutil.ignore_patterns('__pycache__', '.gitkeep'))
     bundles = read(FLOW_OUT / 'bundles.json')
     for role, info in bundles.items():
         bundle = target / 'bundles' / role

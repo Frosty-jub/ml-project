@@ -1,5 +1,6 @@
 """ตรวจการหยุด CI และการสร้างหลักฐาน โดยไม่ฝึกโมเดลซ้ำใน unit test"""
 import json
+import hashlib
 from pathlib import Path
 import tempfile
 import unittest
@@ -9,6 +10,30 @@ from scripts import ci_pipeline as ci
 
 
 class CiPipelineTests(unittest.TestCase):
+    def test_delivery_manifest_matches_files_without_git_placeholders(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            flow_out = root / 'flow'
+            for relative in ('serving/app/main.py', 'src/example.py', 'src/data/.gitkeep',
+                             'orchestration/airflow/requirements.lock', 'ci/runtime.Dockerfile',
+                             'ci/delivery.compose.yaml', 'docs/ci_delivery_th.md',
+                             'fixture/model.joblib', 'fixture/metadata.json', 'fixture/sample_request.json'):
+                path = root / relative
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text('unit-test fixture', encoding='utf-8')
+            ci.write(flow_out / 'bundles.json', {
+                role: {'bundle_dir': str(root / 'fixture')} for role in ('candidate', 'fallback')})
+            ci.write(flow_out / 'quality_gate.json', {'passed': True})
+            ci.write(flow_out / 'approval.json', {'approved': True})
+            with patch.object(ci, 'ROOT', root), patch.object(ci, 'FLOW_OUT', flow_out), \
+                    patch.object(ci, 'SCENARIO', 'normal'):
+                ci.package()
+            delivery = root / 'delivery'
+            checksums = ci.read(delivery / 'checksums.json')
+            self.assertFalse(list(delivery.rglob('.gitkeep')))
+            for name, expected in checksums.items():
+                self.assertEqual(hashlib.sha256((delivery / name).read_bytes()).hexdigest(), expected)
+
     def test_failed_previous_stage_blocks_next_stage(self):
         with tempfile.TemporaryDirectory() as directory:
             out = Path(directory)
