@@ -1,0 +1,30 @@
+{
+  "run_id": "github-36660579656-1",
+  "scenario": "bad_code",
+  "passed": false,
+  "commit": "1cd75312a035def3f968e948e9996bbbda1aae13",
+  "stages": {
+    "code": {
+      "status": "failed",
+      "started_at_utc": "2026-09-30T02:37:00.496915+00:00",
+      "error_type": "SyntaxError",
+      "error": "invalid syntax (isolated_bad_code_fixture.py, line 1)"
+    },
+    "data": {
+      "status": "not_run"
+    },
+    "model": {
+      "status": "not_run"
+    },
+    "integration": {
+      "status": "not_run"
+    },
+    "package": {
+      "status": "not_run"
+    },
+    "delivery": {
+      "status": "not_run"
+    }
+  },
+  "delivery_allowed": false
+}

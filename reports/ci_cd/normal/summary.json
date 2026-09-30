@@ -1,0 +1,115 @@
+{
+  "run_id": "github-36661484161-1",
+  "scenario": "normal",
+  "passed": true,
+  "commit": "feadca5dfd9593cc9ffa4e3b3597908867401b29",
+  "stages": {
+    "code": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T02:48:47.933022+00:00",
+      "finished_at_utc": "2026-09-30T02:48:58.875524+00:00",
+      "result": {
+        "syntax_files": 45,
+        "project_unittests": "passed",
+        "serving_tests": "passed"
+      }
+    },
+    "data": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T02:48:59.007476+00:00",
+      "finished_at_utc": "2026-09-30T02:51:22.991747+00:00",
+      "result": {
+        "status": "passed",
+        "horizon_days": 7,
+        "full_daily_rows": 3078994,
+        "labeled_rows": 3044168,
+        "full_daily_skus": 4976,
+        "labeled_skus": 4975,
+        "first_date": "2009-12-01",
+        "last_observed_date": "2011-12-09",
+        "last_origin_date": "2011-12-02",
+        "duplicate_keys": 0,
+        "missing_required_values": 0,
+        "negative_or_fractional_units": 0,
+        "incorrect_targets": 0,
+        "daily_sha256": "161e6235be1afafad4584ac6a6fc826c2f06cd5381c5ec429a957756f262053c",
+        "labels_sha256": "1ea6cc7eafb1797d0ad5d931b19dc009e54f45e4f144e5f11bf8f67dfa84afbf",
+        "configuration_sha256": "5e63cd70535905fcd0bc9d538b39731f1acca72c2dfce36002a3ad361d2cd2ea"
+      }
+    },
+    "model": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T02:51:23.127270+00:00",
+      "finished_at_utc": "2026-09-30T02:53:37.202993+00:00",
+      "result": {
+        "passed": true,
+        "checks": {
+          "feature_schema": true,
+          "metrics_finite": true,
+          "beats_baseline": true,
+          "complete_folds": true,
+          "validation_protocol": true,
+          "aggregate_matches_folds": true,
+          "wins_required_folds": true,
+          "pretest_only": true,
+          "prediction_integrity": true,
+          "rejects_wrong_feature_order": true
+        },
+        "candidate_mae": 16.22751974883882,
+        "baseline_mae": 20.854926254439675,
+        "folds_won": 4,
+        "expected_folds": 4,
+        "model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054",
+        "metadata_sha256": "51716224c6fc0b9bed14db49194e2bef66057914713b0e8e3fb37252a80572af",
+        "policy_sha256": "fb33425eb7d46a1badb86c2e68b2ff2c6c15e8f7f33dbfbb33b59fb2cef99994",
+        "validation_folds_sha256": "ad48125c00d88f9e6fd192bf7b0f50c92cab8339784dfe6c3c9322d14ffc04b1"
+      }
+    },
+    "integration": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T02:53:37.335482+00:00",
+      "finished_at_utc": "2026-09-30T02:54:03.589117+00:00",
+      "result": {
+        "serving": "passed",
+        "rollback": "passed",
+        "monitoring_events": "passed",
+        "deployment_scope": "isolated_ci_containers"
+      }
+    },
+    "package": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T02:54:03.720969+00:00",
+      "finished_at_utc": "2026-09-30T02:54:03.729136+00:00",
+      "result": {
+        "files": 31,
+        "models": {
+          "fallback": {
+            "model_name": "demand-forecasting-7d",
+            "model_version": "1",
+            "source_model_sha256": "4d45b3c5617f05ba401195107a2a466aaf815459a5aa5c6cb2ff5d2c6d8ddd5f",
+            "bundle_dir": "/project/artifacts/orchestration/bundles/v1-4d45b3c5617f",
+            "model_sha256": "4d45b3c5617f05ba401195107a2a466aaf815459a5aa5c6cb2ff5d2c6d8ddd5f"
+          },
+          "candidate": {
+            "model_name": "demand-forecasting-7d",
+            "model_version": "2",
+            "source_model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054",
+            "bundle_dir": "/project/artifacts/orchestration/bundles/v2-f4a0bdbd9741",
+            "model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054"
+          }
+        }
+      }
+    },
+    "delivery": {
+      "status": "success",
+      "started_at_utc": "2026-09-30T02:54:47.314349+00:00",
+      "finished_at_utc": "2026-09-30T02:54:52.135716+00:00",
+      "result": {
+        "candidate": "passed",
+        "fallback": "passed",
+        "registry_parity": true
+      }
+    }
+  },
+  "delivery_allowed": true
+}

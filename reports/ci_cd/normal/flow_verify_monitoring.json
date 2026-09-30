@@ -1,0 +1,26 @@
+{
+  "status": "success",
+  "started_at_utc": "2026-09-30T02:54:00.737264+00:00",
+  "finished_at_utc": "2026-09-30T02:54:03.087343+00:00",
+  "result": {
+    "expected": 3,
+    "matched_exactly": 3,
+    "request_id": "b399ec6eaa684abc93489eaab6146e68",
+    "service": {
+      "health": {
+        "status": "ok",
+        "model_loaded": true,
+        "model_name": "demand-forecasting-7d",
+        "model_version": "2",
+        "data_kind": "group_project",
+        "model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054"
+      },
+      "http_5xx_rate_since_restart": 0.0,
+      "http_requests_since_restart": 16.0,
+      "observation_write_failures_since_restart": 0.0,
+      "http_p95_bucket_upper_bound_seconds_since_restart": null,
+      "alerts": []
+    },
+    "live_labels": "No mature live labels yet; historical replay mapping is recorded separately"
+  }
+}
