@@ -202,6 +202,30 @@ class Flow:
         require(gate2['passed'], 'Experiment 2 fallback did not pass quality gate')
         selected = {}
         versions = {name: package_version(name) for name in ('scikit-learn', 'lightgbm', 'numpy', 'pandas', 'joblib')}
+        # Experiment 1 is a frozen reference; record its existing scores without retraining.
+        reference = read(self.work / 'config/experiment1_reference.json')
+        require(bool(reference.get('rows')), 'Experiment 1 reference has no score rows')
+        for record in reference['rows']:
+            require(all(metric in record for metric in ('model', 'MAE', 'RMSE', 'WAPE')),
+                    'Experiment 1 reference row is incomplete')
+            model_id = str(record['model'])
+            with mlflow.start_run(run_name=f'{self.key}-exp1-reference-{model_id}'):
+                mlflow.set_tags({
+                    'airflow_run_id': self.run_id,
+                    'experiment_number': '1',
+                    'evidence_type': 'frozen_reference',
+                    'validation_strategy': str(reference.get('validation_strategy', '')),
+                    'reference_feature_manifest_sha256': str(reference.get('feature_manifest_sha256', '')),
+                    'reference_source_workbook_sha256': str(reference.get('source_workbook_sha256', '')),
+                })
+                params = {'model': model_id}
+                params.update({f'hyperparameter_{key}': str(value)
+                               for key, value in record.get('hyperparameters', {}).items()})
+                mlflow.log_params(params)
+                mlflow.log_metrics({metric: float(record[metric]) for metric in ('MAE', 'RMSE', 'WAPE')})
+                mlflow.log_dict(reference, 'experiment1_reference.json')
+                mlflow.log_dict(record, 'trial.json')
+
         # Record every Experiment 2/3 trial and the current code/data/environment lineage.
         for number in (2, 3):
             for record in read(training / f'experiment{number}_trials.json'):
@@ -215,6 +239,47 @@ class Flow:
                     mlflow.log_artifact(str(self.out / 'lineage.json'))
                     mlflow.log_artifact(str(self.out / 'environment.txt'))
                     mlflow.log_dict(manifest, 'data_manifest.json')
+        full_rows_path = training / 'final_candidate_full_fold_metrics.json'
+        full_summary_path = training / 'final_candidate_full_fold_summary.json'
+        full_csv_path = training / 'final_candidate_full_fold_metrics.csv'
+        require(full_rows_path.is_file() and full_summary_path.is_file() and full_csv_path.is_file(),
+                'Full-fold verification outputs are missing')
+        full_rows = read(full_rows_path)
+        full_summary = read(full_summary_path)
+        require(full_summary.get('model') == meta3.get('model_name'),
+                'Full-fold verification model differs from the gated candidate')
+        require(full_summary.get('selection_changed') is False and full_summary.get('test_set_used') is False,
+                'Full-fold verification changed selection or used the test set')
+        full_metrics = {}
+        for metric, values in full_summary['aggregate'].items():
+            full_metrics[f'full_fold_{metric.lower()}_mean'] = float(values['mean'])
+            full_metrics[f'full_fold_{metric.lower()}_std'] = float(values['std'])
+        full_metrics['folds_won_vs_baseline'] = float(full_summary['folds_won_vs_baseline'])
+        full_metrics['baseline_mean_mae'] = float(full_summary['baseline_mean_MAE'])
+        full_metrics['full_minus_sampled_mae'] = float(full_summary['full_minus_sampled_MAE'])
+        full_metrics['mae_improvement_vs_baseline_pct'] = float(
+            full_summary['MAE_improvement_vs_baseline_pct'])
+        with mlflow.start_run(run_name=f'{self.key}-exp3-full-fold-verification'):
+            mlflow.set_tags({
+                'airflow_run_id': self.run_id,
+                'experiment_number': '3',
+                'verification_type': 'full_fold_robustness_check',
+                'selection_changed': 'false',
+                'test_set_used': 'false',
+            })
+            mlflow.log_params({
+                'model': str(full_summary['model']),
+                'fold_count': str(full_summary['fold_count']),
+                'protocol': str(full_summary['protocol']),
+            })
+            mlflow.log_metrics(full_metrics)
+            mlflow.log_dict(full_summary, 'full_fold_verification/summary.json')
+            mlflow.log_dict(full_rows, 'full_fold_verification/fold_metrics.json')
+            mlflow.log_artifact(str(full_csv_path), artifact_path='full_fold_verification')
+            mlflow.log_artifact(str(self.out / 'lineage.json'))
+            mlflow.log_artifact(str(self.out / 'environment.txt'))
+            mlflow.log_dict(manifest, 'data_manifest.json')
+
         for role, model, path, gate, meta in (
             ('fallback', model2, training / 'best_candidate_model.joblib', gate2, meta2),
             ('candidate', model3, training / 'final_candidate_model.joblib', gate3, meta3),

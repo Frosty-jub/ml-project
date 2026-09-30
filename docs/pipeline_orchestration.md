@@ -101,7 +101,7 @@ flowchart TD
 4. experiment_3: เทรน final candidate ตามโค้ดและ configuration เดิม
 5. verify_full_folds: ตรวจด้วยข้อมูลเต็มใน folds
 6. candidate_quality_gate: ตรวจ 10 checks และ hash ของ candidate
-7. register_models: บันทึกผล trial/code/data/environment, register หรือ reuse version ที่ตรง hash และ validation protocol
+7. register_models: บันทึก frozen reference เดิมของ Experiment 1 โดยไม่ฝึกซ้ำ, ทุก trial ของ Experiment 2/3 และ full-fold verification พร้อม code/data/environment lineage; จากนั้น register หรือ reuse version ที่ตรง hash และ validation protocol
 8. export_bundles: ตรวจ feature manifest, export joblib และเทียบ prediction กับ Registry
 9. benchmark_candidates: ทดสอบ fallback และ candidate บน candidate API, Registry parity benchmark, HTTP checks, single-record load test และจับคู่ 520 events ของ measured/warmup requests ให้ครบ
 10. approve_and_deploy: ตรวจ candidate hash ตรง gate, ใช้กฎ promotion ของ Registry, สลับ production pointer และตรวจ health/schema/prediction; กู้ pointer/aliases กลับหากการเปลี่ยนบริการล้มเหลว
