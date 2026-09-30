@@ -1,5 +1,17 @@
 # ระบบพยากรณ์ยอดขายสินค้า 7 วันล่วงหน้า
 
+## Airflow Orchestration — งานคนที่ 6
+
+ติดตั้ง Git และ Docker Desktop (Linux containers) แล้วจาก PowerShell ที่ root ของโปรเจกต์สั่ง:
+
+```powershell
+.\scripts\run_orchestration.ps1
+```
+
+คำสั่งนี้ build จาก dependency lock, เปิด Airflow/candidate/production ใน Docker volume แยก, รัน DAG จากข้อมูลดิบผ่านการเทรนและ gate, ลงทะเบียนและ export โมเดล, ทดสอบ candidate, อนุมัติตาม policy สำหรับ local demo, สลับบริการ, สาธิต rollback แล้วคืนรุ่นที่อนุมัติ และเก็บหลักฐาน Monitoring/retraining หน้าจอ Airflow คือ http://127.0.0.1:18090 และ API ของชุด orchestration คือ http://127.0.0.1:18015/docs ผลรันถูกคัดลอกออกมาที่ `reports/orchestration/` ไม่ต้องติดตั้ง Python บน host
+
+อ่าน [คู่มือ Pipeline Orchestration](docs/pipeline_orchestration.md) สำหรับความหมายแต่ละ task, การเข้าสู่ Airflow, negative tests, delayed labels, การกู้คืน และข้อจำกัดการอนุมัติของเดโม การสาธิต drift ใช้ข้อมูลสังเคราะห์ที่ติดป้ายชัดเจนและไม่ถูกส่งขึ้นบริการจริง CI/CD ยังเป็นขั้นถัดไป
+
 ## Monitoring, Drift และ Retraining — งานคนที่ 5
 
 มีตัวเก็บ prediction observations จาก `/predict`, ตรวจ data drift และคุณภาพเมื่อ label ครบ 7 วัน, แจ้ง suspected concept drift, ตรวจสถานะบริการ และสร้าง LightGBM candidate หลัง degradation สองช่วงติดกัน พร้อมชุดสาธิตออฟไลน์ อ่านคำสั่งและข้อจำกัดใน [คู่มือ Monitoring และ Retraining](docs/monitoring_retraining.md)
@@ -13,7 +25,7 @@ cd serving
 docker compose up --build -d
 ```
 
-เปิด http://localhost:18005/docs โมเดลสังเคราะห์สำหรับสาธิตสร้างใหม่ตอน build จึงไม่ต้องเก็บ model binary ใน Git ชุดนี้ยังต้องเชื่อมโมเดล LightGBM/MLflow และ feature schema ของกลุ่มก่อนใช้จริง ส่วน benchmark Registry เดิมใช้ `/invocations` ซึ่งมีรูปแบบคำขอและ SLO ต่างจากเดโม `/predict` ดูรายละเอียดการส่งต่อในคู่มือ serving
+เปิด http://localhost:18005/docs คำสั่ง Compose แบบเดิมข้างต้นใช้โมเดลสังเคราะห์สำหรับสาธิต ส่วน `compose.model.yaml` ใช้ bundle joblib ของโมเดลจริงที่เตรียมไว้ และชุด Airflow ด้านบนสร้างและสลับ bundle จาก run ได้เอง Registry benchmark ปัจจุบันเรียก `/predict` แบบ `records` และเทียบ prediction กับ Registry ดูรายละเอียดในคู่มือ serving และ orchestration
 
 ## MLflow และ Model Registry
 

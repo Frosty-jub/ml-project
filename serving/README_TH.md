@@ -73,46 +73,38 @@ powershell -ExecutionPolicy Bypass -File .\run_local.ps1
 
 ## เปลี่ยนเป็นโมเดลจริงของกลุ่ม
 
-ขอจากคนที่เทรนโมเดล: sklearn Pipeline ที่ **fit แล้ว** รวม preprocessing, ลำดับชื่อฟีเจอร์, ชนิด/ช่วงค่า/นโยบาย null, ตัวอย่างแถว และเวอร์ชันโมเดล ถ้าใช้ MLflow ให้คนที่ดูแล Registry export เวอร์ชันที่อนุมัติแล้วลงโฟลเดอร์นี้
+โมเดลของกลุ่มบันทึกเป็น `FeatureOrderedModel` ครอบ LightGBM ไม่ใช่ sklearn Pipeline แบบโมเดลสังเคราะห์ของ Serving คำสั่ง export ต่อไปนี้โหลดเวอร์ชันจาก MLflow Registry ตรวจ gate และ feature manifest แล้วสร้าง bundle แบบ `model.joblib`:
 
-ในโค้ดเทรน หลังประเมินผลเรียก:
-
-```python
-from scripts.export_model import export_bundle
-
-export_bundle(
-    pipeline=fitted_pipeline,
-    sample=X_test.head(3),
-    features=[
-        {"name": "feature_a", "type": "number", "nullable": True},
-        {"name": "feature_b", "type": "integer", "minimum": 0},
-    ],
-    destination="artifacts/group-v1",
-    model_name="YOUR_GROUP_MODEL",
-    model_version="v1",
-    data_kind="group_project",
-)
+```powershell
+# Run from repository root with the project's .venv active.
+python serving\scripts\export_model.py --version 1 --destination serving\artifacts\group-v1-joblib
 ```
 
-แทน schema ตัวอย่างด้วยฟีเจอร์จริง `features`, `sample.columns` และ `pipeline.feature_names_in_` ต้องตรงกัน ถ้า pipeline ไม่ได้ fit บน DataFrame ให้ปรับการเทรนให้เก็บชื่อฟีเจอร์อย่างชัดเจน ตัว exporter ตรวจ schema และลองทำนายก่อนส่งต่อ เก็บ `model.joblib`, `metadata.json`, `sample_request.json` และ checksum โมเดล ใช้ directory ใหม่ทุกเวอร์ชันเพื่อรักษาโมเดลเดิม
+`--version` ต้องเป็นเวอร์ชันที่มี `gate_passed=true` ใน Registry โฟลเดอร์ bundle มี `model.joblib`, `metadata.json` และ `sample_request.json`; metadata บันทึกชื่อ/เวอร์ชันโมเดล, feature schema, scikit-learn/LightGBM versions และ checksum ตัว export เปรียบเทียบ prediction ของ bundle กับ Registry model ก่อนจบคำสั่ง
 
-เมื่อมี bundle จริงที่ `artifacts/group-v1` ใช้ Compose override เพื่อเลือกและ mount โมเดลนั้นแบบอ่านอย่างเดียว:
+ฟีเจอร์ต้องตรงกับ `feature_columns` ใน `reports/generated/feature_split_manifest.json` และเรียงตามลำดับเดียวกับโมเดล ห้ามส่ง `sku_id`, `forecast_origin_date` หรือ target เข้าโมเดล API รับเฉพาะฟีเจอร์ที่สร้างด้วย data pipeline แล้ว ไม่สร้าง lag หรือ rolling features เอง
+
+เมื่อมี bundle จริงที่ `artifacts/group-v1-joblib` ใช้ Compose override เพื่อเลือกและ mount โมเดลนั้นแบบอ่านอย่างเดียว:
 
 ```powershell
 docker compose -f compose.yaml -f compose.model.yaml up --build -d --force-recreate
 ```
 
-สำหรับรัน local กำหนด `$env:MODEL_DIR = "$PWD\artifacts\group-v1"` ก่อนเริ่มบริการ โมเดลโหลดครั้งเดียวตอนเริ่มต้น หากเปลี่ยนไฟล์ให้ restart และตรวจชื่อเวอร์ชันใน `/health` ยังไม่ได้ทำ hot reload หรือโหลด alias จาก MLflow อัตโนมัติ
+สำหรับรัน local กำหนด `$env:MODEL_DIR = "$PWD\artifacts\group-v1-joblib"` ก่อนเริ่มบริการ โมเดลโหลดครั้งเดียวตอนเริ่มต้น หากเปลี่ยนไฟล์ให้ restart และตรวจชื่อเวอร์ชันใน `/health` ยังไม่ได้ทำ hot reload หรือโหลด alias จาก MLflow อัตโนมัติ
 
-รับเฉพาะ joblib จากทีมที่เชื่อถือได้ เพราะไฟล์ pickle/joblib สามารถรันโค้ดขณะโหลดได้ checksum ช่วยตรวจว่าโมเดลตรง metadata แต่ไม่ได้ยืนยันผู้สร้าง `scikit-learn` เวอร์ชันเทรนต้องตรงบริการ
+การ export เวอร์ชัน 1 สร้าง bundle ใน `serving/artifacts/group-v1-joblib` แล้ว Docker/API checks, Registry parity benchmark และ load test 500 requests กับ bundle นี้ผ่าน โดยบันทึกหลักฐานไว้ใน `reports/http_evidence.json` และ `reports/load_test_group_v1.json`
 
-API ทำ preprocessing ใน Pipeline เดียวกับตอนเทรน ฟีเจอร์ lag/rolling ต้องสร้างด้วยโค้ดร่วมของคนที่ 1 ก่อนส่งเข้า API เดโมไม่รับวันที่แล้วสร้างประวัติขึ้นเอง การใช้ Pipeline จึงไม่ใช่ข้อพิสูจน์ว่าฟีเจอร์ upstream ของกลุ่มตรงกันแล้ว ต้องตรวจการเชื่อมต่อจริงอีกครั้ง
+API รับฟีเจอร์ที่ผ่าน feature engineering แล้ว ตัว `FeatureOrderedModel` ตรวจลำดับคอลัมน์และจัดชนิดข้อมูลก่อนทำนาย แต่ไม่สร้าง lag/rolling features เอง ฟีเจอร์เหล่านั้นต้องสร้างด้วย data pipeline ก่อนเรียก API และต้องตรงกับ `reports/generated/feature_split_manifest.json`
 
 ## สถานะการเชื่อมกับโมเดลใน repository กลุ่ม
 
-โค้ดกลุ่มมี Final Candidate LightGBM และ Model Registry `demand-forecasting-7d` อยู่แล้ว แต่ไฟล์โมเดล/ฐานข้อมูล MLflow ถูก ignore และสร้างจาก workflow ของกลุ่ม ตัวโหลดในเดโมนี้ยังไม่โหลด `models:/demand-forecasting-7d@production` โดยอัตโนมัติ ต้องทำ adapter สำหรับ MLflow pyfunc หรือ export fitted Pipeline พร้อม preprocessing และ schema จริงก่อนให้บริการยอดขาย 7 วัน
+ตัว Serving โหลด bundle ที่ `MODEL_DIR` ระบุ ส่วน benchmark ของ Registry ใช้ `POST /predict` แบบ `records` ตรวจ `model_name`/`model_version` และเทียบผลกับโมเดลเวอร์ชันที่เลือก ใช้ URL ฐาน เช่น `http://127.0.0.1:18005`:
 
-`src/demand_forecasting/serving_benchmark.py` ของกลุ่มเรียก `/invocations` ด้วย `dataframe_split` ส่วนเดโมรับ `/predict` ด้วย `records` และไม่มี endpoint `/invocations` ผล SLO ในโฟลเดอร์นี้จึงไม่ใช่หลักฐานผ่าน quality gate ของ Registry ต้องเชื่อม endpoint/ตัว benchmark และวัดโมเดลจริงก่อนใช้กับ promotion gate
+```powershell
+python -m src.demand_forecasting.registry benchmark 1 --url http://127.0.0.1:18005
+```
+
+`config/model_registry.json` และ `serving/slo.json` ยังมีค่า SLO คนละชุด ทีมต้องยืนยัน SLO ของบริการจริงก่อนใช้ผล benchmark อนุมัติ promotion
 
 ## ส่งต่อให้คนที่ 5 และ 6
 

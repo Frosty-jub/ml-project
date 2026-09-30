@@ -261,6 +261,9 @@ def previous_experiment_rows() -> list[dict]:
 
 
 def git_version() -> dict:
+    snapshot = ROOT / 'source_revision.json'
+    if snapshot.is_file():
+        return json.loads(snapshot.read_text(encoding='utf-8'))
     def git(*args: str) -> str:
         return subprocess.check_output(["git", *args], cwd=ROOT, text=True).strip()
     return {"commit": git("rev-parse", "HEAD"), "branch": git("branch", "--show-current"),

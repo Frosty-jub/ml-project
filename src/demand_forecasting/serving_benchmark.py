@@ -1,4 +1,4 @@
-"""Measure a registered model through an actual MLflow HTTP serving endpoint."""
+"""Measure a registered model through the group's FastAPI prediction endpoint."""
 
 from __future__ import annotations
 
@@ -25,17 +25,23 @@ def load_probe(features: list[str], batch_size: int) -> pd.DataFrame:
     return frame[features].sample(n=batch_size, random_state=42).reset_index(drop=True)
 
 
-def post_predictions(url: str, payload: bytes) -> np.ndarray:
-    request = urllib.request.Request(url.rstrip("/") + "/invocations", data=payload,
+def post_predictions(url: str, payload: bytes, model_name: str, model_version: str) -> np.ndarray:
+    endpoint = url.rstrip("/")
+    if not endpoint.endswith("/predict"):
+        endpoint += "/predict"
+    request = urllib.request.Request(endpoint, data=payload,
                                      headers={"Content-Type": "application/json"}, method="POST")
     with urllib.request.urlopen(request, timeout=30) as response:
         body = json.load(response)
     if not isinstance(body, dict) or "predictions" not in body:
         raise ValueError("Serving endpoint did not return predictions")
+    if body.get("model_name") != model_name or str(body.get("model_version")) != model_version:
+        raise ValueError("HTTP endpoint is not serving the selected Registry model version")
     return np.asarray(body["predictions"], dtype=np.float64).reshape(-1)
 
 
-def benchmark_http(model, features: list[str], url: str, policy: dict) -> dict:
+def benchmark_http(model, features: list[str], url: str, policy: dict,
+                   model_name: str, model_version: str) -> dict:
     batch_size = int(policy["benchmark_batch_size"])
     warmup = int(policy["benchmark_warmup_requests"])
     measured = int(policy["benchmark_measured_requests"])
@@ -43,12 +49,11 @@ def benchmark_http(model, features: list[str], url: str, policy: dict) -> dict:
     if batch_size < 1 or warmup < 1 or measured < 2 or concurrency < 1:
         raise ValueError("Invalid benchmark sample sizes")
     frame = load_probe(features, batch_size)
-    payload = json.dumps({"dataframe_split": {"columns": features,
-                          "data": frame.to_numpy(dtype=float).tolist()}}).encode("utf-8")
+    payload = json.dumps({"records": json.loads(frame.to_json(orient="records"))}).encode("utf-8")
     expected = np.asarray(model.predict(frame), dtype=np.float64).reshape(-1)
     def request_once() -> float:
         started = time.perf_counter()
-        actual = post_predictions(url, payload)
+        actual = post_predictions(url, payload, model_name, model_version)
         elapsed = time.perf_counter() - started
         if actual.shape != expected.shape or not np.isfinite(actual).all() or not np.allclose(actual, expected, rtol=1e-5, atol=1e-5):
             raise ValueError("HTTP endpoint predictions do not match the selected model version")
@@ -65,7 +70,8 @@ def benchmark_http(model, features: list[str], url: str, policy: dict) -> dict:
     wall_seconds = time.perf_counter() - started
     return {
         "measured_at_utc": datetime.now(timezone.utc).isoformat(),
-        "url": url.rstrip("/"), "batch_size": batch_size,
+        "url": url.rstrip("/") + ("" if url.rstrip("/").endswith("/predict") else "/predict"),
+        "batch_size": batch_size,
         "warmup_requests": warmup, "measured_requests": measured,
         "concurrency": concurrency,
         "latency_p50_ms": float(np.percentile(latencies, 50) * 1000),

@@ -9,6 +9,14 @@ venv/
 .mypy_cache/
 .ruff_cache/
 
+# Local orchestration runtime evidence containing row-level observations or credentials.
+/reports/orchestration/*/drift_demo/
+/reports/orchestration/*/verified_events.jsonl
+/reports/orchestration/*/load_receipts.json
+/reports/orchestration/*/request_mapping.json
+/reports/orchestration/*_powershell.txt
+/reports/orchestration/bootstrap_powershell.txt
+
 # Notebook and editor files
 .ipynb_checkpoints/
 .vscode/

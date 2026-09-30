@@ -22,15 +22,26 @@ async def benchmark(args):
     limits = httpx.Limits(max_connections=args.concurrency, max_keepalive_connections=args.concurrency)
     elapsed_times, successful_times, outcomes = [], [], Counter()
     errors = []
+    receipts = []
     async with httpx.AsyncClient(
         base_url=args.url.rstrip("/"), limits=limits, timeout=args.timeout, trust_env=False
     ) as client:
         health = await client.get("/health")
         health.raise_for_status()
         model = health.json()
+        def record_receipt(response):
+            body = response.json()
+            if (body.get('model_name') != model.get('model_name')
+                    or str(body.get('model_version')) != str(model.get('model_version'))):
+                raise ValueError('Model changed during load test')
+            if args.receipts:
+                receipts.append({'request_id': body['request_id'], 'predictions': body['predictions'],
+                                 'model_name': body['model_name'], 'model_version': body['model_version']})
+
         for _ in range(args.warmup):
             warmup = await client.post("/predict", json=payload)
             warmup.raise_for_status()
+            record_receipt(warmup)
         queue = asyncio.Queue()
         for number in range(args.requests):
             queue.put_nowait(number)
@@ -54,9 +65,12 @@ async def benchmark(args):
                             and len(values) == len(payload["records"])
                             and all(isinstance(v, (int, float)) and np.isfinite(v) for v in values)
                         )
+                        if ok:
+                            record_receipt(response)
                     if not ok and len(errors) < 5:
                         errors.append({"status": status, "body": response.text[:300]})
                 except (httpx.HTTPError, ValueError, TypeError) as exc:
+                    ok = False
                     if len(errors) < 5:
                         errors.append({"status": status, "error": type(exc).__name__})
                 duration = (time.perf_counter() - started) * 1000
@@ -109,6 +123,8 @@ async def benchmark(args):
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8")
+    if args.receipts:
+        Path(args.receipts).write_text(json.dumps(receipts, indent=2), encoding='utf-8')
     print(json.dumps(result, indent=2, ensure_ascii=False))
     return 0 if result["slo_passed"] else 1
 
@@ -124,6 +140,7 @@ def main():
     parser.add_argument("--concurrency", type=int, default=10)
     parser.add_argument("--warmup", type=int, default=20)
     parser.add_argument("--timeout", type=float, default=10)
+    parser.add_argument("--receipts", help="Save request IDs and predictions for exact event reconciliation")
     args = parser.parse_args()
     if args.requests < 1 or args.concurrency < 1 or args.warmup < 0 or args.timeout <= 0:
         parser.error("requests/concurrency/timeout must be positive and warmup must be >= 0")

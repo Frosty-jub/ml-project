@@ -339,7 +339,7 @@ def benchmark_version(version: str, url: str) -> dict:
     uri = f"models:/{name}/{version}"
     model = mlflow.sklearn.load_model(uri)
     features = model.feature_names
-    result = benchmark_http(model, features, url, policy)
+    result = benchmark_http(model, features, url, policy, name, str(version))
     gate = serving_gate(result, policy)
     result["gate"] = gate
     mlflow.set_experiment(policy["experiment_name"])

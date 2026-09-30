@@ -1,7 +1,9 @@
 name: cp413008-person4
 services:
   serving:
-    build: .
+    build:
+      context: ..
+      dockerfile: serving/Dockerfile
     ports:
       - "${SERVING_PORT:-18005}:8000"
     environment:

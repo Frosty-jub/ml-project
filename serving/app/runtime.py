@@ -5,9 +5,11 @@ import json
 import math
 import threading
 from pathlib import Path
+import sys
 from typing import Literal
 
 import joblib
+import lightgbm as lgb
 import numpy as np
 import pandas as pd
 import sklearn
@@ -43,8 +45,11 @@ class Manifest(BaseModel):
     model_name: str = Field(min_length=1)
     model_version: str = Field(min_length=1)
     data_kind: str = Field(min_length=1)
-    sklearn_version: str
+    model_format: Literal["sklearn_pipeline", "lightgbm_booster", "feature_ordered_joblib"] = "sklearn_pipeline"
+    sklearn_version: str | None = None
+    lightgbm_version: str | None = None
     model_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
+    source_model_sha256: str | None = Field(default=None, pattern=r"^[a-f0-9]{64}$")
     max_batch_size: int = Field(default=64, ge=1, le=10000)
     features: list[FeatureSpec] = Field(min_length=1, max_length=200)
 
@@ -65,19 +70,48 @@ class InvalidRecords(ValueError):
 class ModelRuntime:
     def __init__(self, model_dir: Path):
         self.manifest = Manifest.model_validate_json((model_dir / "metadata.json").read_text("utf-8"))
-        model_path = model_dir / "model.joblib"
+        model_path = model_dir / ("model.txt" if self.manifest.model_format == "lightgbm_booster" else "model.joblib")
         digest = hashlib.sha256(model_path.read_bytes()).hexdigest()
         if digest != self.manifest.model_sha256:
             raise ValueError("Model checksum does not match metadata")
-        if self.manifest.sklearn_version != sklearn.__version__:
-            raise ValueError("Use the sklearn version recorded in metadata.json")
-        self.pipeline = joblib.load(model_path)
-        if not isinstance(self.pipeline, Pipeline):
-            raise ValueError("Export the fitted preprocessing and estimator as one sklearn Pipeline")
         expected = [feature.name for feature in self.manifest.features]
-        actual = list(getattr(self.pipeline, "feature_names_in_", []))
-        if actual != expected:
-            raise ValueError("Pipeline feature names/order must match metadata.json")
+        if self.manifest.model_format == "sklearn_pipeline":
+            if self.manifest.sklearn_version != sklearn.__version__:
+                raise ValueError("Use the sklearn version recorded in metadata.json")
+            self.pipeline = joblib.load(model_path)
+            if not isinstance(self.pipeline, Pipeline):
+                raise ValueError("Export the fitted preprocessing and estimator as one sklearn Pipeline")
+            actual = list(getattr(self.pipeline, "feature_names_in_", []))
+            if actual != expected:
+                raise ValueError("Pipeline feature names/order must match metadata.json")
+        elif self.manifest.model_format == "lightgbm_booster":
+            if self.manifest.lightgbm_version != lgb.__version__:
+                raise ValueError("Use the LightGBM version recorded in metadata.json")
+            self.pipeline = lgb.Booster(model_file=str(model_path))
+            if self.pipeline.num_feature() != len(expected):
+                raise ValueError("LightGBM feature count must match metadata.json")
+        else:
+            if self.manifest.sklearn_version != sklearn.__version__:
+                raise ValueError("Use the sklearn version recorded in metadata.json")
+            if self.manifest.lightgbm_version != lgb.__version__:
+                raise ValueError("Use the LightGBM version recorded in metadata.json")
+            project_root = None
+            for candidate in (Path(__file__).resolve().parents[1], Path(__file__).resolve().parents[2]):
+                if (candidate / "src" / "demand_forecasting" / "training" / "models.py").is_file():
+                    project_root = candidate
+                    break
+            if project_root is None:
+                raise ValueError("Project source for FeatureOrderedModel is missing from the serving image")
+            if str(project_root) not in sys.path:
+                sys.path.insert(0, str(project_root))
+            from src.demand_forecasting.training.models import FeatureOrderedModel
+
+            self.pipeline = joblib.load(model_path)
+            if not isinstance(self.pipeline, FeatureOrderedModel):
+                raise ValueError("Export a FeatureOrderedModel as model.joblib")
+            actual = list(getattr(self.pipeline, "feature_names", []))
+            if actual != expected:
+                raise ValueError("FeatureOrderedModel feature names/order must match metadata.json")
         # Bound CPU inference to one operation; HTTP validation remains concurrent.
         self.inference_lock = threading.Lock()
 
@@ -135,10 +169,16 @@ class ModelRuntime:
 
     def predict(self, frame: pd.DataFrame) -> list[float]:
         with self.inference_lock:
-            result = np.asarray(self.pipeline.predict(frame), dtype=float)
+            if self.manifest.model_format == "lightgbm_booster":
+                result = np.asarray(self.pipeline.predict(frame.to_numpy(dtype=np.float32)), dtype=float)
+                result = np.maximum(result, 0.0)
+            elif self.manifest.model_format == "feature_ordered_joblib":
+                result = np.asarray(self.pipeline.predict(frame), dtype=float)
+            else:
+                result = np.asarray(self.pipeline.predict(frame), dtype=float)
         if result.ndim != 1 or len(result) != len(frame) or not np.all(np.isfinite(result)):
             raise RuntimeError("Model must return one finite numeric prediction per record")
         return result.tolist()
 
     def public_schema(self) -> dict:
-        return json.loads(self.manifest.model_dump_json(exclude={"model_sha256", "sklearn_version"}))
+        return json.loads(self.manifest.model_dump_json(exclude={"model_sha256", "sklearn_version", "lightgbm_version"}))

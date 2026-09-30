@@ -29,19 +29,25 @@ python -m src.demand_forecasting.registry status
 
 ## Measure serving performance
 
-Serve a specific version with MLflow Serving. Activate the same virtual environment that has `mlflow` and `uvicorn` installed before starting the server. On Windows, make sure `.venv/Scripts` comes first in `PATH`.
+Export the validation-gated Registry version from the repository root into the bundle format used by FastAPI:
 
-```bash
-mlflow models serve -m models:/demand-forecasting-7d/3 -p 5001 --env-manager local --host 127.0.0.1
+```powershell
+python serving\scripts\export_model.py --version 1 --destination serving\artifacts\group-v1-joblib
 ```
 
-In a second terminal, benchmark the version that the server is running:
+The exporter reads the current validation feature manifest, saves the registered `FeatureOrderedModel` as `model.joblib`, and checks its predictions against the registered model. Start FastAPI with that bundle from the `serving/` directory:
 
-```bash
-python -m src.demand_forecasting.registry benchmark 3 --url http://127.0.0.1:5001
+```powershell
+docker compose -f compose.yaml -f compose.model.yaml up --build -d --force-recreate
 ```
 
-Repeat for each version that may become `production` or `previous`. The benchmark sends 32 real validation feature rows to `/invocations`, warms up with 5 requests, then measures 30 requests with 4 concurrent clients. It verifies that HTTP predictions match the registered version, logs p50/p95 request latency in milliseconds and throughput in predictions/second from the total elapsed time, and records the evidence in MLflow. The default serving gate requires p50 ≤ 200 ms, p95 ≤ 500 ms, and throughput ≥ 100 predictions/second. These are local serving measurements; re-run against the deployment endpoint and set thresholds for that environment before treating them as production capacity guarantees. Benchmarks must be less than 24 hours old at promotion time.
+From the repository root, benchmark the same registered version through FastAPI:
+
+```powershell
+python -m src.demand_forecasting.registry benchmark 1 --url http://127.0.0.1:18005
+```
+
+The benchmark sends validation feature rows to `POST /predict` as `records`, checks the response model name/version, and compares predictions with the Registry version. It warms up with 5 requests, then measures 30 requests at concurrency 4, logs p50/p95 and throughput in MLflow, and applies the policy in `config/model_registry.json`. Its current gate is p50 ≤ 200 ms, p95 ≤ 500 ms, and throughput ≥ 100 predictions/second; evidence must be less than 24 hours old at promotion time. `serving/slo.json` currently has different demo thresholds, so the group must agree on one SLO before treating this gate as the service SLO.
 
 ## Promote and roll back
 

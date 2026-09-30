@@ -1,0 +1,70 @@
+name: ml-orchestration
+
+x-common: &common
+  image: demand-orchestration:local
+  build:
+    context: ../..
+    dockerfile: orchestration/airflow/Dockerfile
+    network: host
+  user: "0:0"
+  volumes:
+    - project_workspace:/project
+
+services:
+  init:
+    <<: *common
+    entrypoint: ["/bin/bash", "-c"]
+    command: ["cp -a /opt/project-template/. /project/ && mkdir -p /project/artifacts/orchestration /project/reports/orchestration"]
+  airflow:
+    <<: *common
+    command: standalone
+    ports: ["127.0.0.1:${AIRFLOW_PORT:-18090}:8080"]
+    environment:
+      AIRFLOW_HOME: /opt/airflow-state
+      AIRFLOW__CORE__DAGS_FOLDER: /project/orchestration/airflow/dags
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      AIRFLOW__CORE__PARALLELISM: "2"
+      AIRFLOW__CORE__MAX_ACTIVE_TASKS_PER_DAG: "1"
+      AIRFLOW_PROJECT_ROOT: /project
+      PROJECT_PYTHON: /opt/project-venv/bin/python
+      CANDIDATE_URL: http://candidate:8000
+      PRODUCTION_URL: http://production:8000
+    volumes:
+      - project_workspace:/project
+      - airflow_state:/opt/airflow-state
+    depends_on:
+      init: {condition: service_completed_successfully}
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/api/v2/version"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+  candidate:
+    <<: *common
+    entrypoint: ["/opt/project-venv/bin/python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--no-access-log"]
+    working_dir: /project/serving
+    ports: ["127.0.0.1:${CANDIDATE_PORT:-18016}:8000"]
+    environment:
+      MODEL_POINTER: /project/artifacts/orchestration/candidate.json
+      BUNDLE_ROOT: /project/artifacts/orchestration/bundles
+      MONITORING_EVENTS_PATH: /project/artifacts/orchestration/candidate_events.jsonl
+    depends_on:
+      init: {condition: service_completed_successfully}
+    restart: unless-stopped
+  production:
+    <<: *common
+    entrypoint: ["/opt/project-venv/bin/python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--no-access-log"]
+    working_dir: /project/serving
+    ports: ["127.0.0.1:${PRODUCTION_PORT:-18015}:8000"]
+    environment:
+      MODEL_POINTER: /project/artifacts/orchestration/production.json
+      BUNDLE_ROOT: /project/artifacts/orchestration/bundles
+      MONITORING_EVENTS_PATH: /project/artifacts/orchestration/production_events.jsonl
+    depends_on:
+      init: {condition: service_completed_successfully}
+    restart: unless-stopped
+
+volumes:
+  project_workspace:
+  airflow_state:

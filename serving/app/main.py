@@ -18,6 +18,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from app.runtime import InvalidRecords, ModelRuntime
 from app.observations import record_predictions
+from app.selector import BundleSelector
 
 ROOT = Path(__file__).resolve().parents[1]
 LOGGER = logging.getLogger("serving")
@@ -73,9 +74,15 @@ def create_app(model_dir: str | Path | None = None) -> FastAPI:
     @asynccontextmanager
     async def lifespan(application: FastAPI):
         application.state.runtime = None
+        pointer = os.environ.get("MODEL_POINTER")
+        application.state.selector = (
+            BundleSelector(Path(pointer), Path(os.environ["BUNDLE_ROOT"])) if pointer else None
+        )
         path = Path(model_dir or os.environ.get("MODEL_DIR", ROOT / "artifacts" / "demo"))
         try:
-            application.state.runtime = ModelRuntime(path)
+            application.state.runtime = (
+                application.state.selector.get() if pointer else ModelRuntime(path)
+            )
             ready.set(1)
             log_event(
                 "model_loaded",
@@ -129,6 +136,14 @@ def create_app(model_dir: str | Path | None = None) -> FastAPI:
         )
 
     def get_runtime() -> ModelRuntime:
+        if application.state.selector is not None:
+            try:
+                application.state.runtime = application.state.selector.get()
+                ready.set(1)
+            except Exception as exc:
+                ready.set(0)
+                log_event("deployment_load_failed", error_type=type(exc).__name__, reason=str(exc))
+                raise HTTPException(status_code=503, detail="Deployment bundle unavailable") from exc
         runtime = application.state.runtime
         if runtime is None:
             raise HTTPException(status_code=503, detail="Model is unavailable; check service logs")
@@ -136,8 +151,9 @@ def create_app(model_dir: str | Path | None = None) -> FastAPI:
 
     @application.get("/health")
     def health():
-        runtime = application.state.runtime
-        if runtime is None:
+        try:
+            runtime = get_runtime()
+        except HTTPException:
             return JSONResponse(status_code=503, content={"status": "not_ready", "model_loaded": False})
         return {
             "status": "ok",
@@ -145,6 +161,7 @@ def create_app(model_dir: str | Path | None = None) -> FastAPI:
             "model_name": runtime.manifest.model_name,
             "model_version": runtime.manifest.model_version,
             "data_kind": runtime.manifest.data_kind,
+            "model_sha256": runtime.manifest.model_sha256,
         }
 
     @application.get("/schema")

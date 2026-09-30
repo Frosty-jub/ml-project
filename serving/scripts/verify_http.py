@@ -1,6 +1,7 @@
 """Save demonstrable responses from the real running HTTP service."""
 
 import argparse
+import copy
 import json
 from pathlib import Path
 
@@ -11,26 +12,49 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--url", default="http://127.0.0.1:18005")
     parser.add_argument("--output", default="reports/http_evidence.json")
+    parser.add_argument("--bundle-dir", type=Path, default=Path("artifacts/group-v1-joblib"))
     args = parser.parse_args()
     evidence = {"url": args.url, "checks": []}
+    bundle_dir = args.bundle_dir
+    bundle_metadata_path = bundle_dir / "metadata.json"
+    if bundle_metadata_path.is_file() and (bundle_dir / "sample_request.json").is_file():
+        bundle_metadata = json.loads(bundle_metadata_path.read_text("utf-8"))
+        valid_payload = json.loads((bundle_dir / "sample_request.json").read_text("utf-8"))
+        group_bundle = True
+    else:
+        bundle_metadata = {}
+        valid_payload = json.loads((Path("examples") / "valid_request.json").read_text("utf-8"))
+        group_bundle = False
+
     with httpx.Client(base_url=args.url, timeout=10, trust_env=False) as client:
         for path, expected in [("/health", 200), ("/schema", 200), ("/openapi.json", 200)]:
             response = client.get(path)
+            passed = response.status_code == expected
+            body = response.json() if path != "/openapi.json" else {"title": response.json()["info"]["title"]}
+            if path == "/health" and group_bundle and response.status_code == 200:
+                passed = passed and str(body.get("model_version")) == str(bundle_metadata["model_version"])
             evidence["checks"].append(
                 {
                     "endpoint": path,
                     "status": response.status_code,
                     "expected": expected,
-                    "passed": response.status_code == expected,
-                    "body": response.json() if path != "/openapi.json" else {"title": response.json()["info"]["title"]},
+                    "passed": passed,
+                    "body": body,
                 }
             )
-        for name, expected in [
-            ("valid_request.json", 200),
-            ("missing_value_request.json", 200),
-            ("invalid_request.json", 422),
-        ]:
-            payload = json.loads((Path("examples") / name).read_text("utf-8"))
+
+        invalid_payload = copy.deepcopy(valid_payload)
+        invalid_payload["records"][0]["__unexpected_integration_field__"] = 0
+        prediction_cases = [("valid_request", valid_payload, 200), ("invalid_request", invalid_payload, 422)]
+        if group_bundle:
+            missing_payload = copy.deepcopy(valid_payload)
+            missing_payload["records"][0].pop(bundle_metadata["features"][0]["name"])
+            prediction_cases.append(("missing_feature_request", missing_payload, 422))
+        else:
+            payload = json.loads((Path("examples") / "missing_value_request.json").read_text("utf-8"))
+            prediction_cases.append(("missing_value_request", payload, 200))
+
+        for name, payload, expected in prediction_cases:
             response = client.post("/predict", json=payload)
             evidence["checks"].append(
                 {
