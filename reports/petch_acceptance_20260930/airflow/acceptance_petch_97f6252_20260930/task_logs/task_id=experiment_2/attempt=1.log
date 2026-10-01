@@ -1,0 +1,82 @@
+{"timestamp":"2026-09-30T16:13:23.227509Z","level":"info","event":"::group::Pre Execute","logger":"task","filename":"task_runner.py","lineno":2412}
+{"timestamp":"2026-09-30T16:13:23.232324Z","level":"info","event":"DAG bundles loaded: dags-folder","map_index":-1,"run_id":"acceptance_petch_97f6252_20260930","try_number":1,"ti_id":"01a0f312-36d5-77fc-a671-99a962dd582d","task_id":"experiment_2","dag_id":"demand_forecasting_e2e","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":304}
+{"timestamp":"2026-09-30T16:13:23.233135Z","level":"info","event":"Filling up the DagBag from /project/orchestration/airflow/dags/demand_forecasting_e2e.py","map_index":-1,"run_id":"acceptance_petch_97f6252_20260930","try_number":1,"ti_id":"01a0f312-36d5-77fc-a671-99a962dd582d","task_id":"experiment_2","dag_id":"demand_forecasting_e2e","logger":"airflow.dag_processing.dagbag.BundleDagBag","filename":"dagbag.py","lineno":460}
+{"timestamp":"2026-09-30T16:13:23.274424Z","level":"info","event":"Worker startup parse complete","bundle_name":"dags-folder","bundle_version":null,"dag_file":"demand_forecasting_e2e.py","dag_id":"demand_forecasting_e2e","bundle_prepare_ms":2,"dag_file_parse_ms":41,"map_index":-1,"run_id":"acceptance_petch_97f6252_20260930","try_number":1,"ti_id":"01a0f312-36d5-77fc-a671-99a962dd582d","task_id":"experiment_2","logger":"task","filename":"task_runner.py","lineno":1073}
+{"timestamp":"2026-09-30T16:13:23.299476Z","level":"info","event":"::endgroup::","map_index":-1,"run_id":"acceptance_petch_97f6252_20260930","try_number":1,"ti_id":"01a0f312-36d5-77fc-a671-99a962dd582d","task_id":"experiment_2","dag_id":"demand_forecasting_e2e","logger":"task","filename":"task_runner.py","lineno":2232}
+{"timestamp":"2026-09-30T16:13:23.301375Z","level":"info","event":"COMMAND: /opt/project-venv/bin/python /project/artifacts/orchestration/runs/acceptance_petch_97f6252_20260930/project/orchestration/airflow/run_stage.py experiment_2 --run-id acceptance_petch_97f6252_20260930 --scenario normal","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:23.344405Z","level":"info","event":"COMMAND: /opt/project-venv/bin/python -m src.demand_forecasting.training.experiment2","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:28.263486Z","level":"info","event":"Zero/low target ratios: {'train': {'target_eq_0': 0.557109116277506, 'target_le_1': 0.6123158561254279, 'target_le_5': 0.6982916902479159}, 'original_validation': {'target_eq_0': 0.5955956311011682, 'target_le_1': 0.6387855049037368, 'target_le_5': 0.7131054297071946}}","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:28.263761Z","level":"info","event":"fold_1: train=967,606 validation=350,259","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:35.400222Z","level":"info","event":"  historical_7d_sum: MAE=31.2150 RMSE=166.3923 WAPE=89.06%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:35.497036Z","level":"info","event":"  rf_regularized: MAE=38.1041 RMSE=126.4756 WAPE=108.72%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:35.633352Z","level":"info","event":"  rf_deeper: MAE=39.4926 RMSE=126.8077 WAPE=112.68%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:35.642350Z","level":"error","event":"/opt/project-venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:35.642618Z","level":"error","event":"  warnings.warn(","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:35.930263Z","level":"info","event":"  lightgbm_l1: MAE=24.4084 RMSE=127.8942 WAPE=69.64%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:35.996980Z","level":"error","event":"/opt/project-venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:35.997234Z","level":"error","event":"  warnings.warn(","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:36.169825Z","level":"info","event":"  two_stage_t0.35: MAE=24.4563 RMSE=123.9067 WAPE=69.78%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:36.202480Z","level":"error","event":"/opt/project-venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:36.202746Z","level":"error","event":"  warnings.warn(","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:36.329697Z","level":"info","event":"  two_stage_t0.5: MAE=24.7664 RMSE=124.1789 WAPE=70.66%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:36.362159Z","level":"error","event":"/opt/project-venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:36.362410Z","level":"error","event":"  warnings.warn(","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:36.474931Z","level":"info","event":"  two_stage_t0.65: MAE=25.3693 RMSE=124.6377 WAPE=72.38%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:36.475185Z","level":"info","event":"fold_2: train=1,350,367 validation=354,437","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:45.702276Z","level":"info","event":"  historical_7d_sum: MAE=16.2549 RMSE=82.1687 WAPE=94.36%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:45.787193Z","level":"info","event":"  rf_regularized: MAE=17.8213 RMSE=64.1004 WAPE=103.46%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:45.923163Z","level":"info","event":"  rf_deeper: MAE=17.9964 RMSE=65.0585 WAPE=104.47%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:45.931480Z","level":"error","event":"/opt/project-venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:45.931721Z","level":"error","event":"  warnings.warn(","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:46.179869Z","level":"info","event":"  lightgbm_l1: MAE=14.1178 RMSE=69.9188 WAPE=81.96%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:46.224396Z","level":"error","event":"/opt/project-venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:46.224624Z","level":"error","event":"  warnings.warn(","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:46.513064Z","level":"info","event":"  two_stage_t0.35: MAE=14.3898 RMSE=68.0025 WAPE=83.54%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:46.547346Z","level":"error","event":"/opt/project-venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:46.547579Z","level":"error","event":"  warnings.warn(","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:46.691366Z","level":"info","event":"  two_stage_t0.5: MAE=13.4826 RMSE=68.0983 WAPE=78.27%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:46.741223Z","level":"error","event":"/opt/project-venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:46.741443Z","level":"error","event":"  warnings.warn(","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:46.825943Z","level":"info","event":"  two_stage_t0.65: MAE=13.9546 RMSE=68.4859 WAPE=81.01%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:46.826190Z","level":"info","event":"fold_3: train=1,739,235 validation=371,830","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:53.798678Z","level":"info","event":"  historical_7d_sum: MAE=16.7483 RMSE=81.8411 WAPE=95.27%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:53.894655Z","level":"info","event":"  rf_regularized: MAE=16.5855 RMSE=61.6726 WAPE=94.34%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:54.051096Z","level":"info","event":"  rf_deeper: MAE=16.7946 RMSE=61.8180 WAPE=95.53%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:54.059783Z","level":"error","event":"/opt/project-venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:54.060018Z","level":"error","event":"  warnings.warn(","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:54.348571Z","level":"info","event":"  lightgbm_l1: MAE=12.3838 RMSE=64.2838 WAPE=70.44%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:54.390070Z","level":"error","event":"/opt/project-venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:54.390299Z","level":"error","event":"  warnings.warn(","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:54.533576Z","level":"info","event":"  two_stage_t0.35: MAE=12.5478 RMSE=62.3501 WAPE=71.37%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:54.575761Z","level":"error","event":"/opt/project-venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:54.576035Z","level":"error","event":"  warnings.warn(","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:54.676801Z","level":"info","event":"  two_stage_t0.5: MAE=12.6888 RMSE=62.6243 WAPE=72.18%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:54.713166Z","level":"error","event":"/opt/project-venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:54.713395Z","level":"error","event":"  warnings.warn(","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:13:54.801383Z","level":"info","event":"  two_stage_t0.65: MAE=13.0150 RMSE=63.0262 WAPE=74.03%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:13:54.801653Z","level":"info","event":"fold_4: train=2,141,532 validation=394,699","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:14:02.150319Z","level":"info","event":"  historical_7d_sum: MAE=19.2015 RMSE=83.4931 WAPE=87.41%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:14:02.267388Z","level":"info","event":"  rf_regularized: MAE=17.9636 RMSE=64.7898 WAPE=81.77%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:14:02.472431Z","level":"info","event":"  rf_deeper: MAE=17.8501 RMSE=64.9832 WAPE=81.25%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:14:02.479064Z","level":"error","event":"/opt/project-venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:14:02.479302Z","level":"error","event":"  warnings.warn(","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:14:02.768977Z","level":"info","event":"  lightgbm_l1: MAE=14.7644 RMSE=67.4779 WAPE=67.21%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:14:02.810589Z","level":"error","event":"/opt/project-venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:14:02.811165Z","level":"error","event":"  warnings.warn(","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:14:02.971204Z","level":"info","event":"  two_stage_t0.35: MAE=14.7474 RMSE=66.0196 WAPE=67.13%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:14:03.016410Z","level":"error","event":"/opt/project-venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:14:03.016636Z","level":"error","event":"  warnings.warn(","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:14:03.121136Z","level":"info","event":"  two_stage_t0.5: MAE=15.0681 RMSE=66.3650 WAPE=68.59%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:14:03.157130Z","level":"error","event":"/opt/project-venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:14:03.157541Z","level":"error","event":"  warnings.warn(","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:14:03.251008Z","level":"info","event":"  two_stage_t0.65: MAE=15.5215 RMSE=66.8468 WAPE=70.65%","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:14:04.012455Z","level":"error","event":"/opt/project-venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:14:04.012693Z","level":"error","event":"  warnings.warn(","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:14:04.013208Z","level":"error","event":"/opt/project-venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:14:04.013352Z","level":"error","event":"  warnings.warn(","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:14:04.074638Z","level":"info","event":"Selected lightgbm_l1: mean MAE=16.4186; baseline=20.8549","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:14:04.074857Z","level":"info","event":"Artifacts: /project/artifacts/orchestration/runs/acceptance_petch_97f6252_20260930/project/artifacts/training","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:14:04.240721Z","level":"info","event":"{\"stage\": \"experiment_2\", \"status\": \"success\", \"evidence\": \"/project/reports/orchestration/acceptance_petch_97f6252_20260930\"}","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:14:04.247416Z","level":"info","event":"Done. Returned value was: None","map_index":-1,"run_id":"acceptance_petch_97f6252_20260930","try_number":1,"ti_id":"01a0f312-36d5-77fc-a671-99a962dd582d","task_id":"experiment_2","dag_id":"demand_forecasting_e2e","logger":"airflow.task.operators.airflow.providers.standard.decorators.python._PythonDecoratedOperator","filename":"python.py","lineno":233}
+{"timestamp":"2026-09-30T16:14:04.247687Z","level":"info","event":"::group::Post Execute","map_index":-1,"run_id":"acceptance_petch_97f6252_20260930","try_number":1,"ti_id":"01a0f312-36d5-77fc-a671-99a962dd582d","task_id":"experiment_2","dag_id":"demand_forecasting_e2e","logger":"task","filename":"task_runner.py","lineno":1580}
+{"timestamp":"2026-09-30T16:14:04.258789Z","level":"info","event":"::endgroup::","map_index":-1,"run_id":"acceptance_petch_97f6252_20260930","try_number":1,"ti_id":"01a0f312-36d5-77fc-a671-99a962dd582d","task_id":"experiment_2","dag_id":"demand_forecasting_e2e","logger":"task","filename":"task_runner.py","lineno":2379}

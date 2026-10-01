@@ -1,0 +1,50 @@
+{
+  "timestamp_utc": "2026-09-30T11:11:28.416711+00:00",
+  "url": "http://candidate:8000",
+  "environment": "airflow-candidate",
+  "client_platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.41",
+  "client_python": "3.12.14",
+  "model": {
+    "status": "ok",
+    "model_loaded": true,
+    "model_name": "demand-forecasting-7d",
+    "model_version": "2",
+    "data_kind": "group_project",
+    "model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054"
+  },
+  "requests": 500,
+  "concurrency": 10,
+  "warmup_excluded": 20,
+  "records_per_request": 1,
+  "wall_seconds": 1.6456371640000498,
+  "successful_requests": 500,
+  "status_counts": {
+    "200": 500
+  },
+  "measured": {
+    "p50_ms": 32.60472000005166,
+    "p95_ms": 41.55272990003027,
+    "mean_ms": 32.74526495600048,
+    "throughput_rps": 303.8336827448951,
+    "error_rate_percent": 0.0
+  },
+  "slo": {
+    "scope": "Proposed demo SLO: single-record /predict, 500 valid requests, concurrency 10; confirm with the group for the real project.",
+    "p50_ms_max": 100,
+    "p95_ms_max": 250,
+    "throughput_rps_min": 20,
+    "error_rate_percent_max": 1,
+    "records_per_request": 1
+  },
+  "checks": {
+    "p50": true,
+    "p95": true,
+    "throughput": true,
+    "errors": true,
+    "single_record_workload": true
+  },
+  "slo_passed": true,
+  "all_request_p95_ms": 41.55272990003027,
+  "error_samples": [],
+  "limitation": "Short client-observed load test; not proof of long-term availability or performance on other machines."
+}

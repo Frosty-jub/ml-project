@@ -157,12 +157,4 @@ bundle ของกลุ่มบันทึก `FeatureOrderedModel` จา�
 - Clean-volume bootstrap ผ่าน 16/16 tasks และ automated tests ผ่าน 17 ข้อ
 - Drift/retraining เป็น simulation ที่ระบุ synthetic_demo_only ตามการสาธิตที่รายวิชาอนุญาต; daily monitoring รายงาน pending_inputs เมื่อยังไม่มี inputs จริง ไม่สร้าง labels ขึ้นเอง
 - หลักฐานรวม: `reports/orchestration/acceptance_index.json`; รายงานอธิบาย: `reports/pipeline_orchestration_completed_20260930.md`; ขอบเขตและที่มาของโค้ด: `docs/orchestration_scope_check.md` และ `docs/orchestration_source_map.md`
-- งานทางเทคนิคของ Pipeline Orchestration สำหรับ local demonstration เสร็จแล้ว การยืนยันของเจ้าของงานยังบันทึกตามจริงในหัวข้อ 7 และ CI/CD เป็นขั้นถัดไป
-
-## 7. การยืนยันจากเจ้าของงาน
-
-- เจ้าของข้อมูล: ____________________
-- เจ้าของโมเดล/Registry: ____________________
-- เจ้าของ API/Serving: ____________________
-- ผู้รวมระบบ: ____________________
-- วันที่ยืนยัน: ____________________
+- งานทางเทคนิคของ Pipeline Orchestration, Integration และ CI/CD สำหรับ local demonstration ทำครบและมีหลักฐานในรายงาน Petch; หลักฐานนี้ยืนยันการทำงานใน local demonstration ไม่ใช่ production approval

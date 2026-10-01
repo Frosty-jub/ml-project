@@ -101,7 +101,7 @@ flowchart TD
 4. experiment_3: เทรน final candidate ตามโค้ดและ configuration เดิม
 5. verify_full_folds: ตรวจด้วยข้อมูลเต็มใน folds
 6. candidate_quality_gate: ตรวจ 10 checks และ hash ของ candidate
-7. register_models: บันทึกผล trial/code/data/environment, register หรือ reuse version ที่ตรง hash และ validation protocol
+7. register_models: บันทึก frozen reference เดิมของ Experiment 1 โดยไม่ฝึกซ้ำ, ทุก trial ของ Experiment 2/3 และ full-fold verification พร้อม code/data/environment lineage; จากนั้น register หรือ reuse version ที่ตรง hash และ validation protocol
 8. export_bundles: ตรวจ feature manifest, export joblib และเทียบ prediction กับ Registry
 9. benchmark_candidates: ทดสอบ fallback และ candidate บน candidate API, Registry parity benchmark, HTTP checks, single-record load test และจับคู่ 520 events ของ measured/warmup requests ให้ครบ
 10. approve_and_deploy: ตรวจ candidate hash ตรง gate, ใช้กฎ promotion ของ Registry, สลับ production pointer และตรวจ health/schema/prediction; กู้ pointer/aliases กลับหากการเปลี่ยนบริการล้มเหลว
@@ -183,8 +183,8 @@ Bundles เป็น immutable directory ใช้ SHA-256 ของ bundle file
 docker compose -f orchestration/airflow/compose.yaml stop
 ```
 
-## ลำดับก่อน CI/CD และการใช้ AI
+## การตรวจ orchestration, CI/CD และการใช้ AI
 
-ตรวจ happy path, bad-data path, failed-gate path, rollback/restore, drift-to-candidate และการเริ่มจาก volume ว่าง จากนั้นเก็บโค้ดและหลักฐานที่ไม่เป็นข้อมูลลับใน commit/PR และ review กับสมาชิกตามหน้าที่ CI/CD สามารถเรียก automated checks ที่ยืนยันแล้ว โดยต้องตรวจคุณภาพโค้ด ข้อมูล และโมเดลตามรายวิชา
+การทดสอบ orchestration ครอบคลุม happy path, bad-data path, failed-gate path, rollback/restore, drift-to-candidate และการเริ่มจาก volume ว่าง ส่วน GitHub Actions CI/CD เรียก automated checks เพื่อตรวจคุณภาพโค้ด ข้อมูล โมเดล, integration และ delivery ตามรายวิชา โดยเก็บหลักฐานรอบปกติและ failure fixtures ไว้ในรายงาน Petch ก่อนส่ง commit/PR ให้สมาชิกตรวจ
 
 OpenAI Codex ช่วยออกแบบและเขียน Airflow DAG/stage runner, deployment selector, scripts, tests และเอกสารชุดนี้ สมาชิกต้องอ่านและอธิบายโค้ดที่ส่งได้ตามข้อกำหนดรายวิชา

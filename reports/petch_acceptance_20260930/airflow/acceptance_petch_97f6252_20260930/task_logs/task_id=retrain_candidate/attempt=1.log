@@ -1,0 +1,56 @@
+{"timestamp":"2026-09-30T16:16:40.441817Z","level":"info","event":"::group::Pre Execute","logger":"task","filename":"task_runner.py","lineno":2412}
+{"timestamp":"2026-09-30T16:16:40.451785Z","level":"info","event":"DAG bundles loaded: dags-folder","try_number":1,"map_index":-1,"dag_id":"demand_forecasting_e2e","run_id":"acceptance_petch_97f6252_20260930","ti_id":"01a0f312-36e1-76d3-92e7-1d2d05d29a1b","task_id":"retrain_candidate","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":304}
+{"timestamp":"2026-09-30T16:16:40.452530Z","level":"info","event":"Filling up the DagBag from /project/orchestration/airflow/dags/demand_forecasting_e2e.py","try_number":1,"map_index":-1,"dag_id":"demand_forecasting_e2e","run_id":"acceptance_petch_97f6252_20260930","ti_id":"01a0f312-36e1-76d3-92e7-1d2d05d29a1b","task_id":"retrain_candidate","logger":"airflow.dag_processing.dagbag.BundleDagBag","filename":"dagbag.py","lineno":460}
+{"timestamp":"2026-09-30T16:16:40.508894Z","level":"info","event":"Worker startup parse complete","bundle_name":"dags-folder","bundle_version":null,"dag_file":"demand_forecasting_e2e.py","dag_id":"demand_forecasting_e2e","bundle_prepare_ms":1,"dag_file_parse_ms":56,"try_number":1,"map_index":-1,"run_id":"acceptance_petch_97f6252_20260930","ti_id":"01a0f312-36e1-76d3-92e7-1d2d05d29a1b","task_id":"retrain_candidate","logger":"task","filename":"task_runner.py","lineno":1073}
+{"timestamp":"2026-09-30T16:16:40.533048Z","level":"info","event":"::endgroup::","try_number":1,"map_index":-1,"dag_id":"demand_forecasting_e2e","run_id":"acceptance_petch_97f6252_20260930","ti_id":"01a0f312-36e1-76d3-92e7-1d2d05d29a1b","task_id":"retrain_candidate","logger":"task","filename":"task_runner.py","lineno":2232}
+{"timestamp":"2026-09-30T16:16:40.535892Z","level":"info","event":"COMMAND: /opt/project-venv/bin/python /project/artifacts/orchestration/runs/acceptance_petch_97f6252_20260930/project/orchestration/airflow/run_stage.py retrain_candidate --run-id acceptance_petch_97f6252_20260930 --scenario normal","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:40.592343Z","level":"info","event":"COMMAND: /opt/project-venv/bin/python -m src.demand_forecasting.monitoring retrain --events /project/reports/orchestration/acceptance_petch_97f6252_20260930/drift_demo/live_events.jsonl --labels /project/reports/orchestration/acceptance_petch_97f6252_20260930/drift_demo/live_labels.csv --report /project/reports/orchestration/acceptance_petch_97f6252_20260930/drift_demo/report.json --current-model /project/reports/orchestration/acceptance_petch_97f6252_20260930/drift_demo/champion_model.joblib --params /project/reports/orchestration/acceptance_petch_97f6252_20260930/drift_demo/params.json --output /project/reports/orchestration/acceptance_petch_97f6252_20260930/drift_demo/retrained --allow-demo","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:41.977532Z","level":"error","event":"/opt/project-venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:16:41.977856Z","level":"error","event":"  warnings.warn(","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:16:41.994183Z","level":"error","event":"/opt/project-venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMRegressor was fitted with feature names","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:16:41.994366Z","level":"error","event":"  warnings.warn(","logger":"task.stderr"}
+{"timestamp":"2026-09-30T16:16:41.999270Z","level":"info","event":"{","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:41.999431Z","level":"info","event":"  \"source_model\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:41.999560Z","level":"info","event":"    \"model_name\": \"simulated-demand-7d\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:41.999689Z","level":"info","event":"    \"model_version\": \"sim-v1\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:41.999824Z","level":"info","event":"    \"data_kind\": \"synthetic_demo_only\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:41.999955Z","level":"info","event":"    \"feature_names\": [","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.000078Z","level":"info","event":"      \"sales_lag_1\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.000201Z","level":"info","event":"      \"sales_rolling_sum_7\"","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.000326Z","level":"info","event":"    ]","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.000448Z","level":"info","event":"  },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.000569Z","level":"info","event":"  \"trigger_report_sha256\": \"3610a1d0313d1496e056abfbe3140ce7c91c701cfe8cd7f9da6f45d14a12a0ee\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.000695Z","level":"info","event":"  \"source_events_sha256\": \"63d598f0dfdae495220679c6a7cadbb422e35b580193e2fd86547f09450bf637\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.000818Z","level":"info","event":"  \"source_labels_sha256\": \"545aba8ad2dc0f4829b4cd9d0cfc51837b406013aa0cfd8475004731709caea0\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.000938Z","level":"info","event":"  \"training_rows\": 600,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.001080Z","level":"info","event":"  \"holdout_rows\": 240,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.001200Z","level":"info","event":"  \"embargo_days\": 7,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.001321Z","level":"info","event":"  \"holdout_start\": \"2026-02-06T00:00:00+00:00\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.001442Z","level":"info","event":"  \"champion\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.001562Z","level":"info","event":"    \"MAE\": 15.127185259389007,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.001681Z","level":"info","event":"    \"RMSE\": 15.212038970883372,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.001800Z","level":"info","event":"    \"WAPE\": 26.49664902173674","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.001935Z","level":"info","event":"  },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.002058Z","level":"info","event":"  \"candidate\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.002178Z","level":"info","event":"    \"MAE\": 15.045708447878532,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.002305Z","level":"info","event":"    \"RMSE\": 15.136725949493817,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.002455Z","level":"info","event":"    \"WAPE\": 26.35393493177322","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.002576Z","level":"info","event":"  },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.002695Z","level":"info","event":"  \"candidate_beats_champion\": true,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.002814Z","level":"info","event":"  \"registered_or_promoted\": false,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.002932Z","level":"info","event":"  \"model_type\": \"LightGBM\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.003076Z","level":"info","event":"  \"parameters\": {","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.003195Z","level":"info","event":"    \"objective\": \"regression_l1\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.003313Z","level":"info","event":"    \"n_estimators\": 60,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.003431Z","level":"info","event":"    \"learning_rate\": 0.08,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.003550Z","level":"info","event":"    \"num_leaves\": 15,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.003669Z","level":"info","event":"    \"verbosity\": -1,","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.003788Z","level":"info","event":"    \"n_jobs\": 1","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.003931Z","level":"info","event":"  },","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.004050Z","level":"info","event":"  \"data_kind\": \"synthetic_demo_only\",","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.004168Z","level":"info","event":"  \"lightgbm_version\": \"4.6.0\"","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.004285Z","level":"info","event":"}","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.165542Z","level":"info","event":"{\"stage\": \"retrain_candidate\", \"status\": \"success\", \"evidence\": \"/project/reports/orchestration/acceptance_petch_97f6252_20260930\"}","logger":"task.stdout"}
+{"timestamp":"2026-09-30T16:16:42.171928Z","level":"info","event":"Done. Returned value was: None","try_number":1,"map_index":-1,"dag_id":"demand_forecasting_e2e","run_id":"acceptance_petch_97f6252_20260930","ti_id":"01a0f312-36e1-76d3-92e7-1d2d05d29a1b","task_id":"retrain_candidate","logger":"airflow.task.operators.airflow.providers.standard.decorators.python._PythonDecoratedOperator","filename":"python.py","lineno":233}
+{"timestamp":"2026-09-30T16:16:42.172102Z","level":"info","event":"::group::Post Execute","try_number":1,"map_index":-1,"dag_id":"demand_forecasting_e2e","run_id":"acceptance_petch_97f6252_20260930","ti_id":"01a0f312-36e1-76d3-92e7-1d2d05d29a1b","task_id":"retrain_candidate","logger":"task","filename":"task_runner.py","lineno":1580}
+{"timestamp":"2026-09-30T16:16:42.182487Z","level":"info","event":"::endgroup::","try_number":1,"map_index":-1,"dag_id":"demand_forecasting_e2e","run_id":"acceptance_petch_97f6252_20260930","ti_id":"01a0f312-36e1-76d3-92e7-1d2d05d29a1b","task_id":"retrain_candidate","logger":"task","filename":"task_runner.py","lineno":2379}

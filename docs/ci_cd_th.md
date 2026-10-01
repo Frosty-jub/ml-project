@@ -44,11 +44,11 @@ flowchart LR
 
 ## Trigger และ branch
 
-- PR ไป Dec/main: รอบปกติ
-- push เข้า Dec/main: รอบปกติหลังทีมอนุมัติ merge
+- PR ไป Petch/Dec/main: รอบปกติ
+- push เข้า Petch/Dec/main: รอบปกติเมื่ออัปเดต branch
 - push เข้า ci/evidence/**: หลักฐานใน branch ทดสอบแยก
 - workflow_dispatch: เลือกสถานการณ์เมื่อ GitHub เปิดให้ dispatch workflow นี้
-- ไม่มีขั้นตอน merge, push กลับ main หรือ deploy บนเครื่องสมาชิก
+- Workflow ตรวจ branch Petch ได้โดยตรง; ไม่ merge อัตโนมัติและไม่ deploy ไป server ของสมาชิก
 
 ใช้สิทธิ์ contents: read ไม่ส่ง credentials ให้ container และไม่ใช้ pull_request_target ผู้ดูแล repository สามารถตั้ง required checks หลังเห็นผลรอบจริง
 

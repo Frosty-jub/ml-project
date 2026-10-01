@@ -1,0 +1,10 @@
+{
+  "status": "success",
+  "started_at_utc": "2026-09-30T11:16:10.330397+00:00",
+  "finished_at_utc": "2026-09-30T11:16:16.400540+00:00",
+  "result": {
+    "registry_gate_passed": true,
+    "http_passed": true,
+    "single_record_slo_passed": true
+  }
+}

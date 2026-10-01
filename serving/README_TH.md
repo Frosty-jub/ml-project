@@ -96,6 +96,8 @@ docker compose -f compose.yaml -f compose.model.yaml up --build -d --force-recre
 
 API รับฟีเจอร์ที่ผ่าน feature engineering แล้ว ตัว `FeatureOrderedModel` ตรวจลำดับคอลัมน์และจัดชนิดข้อมูลก่อนทำนาย แต่ไม่สร้าง lag/rolling features เอง ฟีเจอร์เหล่านั้นต้องสร้างด้วย data pipeline ก่อนเรียก API และต้องตรงกับ `reports/generated/feature_split_manifest.json`
 
+ตัวเตรียมคำขอ `scripts/prepare_serving_request.py` (รันจาก repository root) ใช้ `build_features()` ตัวเดียวกับ data pipeline เพื่อสร้าง lag/rolling และจัดฟีเจอร์ตาม manifest ก่อนส่ง API พร้อมตรวจประวัติรายวันและ config ที่ใช้เทรน มี automated tests และคำสั่ง `scripts/verify_training_serving.py` สำหรับเทียบฟีเจอร์และผลทำนายกับโมเดลรุ่นเดียวกัน อ่านวิธีใช้และข้อกำหนดเวลาปิดยอดใน [คู่มือ Training–serving parity](../docs/training_serving_parity.md)
+
 ## สถานะการเชื่อมกับโมเดลใน repository กลุ่ม
 
 ตัว Serving โหลด bundle ที่ `MODEL_DIR` ระบุ ส่วน benchmark ของ Registry ใช้ `POST /predict` แบบ `records` ตรวจ `model_name`/`model_version` และเทียบผลกับโมเดลเวอร์ชันที่เลือก ใช้ URL ฐาน เช่น `http://127.0.0.1:18005`:

@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "started_at_utc": "2026-09-30T16:07:37.288374+00:00",
+  "finished_at_utc": "2026-09-30T16:07:38.645300+00:00",
+  "result": {
+    "workspace": "/project/artifacts/orchestration/runs/acceptance_petch_97f6252_20260930/project",
+    "source_files": 72
+  }
+}
