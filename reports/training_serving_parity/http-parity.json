@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-10-01T18:05:02.556294+00:00",
+  "data_kind": "synthetic_test_fixture",
+  "model_name": "training-serving-parity-test",
+  "model_version": "test-v1",
+  "model_sha256": "977b06d6786118b00ba08067529197a5755fc5deb33b3aca997241756c95a964",
+  "transport": "HTTP",
+  "row_count": 2,
+  "feature_count": 12,
+  "feature_order_matches": true,
+  "max_feature_absolute_error": 0.0,
+  "max_prediction_absolute_error": 0.0,
+  "prediction_absolute_tolerance": 1e-06,
+  "feature_code_sha256": "96822f89cebfac01ec619320d3f0076959ef58182898283eb161a88efe053fc0",
+  "forecast_timing": "after origin-day sales close",
+  "feature_manifest_sha256": "04e3b6ec777933f4c1ea9d8bd6cfeb0c353565a836a112e43337a83b6ab6aca1",
+  "configuration_sha256": "3afac86e6986251e6d499fde26fab38e0394207e1bd4313f35727e8b9e7cb0b6",
+  "history_sha256": "1cb40e8d1f68b79d9dfc65c562e47092e47a6f9b8d6c6e3d7304b6f1502b4fee"
+}
