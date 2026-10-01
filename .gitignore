@@ -24,6 +24,8 @@ venv/
 /models/*
 !/models/.gitkeep
 /mlruns/
+/mlflow.db*
+/mlartifacts/
 /artifacts/
 
 # Generated reports and local OS files

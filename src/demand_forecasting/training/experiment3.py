@@ -267,8 +267,6 @@ def three_experiment_rows(exp2_comparison: list[dict], exp3_summaries: list[dict
 
 
 def main() -> None:
-    if git_version()["branch"] != "Sira":
-        raise ValueError("Experiment 3 must run on branch Sira")
     target = target_from_dataset_config(DATASET_CONFIG_PATH)
     manifest, features, horizon = load_manifest(target)
     settings = json.loads(TRAINING_CONFIG_PATH.read_text(encoding="utf-8"))
@@ -377,11 +375,7 @@ def main() -> None:
                                 "joblib": joblib.__version__},
                 "test_set_used": False,
                 "final_test_limitation": "Experiment 1 test aggregate was seen; no later untouched dates exist.",
-                "recommended_quality_gates_not_implemented": {
-                    "performance": "candidate mean validation MAE < baseline mean validation MAE",
-                    "robustness": "candidate wins >=3/4 folds (recommended project policy)",
-                    "integrity": "load, predict, finite and nonnegative outputs",
-                    "features": "inference feature names/order match metadata"}}
+                "quality_gate_policy": "config/model_registry.json; run python -m src.demand_forecasting.registry check"}
     dump_json(OUTPUT_DIR / "final_candidate_metadata.json", metadata)
     print(f"Final candidate: {winner['trial_id']} mean MAE={winner['MAE']:.4f}, "
           f"baseline={next(row['MAE'] for row in summaries if row['trial_id']=='historical_7d_sum'):.4f}, "

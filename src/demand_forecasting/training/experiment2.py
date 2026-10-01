@@ -271,8 +271,6 @@ def main() -> None:
     target = target_from_dataset_config(DATASET_CONFIG_PATH)
     manifest, features, horizon = load_manifest(target)
     settings = json.loads(TRAINING_CONFIG_PATH.read_text(encoding="utf-8"))
-    if git_version()["branch"] != "Sira":
-        raise ValueError("Experiment 2 must run on branch Sira")
     X, y, dates, source = load_pretest(manifest, features, target)
     folds = build_folds(dates, horizon, settings["experiment2"]["folds"])
     original_train_rows = source["train"]["rows"]
