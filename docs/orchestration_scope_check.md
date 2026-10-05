@@ -2,7 +2,7 @@
 
 ตรวจเมื่อ 30 กันยายน 2026 จากเอกสาร “โครงงานรายวิชา CP413008 Machine Learning Engineering for Production.docx” และภาพแบ่งหน้าที่ที่ผู้ใช้ส่ง
 
-ขอบเขตที่กำลังทำ: Integration และ Pipeline Orchestration ด้วย Airflow รวมการทดสอบและหลักฐานก่อนเริ่ม CI/CD
+ขอบเขตคนที่ 6: Integration, Pipeline Orchestration ด้วย Airflow, automated tests และ GitHub Actions CI/CD
 
 | ข้อกำหนดในเอกสาร/ภาพ | งานที่ทำเพื่อรองรับ | ขอบเขต |
 |---|---|---|
@@ -16,9 +16,10 @@
 | ส่วน 7: branch และ Pull Request | branch งาน integration และชุดโค้ด/หลักฐานสำหรับ review | ไม่รวม merge เข้า branch ทีมโดยอัตโนมัติ |
 | ส่วน 8: รายงาน แผนภาพ อธิบายโค้ดและบทบาท AI | คู่มือ flow, source map, รายงานผลจริง | ระบุส่วนที่ Codex เพิ่มตามจริง |
 
-## สิ่งที่ยังไม่เริ่มในงานรอบนี้
+## สถานะปัจจุบันและสิ่งที่อยู่นอกขอบเขตคนที่ 6
 
-- GitHub Actions/CI/CD รวม deployment อัตโนมัติจาก GitHub เป็นขั้นถัดไป
+- GitHub Actions/CI/CD ทำงานแล้ว: มีรอบปกติบน branch Petch และรอบ failure fixture สำหรับ code/data/model บน branch ci/evidence/*; ลิงก์และผลแยกแต่ละรอบอยู่ใน [รายงาน acceptance](../reports/petch_acceptance_20260930/report_th.md)
+- การ deploy อัตโนมัติไป production จริงของทีมยังไม่อยู่ในหลักฐานนี้: ทดสอบ delivery/deploy/rollback ใน Docker CI และ local demo เท่านั้น โดย owner sign-off ยัง pending
 - เปลี่ยนโจทย์ ชุดข้อมูลหลัก feature engineering สูตรเลือกโมเดล hyperparameter หรือเกณฑ์คุณภาพที่สมาชิกกำหนด
 - เขียนระบบ Monitoring ใหม่แทนคนที่ 5 หรืออ้างว่ามีข้อมูล labels จริงพร้อมแล้ว
 - Cloud deployment, Kubernetes, dashboard ใหม่ หรือเครื่องมืออื่นที่ไม่จำเป็นกับการสาธิตนี้

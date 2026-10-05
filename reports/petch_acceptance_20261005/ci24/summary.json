@@ -1,0 +1,115 @@
+{
+  "run_id": "github-36906463120-1",
+  "scenario": "normal",
+  "passed": true,
+  "commit": "2f9b6c82ad01c7f38693fc2e6066bed0afe27607",
+  "stages": {
+    "code": {
+      "status": "success",
+      "started_at_utc": "2026-10-01T18:24:26.516071+00:00",
+      "finished_at_utc": "2026-10-01T18:24:41.059051+00:00",
+      "result": {
+        "syntax_files": 51,
+        "project_unittests": "passed",
+        "serving_tests": "passed"
+      }
+    },
+    "data": {
+      "status": "success",
+      "started_at_utc": "2026-10-01T18:24:41.225012+00:00",
+      "finished_at_utc": "2026-10-01T18:27:52.567485+00:00",
+      "result": {
+        "status": "passed",
+        "horizon_days": 7,
+        "full_daily_rows": 3078994,
+        "labeled_rows": 3044168,
+        "full_daily_skus": 4976,
+        "labeled_skus": 4975,
+        "first_date": "2009-12-01",
+        "last_observed_date": "2011-12-09",
+        "last_origin_date": "2011-12-02",
+        "duplicate_keys": 0,
+        "missing_required_values": 0,
+        "negative_or_fractional_units": 0,
+        "incorrect_targets": 0,
+        "daily_sha256": "ed279067b1aac74f3bc48a13c4a6c5b0094a26cbc35eec023404f6bd36e4ad56",
+        "labels_sha256": "0876bf4e0ef5da6b77ef4864dab298647147cc2c796f8f12370ed657ad521f6b",
+        "configuration_sha256": "5e63cd70535905fcd0bc9d538b39731f1acca72c2dfce36002a3ad361d2cd2ea"
+      }
+    },
+    "model": {
+      "status": "success",
+      "started_at_utc": "2026-10-01T18:27:52.728701+00:00",
+      "finished_at_utc": "2026-10-01T18:30:33.622215+00:00",
+      "result": {
+        "passed": true,
+        "checks": {
+          "feature_schema": true,
+          "metrics_finite": true,
+          "beats_baseline": true,
+          "complete_folds": true,
+          "validation_protocol": true,
+          "aggregate_matches_folds": true,
+          "wins_required_folds": true,
+          "pretest_only": true,
+          "prediction_integrity": true,
+          "rejects_wrong_feature_order": true
+        },
+        "candidate_mae": 16.22751974883882,
+        "baseline_mae": 20.854926254439675,
+        "folds_won": 4,
+        "expected_folds": 4,
+        "model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054",
+        "metadata_sha256": "ec3cafa6d9a3cc3b5e8a8cd375f4789405a88fa425ed963e54a81bbc64f3f382",
+        "policy_sha256": "fb33425eb7d46a1badb86c2e68b2ff2c6c15e8f7f33dbfbb33b59fb2cef99994",
+        "validation_folds_sha256": "ad48125c00d88f9e6fd192bf7b0f50c92cab8339784dfe6c3c9322d14ffc04b1"
+      }
+    },
+    "integration": {
+      "status": "success",
+      "started_at_utc": "2026-10-01T18:30:33.793924+00:00",
+      "finished_at_utc": "2026-10-01T18:31:05.337347+00:00",
+      "result": {
+        "serving": "passed",
+        "rollback": "passed",
+        "monitoring_events": "passed",
+        "deployment_scope": "isolated_ci_containers"
+      }
+    },
+    "package": {
+      "status": "success",
+      "started_at_utc": "2026-10-01T18:31:05.497914+00:00",
+      "finished_at_utc": "2026-10-01T18:31:05.510139+00:00",
+      "result": {
+        "files": 34,
+        "models": {
+          "fallback": {
+            "model_name": "demand-forecasting-7d",
+            "model_version": "1",
+            "source_model_sha256": "4d45b3c5617f05ba401195107a2a466aaf815459a5aa5c6cb2ff5d2c6d8ddd5f",
+            "bundle_dir": "/project/artifacts/orchestration/bundles/v1-4d45b3c5617f",
+            "model_sha256": "4d45b3c5617f05ba401195107a2a466aaf815459a5aa5c6cb2ff5d2c6d8ddd5f"
+          },
+          "candidate": {
+            "model_name": "demand-forecasting-7d",
+            "model_version": "2",
+            "source_model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054",
+            "bundle_dir": "/project/artifacts/orchestration/bundles/v2-f4a0bdbd9741",
+            "model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054"
+          }
+        }
+      }
+    },
+    "delivery": {
+      "status": "success",
+      "started_at_utc": "2026-10-01T18:31:52.532454+00:00",
+      "finished_at_utc": "2026-10-01T18:31:58.091724+00:00",
+      "result": {
+        "candidate": "passed",
+        "fallback": "passed",
+        "registry_parity": true
+      }
+    }
+  },
+  "delivery_allowed": true
+}

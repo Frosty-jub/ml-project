@@ -1,0 +1,201 @@
+{
+  "url": "http://delivery-candidate:8000",
+  "checks": [
+    {
+      "endpoint": "/health",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "body": {
+        "status": "ok",
+        "model_loaded": true,
+        "model_name": "demand-forecasting-7d",
+        "model_version": "2",
+        "data_kind": "group_project",
+        "model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054"
+      }
+    },
+    {
+      "endpoint": "/schema",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "body": {
+        "model_name": "demand-forecasting-7d",
+        "model_version": "2",
+        "data_kind": "group_project",
+        "model_format": "feature_ordered_joblib",
+        "source_model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054",
+        "max_batch_size": 64,
+        "features": [
+          {
+            "name": "daily_sold_units",
+            "type": "number",
+            "nullable": false,
+            "minimum": null,
+            "maximum": null,
+            "choices": null
+          },
+          {
+            "name": "days_since_first_sale",
+            "type": "number",
+            "nullable": false,
+            "minimum": null,
+            "maximum": null,
+            "choices": null
+          },
+          {
+            "name": "sales_lag_1",
+            "type": "number",
+            "nullable": false,
+            "minimum": null,
+            "maximum": null,
+            "choices": null
+          },
+          {
+            "name": "sales_lag_7",
+            "type": "number",
+            "nullable": false,
+            "minimum": null,
+            "maximum": null,
+            "choices": null
+          },
+          {
+            "name": "sales_lag_14",
+            "type": "number",
+            "nullable": false,
+            "minimum": null,
+            "maximum": null,
+            "choices": null
+          },
+          {
+            "name": "sales_lag_28",
+            "type": "number",
+            "nullable": false,
+            "minimum": null,
+            "maximum": null,
+            "choices": null
+          },
+          {
+            "name": "sales_rolling_sum_7",
+            "type": "number",
+            "nullable": false,
+            "minimum": null,
+            "maximum": null,
+            "choices": null
+          },
+          {
+            "name": "sales_rolling_sum_14",
+            "type": "number",
+            "nullable": false,
+            "minimum": null,
+            "maximum": null,
+            "choices": null
+          },
+          {
+            "name": "sales_rolling_sum_28",
+            "type": "number",
+            "nullable": false,
+            "minimum": null,
+            "maximum": null,
+            "choices": null
+          },
+          {
+            "name": "day_of_week",
+            "type": "number",
+            "nullable": false,
+            "minimum": null,
+            "maximum": null,
+            "choices": null
+          },
+          {
+            "name": "month",
+            "type": "number",
+            "nullable": false,
+            "minimum": null,
+            "maximum": null,
+            "choices": null
+          },
+          {
+            "name": "is_weekend",
+            "type": "number",
+            "nullable": false,
+            "minimum": null,
+            "maximum": null,
+            "choices": null
+          }
+        ]
+      }
+    },
+    {
+      "endpoint": "/openapi.json",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "body": {
+        "title": "CP413008 — Person 4 Model Serving"
+      }
+    },
+    {
+      "endpoint": "/predict",
+      "example": "valid_request",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "body": {
+        "request_id": "e55d205e8cfe45deb5415630274820ef",
+        "model_name": "demand-forecasting-7d",
+        "model_version": "2",
+        "data_kind": "group_project",
+        "predictions": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "endpoint": "/predict",
+      "example": "invalid_request",
+      "status": 422,
+      "expected": 422,
+      "passed": true,
+      "body": {
+        "error": "validation_error",
+        "details": [
+          {
+            "row": 0,
+            "field": "__unexpected_integration_field__",
+            "message": "Unknown feature"
+          }
+        ],
+        "request_id": "cbae8dc881cb4c118ff77da24532b055"
+      }
+    },
+    {
+      "endpoint": "/predict",
+      "example": "missing_feature_request",
+      "status": 422,
+      "expected": 422,
+      "passed": true,
+      "body": {
+        "error": "validation_error",
+        "details": [
+          {
+            "row": 0,
+            "field": "daily_sold_units",
+            "message": "Required feature is missing"
+          }
+        ],
+        "request_id": "09ebbad3f54c4492a1c5c249e757c0a5"
+      }
+    },
+    {
+      "endpoint": "/metrics",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    }
+  ],
+  "all_passed": true
+}

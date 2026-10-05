@@ -1,0 +1,41 @@
+{
+  "source_model": {
+    "model_name": "simulated-demand-7d",
+    "model_version": "sim-v1",
+    "data_kind": "synthetic_demo_only",
+    "feature_names": [
+      "sales_lag_1",
+      "sales_rolling_sum_7"
+    ]
+  },
+  "trigger_report_sha256": "3610a1d0313d1496e056abfbe3140ce7c91c701cfe8cd7f9da6f45d14a12a0ee",
+  "source_events_sha256": "63d598f0dfdae495220679c6a7cadbb422e35b580193e2fd86547f09450bf637",
+  "source_labels_sha256": "545aba8ad2dc0f4829b4cd9d0cfc51837b406013aa0cfd8475004731709caea0",
+  "training_rows": 600,
+  "holdout_rows": 240,
+  "embargo_days": 7,
+  "holdout_start": "2026-02-06T00:00:00+00:00",
+  "champion": {
+    "MAE": 15.127185259389007,
+    "RMSE": 15.212038970883372,
+    "WAPE": 26.49664902173674
+  },
+  "candidate": {
+    "MAE": 15.045708447878532,
+    "RMSE": 15.136725949493817,
+    "WAPE": 26.35393493177322
+  },
+  "candidate_beats_champion": true,
+  "registered_or_promoted": false,
+  "model_type": "LightGBM",
+  "parameters": {
+    "objective": "regression_l1",
+    "n_estimators": 60,
+    "learning_rate": 0.08,
+    "num_leaves": 15,
+    "verbosity": -1,
+    "n_jobs": 1
+  },
+  "data_kind": "synthetic_demo_only",
+  "lightgbm_version": "4.6.0"
+}

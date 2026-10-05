@@ -3,9 +3,9 @@ run-name: CI/CD • ${{ github.event_name }} • ${{ github.head_ref || github.r
 
 on:
   pull_request:
-    branches: [main, Dec]
+    branches: [main, Dec, Petch]
   push:
-    branches: [main, Dec, 'ci/evidence/**']
+    branches: [main, Dec, Petch, 'ci/evidence/**']
   workflow_dispatch:
     inputs:
       scenario:

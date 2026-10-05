@@ -1,0 +1,11 @@
+{
+  "status": "success",
+  "started_at_utc": "2026-10-01T19:01:41.446051+00:00",
+  "finished_at_utc": "2026-10-01T19:02:14.874171+00:00",
+  "result": {
+    "serving": "passed",
+    "rollback": "passed",
+    "monitoring_events": "passed",
+    "deployment_scope": "isolated_ci_containers"
+  }
+}

@@ -1,0 +1,268 @@
+{
+  "scope": "ผล CI normal ล่าสุดของโค้ด Petch commit 97f6252 และผล failure fixtures ที่ตั้งใจทดสอบบน Petch/ci/evidence",
+  "runs": {
+    "normal_prepatch_1b7a338": {
+      "run_id": 36714002555,
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36714002555",
+      "head_sha": "1b7a3380163fe2f22b43dce5d9d0641a5fb00267",
+      "tested_checkout_sha": "1b7a3380163fe2f22b43dce5d9d0641a5fb00267",
+      "branch": "Petch",
+      "event": "push",
+      "scenario": "normal",
+      "conclusion": "success",
+      "created_at": "2026-09-30T19:19:46+07:00",
+      "duration": "8m 39s",
+      "job_id": 109882106097,
+      "stage_results": {
+        "code": "success",
+        "data": "success",
+        "model": "success",
+        "integration": "success",
+        "package": "success",
+        "delivery": "success"
+      },
+      "artifacts": [
+        {
+          "id": 11095414098,
+          "name": "ci-evidence-36714002555-1",
+          "size": "42.7 KB",
+          "sha256": "247fc3a914c9ee0169047073d270aac43d6a6b3e6d2d2609ac2ff28f37463c92"
+        },
+        {
+          "id": 11095743201,
+          "name": "verified-delivery-36714002555-1",
+          "size": "365 KB",
+          "sha256": "dff29f6a018f6626b300fc1112afdb7324b35f902b2edd22236b61f65e23d9ec"
+        }
+      ]
+    },
+    "normal": {
+      "run_id": 36741213662,
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36741213662",
+      "head_sha": "97f62528d2ac1edc63bf863cfaa597d53b4c4a5f",
+      "tested_checkout_sha": "97f62528d2ac1edc63bf863cfaa597d53b4c4a5f",
+      "branch": "Petch",
+      "event": "push",
+      "scenario": "normal",
+      "conclusion": "success",
+      "created_at": "2026-09-30T23:01:58+07:00",
+      "duration": "6m 12s",
+      "job_id": 109975785059,
+      "stage_results": {
+        "code": "success",
+        "data": "success",
+        "model": "success",
+        "integration": "success",
+        "package": "success",
+        "delivery": "success"
+      },
+      "artifacts": [
+        {
+          "id": 11110608250,
+          "name": "ci-evidence-36741213662-1",
+          "size": "42.5 KB",
+          "sha256": "bd2c86c1bfd56d91574e3a4fe296d3abbfea1e6a4ec3cb3d78812edbb48f4a17"
+        },
+        {
+          "id": 11110074248,
+          "name": "verified-delivery-36741213662-1",
+          "size": "365 KB",
+          "sha256": "3f57523753797be697a138a4086f37d39185e3e4350a2e1323324d6fd8d2331a"
+        }
+      ]
+    },
+    "historical_normal_ce5f95f": {
+      "run_id": 36706218694,
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36706218694",
+      "head_sha": "ce5f95f5433a55efaeaf829f27fc3c7c61c0b7a4",
+      "tested_checkout_sha": "ce5f95f5433a55efaeaf829f27fc3c7c61c0b7a4",
+      "branch": "Petch",
+      "conclusion": "success",
+      "created_at": "2026-09-30T11:03:54Z",
+      "updated_at": "2026-09-30T11:12:52Z",
+      "jobs": [
+        {
+          "id": 109856981967,
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "อ่านโค้ดจาก branch ที่กำลังตรวจ",
+              "conclusion": "success"
+            },
+            {
+              "name": "กำหนดสถานการณ์และบันทึก commit",
+              "conclusion": "success"
+            },
+            {
+              "name": "สร้าง environment จาก dependency lock ของโครงการ",
+              "conclusion": "success"
+            },
+            {
+              "name": "เปิด container แยกสำหรับรอบ CI",
+              "conclusion": "success"
+            },
+            {
+              "name": "ด่าน 1: คุณภาพโค้ดและ automated tests",
+              "conclusion": "success"
+            },
+            {
+              "name": "ด่าน 2: ตรวจข้อมูลด้วย validator ของทีม",
+              "conclusion": "success"
+            },
+            {
+              "name": "ด่าน 3: ฝึกและตรวจ model quality gate",
+              "conclusion": "success"
+            },
+            {
+              "name": "ด่าน 4: API จริง, SLO, Monitoring และ rollback",
+              "conclusion": "success"
+            },
+            {
+              "name": "เตรียมชุดส่งมอบจากโมเดลที่ผ่านทุกด่าน",
+              "conclusion": "success"
+            },
+            {
+              "name": "สร้าง image จากชุดส่งมอบและเปิดทั้ง candidate กับ fallback",
+              "conclusion": "success"
+            },
+            {
+              "name": "ด่าน 5: ตรวจชุดส่งมอบเทียบ Registry",
+              "conclusion": "success"
+            },
+            {
+              "name": "สรุปและคัดลอกหลักฐานแม้รอบล้มเหลว",
+              "conclusion": "success"
+            },
+            {
+              "name": "เก็บหลักฐานการตรวจ",
+              "conclusion": "success"
+            },
+            {
+              "name": "ส่งมอบเฉพาะรอบที่ผ่าน",
+              "conclusion": "success"
+            },
+            {
+              "name": "ปิด container ชั่วคราวของรอบ CI",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post อ่านโค้ดจาก branch ที่กำลังตรวจ",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 11092910575,
+          "name": "verified-delivery-36706218694-1",
+          "sha256": "fac2b6f23604e6b610bb8a923f3e6c41473f2b1b2dd7a4d68229442a5fd3685a",
+          "expires_at": "2026-10-14T11:12:36Z"
+        },
+        {
+          "id": 11091994856,
+          "name": "ci-evidence-36706218694-1",
+          "sha256": "aaf720f734b29357c72d6d752aad293fc9589aeff42ad305463a835de371a799",
+          "expires_at": "2026-10-14T11:12:35Z"
+        }
+      ],
+      "extra_evidence": {
+        "delivery_checksums_verified": 31,
+        "delivery_model_versions": {
+          "candidate": "2",
+          "fallback": "1"
+        },
+        "flow_quality_gate.json": "reports\\petch_acceptance_20260930\\github_actions\\normal\\flow_quality_gate.json",
+        "flow_load_test.json": "reports\\petch_acceptance_20260930\\github_actions\\normal\\flow_load_test.json",
+        "flow_load_event_reconciliation.json": "reports\\petch_acceptance_20260930\\github_actions\\normal\\flow_load_event_reconciliation.json",
+        "flow_delivery_candidate_parity.json": "reports\\petch_acceptance_20260930\\github_actions\\normal\\flow_delivery_candidate_parity.json",
+        "flow_delivery_fallback_parity.json": "reports\\petch_acceptance_20260930\\github_actions\\normal\\flow_delivery_fallback_parity.json",
+        "flow_rollback_drill.json": "reports\\petch_acceptance_20260930\\github_actions\\normal\\flow_rollback_drill.json",
+        "flow_verify_monitoring.json": "reports\\petch_acceptance_20260930\\github_actions\\normal\\flow_verify_monitoring.json",
+        "serving-tests.xml": "reports\\petch_acceptance_20260930\\github_actions\\normal\\serving-tests.xml"
+      }
+    }
+  },
+  "complete": true,
+  "intentional_failure_runs": {
+    "bad_code": {
+      "run_id": 36660579656,
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36660579656",
+      "branch": "ci/evidence/bad-code-20260930",
+      "tested_checkout_sha": "1cd75312a035def3f968e948e9996bbbda1aae13",
+      "conclusion": "failure",
+      "expected_failed_stage": "code",
+      "fixture": "Python syntax error fixture",
+      "downstream_stages": "not_run",
+      "delivery_allowed": false,
+      "head_sha": "1cd75312a035def3f968e948e9996bbbda1aae13",
+      "expected_failure": true
+    },
+    "bad_model": {
+      "run_id": 36660585806,
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36660585806",
+      "branch": "ci/evidence/bad-model-20260930",
+      "tested_checkout_sha": "1cd75312a035def3f968e948e9996bbbda1aae13",
+      "conclusion": "failure",
+      "expected_failed_stage": "model",
+      "fixture": "degraded candidate metrics for quality-gate test",
+      "code_stage": "success",
+      "data_stage": "success",
+      "downstream_stages": "not_run",
+      "delivery_allowed": false,
+      "head_sha": "1cd75312a035def3f968e948e9996bbbda1aae13",
+      "expected_failure": true
+    },
+    "bad_data_historical_1cd75312": {
+      "run_id": 36660583185,
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36660583185",
+      "branch": "ci/evidence/bad-data-20260930",
+      "tested_checkout_sha": "1cd75312a035def3f968e948e9996bbbda1aae13",
+      "conclusion": "failure",
+      "expected_failed_stage": "data",
+      "fixture": "invalid sales data fixture",
+      "code_stage": "success",
+      "downstream_stages": "not_run",
+      "delivery_allowed": false,
+      "head_sha": "1cd75312a035def3f968e948e9996bbbda1aae13",
+      "expected_failure": true
+    },
+    "bad_data_current_petch": {
+      "run_id": 36716209703,
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36716209703",
+      "head_sha": "1b7a3380163fe2f22b43dce5d9d0641a5fb00267",
+      "tested_checkout_sha": "1b7a3380163fe2f22b43dce5d9d0641a5fb00267",
+      "branch": "Petch",
+      "event": "workflow_dispatch",
+      "scenario": "bad_data",
+      "conclusion": "failure",
+      "expected_failure": true,
+      "expected_failed_stage": "data",
+      "fixture": "invalid sales data fixture",
+      "downstream_stages": "not_run",
+      "delivery_allowed": false,
+      "stage_results": {
+        "code": "success",
+        "data": "failed",
+        "model": "not_run",
+        "integration": "not_run",
+        "package": "not_run",
+        "delivery": "not_run"
+      },
+      "artifact": {
+        "id": 11095928700,
+        "name": "ci-evidence-36716209703-1",
+        "size": "7.58 KB",
+        "sha256": "08b6055cdca80a61a09154f4abd7cc78b8903e523be71bedf8fc10e4fd45042d"
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "status": "success",
+  "started_at_utc": "2026-10-05T11:09:16.635397+00:00",
+  "finished_at_utc": "2026-10-05T11:09:20.387923+00:00",
+  "result": {
+    "rollback_version": "1",
+    "restored_version": "2",
+    "rollback_parity": true,
+    "restored_parity": true
+  }
+}

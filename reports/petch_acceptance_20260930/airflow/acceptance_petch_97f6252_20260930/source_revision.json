@@ -1,0 +1,7 @@
+{
+  "commit": "97f62528d2ac1edc63bf863cfaa597d53b4c4a5f",
+  "branch": "airflow-code-snapshot",
+  "working_tree_dirty": "false",
+  "snapshot_sha256": "645c75558f6656edae81d6e685398faf3c0c04f8d1e34d5294ba39adc7bfe889",
+  "source": "immutable_content_snapshot"
+}

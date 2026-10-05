@@ -1,0 +1,8 @@
+{
+  "run_id": "acceptance_petch_2f9b6c8_20261005",
+  "severity": "error",
+  "failed_tasks": [
+    "prepare_data"
+  ],
+  "production_unchanged": true
+}

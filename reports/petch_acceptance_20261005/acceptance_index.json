@@ -1,0 +1,81 @@
+{
+  "runs": [
+    {
+      "tested_checkout_sha": "2f9b6c82ad01c7f38693fc2e6066bed0afe27607",
+      "artifacts": [
+        {
+          "id": 11184737597,
+          "name": "verified-delivery-36906463120-1",
+          "digest": "sha256:ee6bf643bd8a09ee4a383d3e4224c4c6404a29ea7d6bb6a5459cbabefaa0aba6",
+          "expired": false
+        },
+        {
+          "id": 11184727626,
+          "name": "ci-evidence-36906463120-1",
+          "digest": "sha256:b5e69263ff28ae35b5a756dbf67d0342f9153a80d22d432e21d3de3ae1dc948a",
+          "expired": false
+        }
+      ],
+      "head_sha": "2f9b6c82ad01c7f38693fc2e6066bed0afe27607",
+      "run_id": 36906463120,
+      "conclusion": "success",
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36906463120",
+      "stage_results": {
+        "integration": "success",
+        "delivery": "success",
+        "code": "success",
+        "package": "success",
+        "data": "success",
+        "model": "success"
+      },
+      "event": "push",
+      "run_number": 24,
+      "scenario": "normal"
+    },
+    {
+      "tested_checkout_sha": "6dcc59161fd6c50ebba62592d9f1c77f9cacac8c",
+      "artifacts": [
+        {
+          "id": 11187620366,
+          "name": "ci-evidence-36910343443-1",
+          "digest": "sha256:d05e3829b66321302462217d0a391ac7e2473701e4bc071bb65c5c3f3a455ed9",
+          "expired": false
+        },
+        {
+          "id": 11186976309,
+          "name": "verified-delivery-36910343443-1",
+          "digest": "sha256:7af16d8159e66d735ce60b18d9b3059d39f10fdbea378b9ec250eaf541859be1",
+          "expired": false
+        }
+      ],
+      "head_sha": "2f9b6c82ad01c7f38693fc2e6066bed0afe27607",
+      "run_id": 36910343443,
+      "conclusion": "success",
+      "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36910343443",
+      "stage_results": {
+        "integration": "success",
+        "delivery": "success",
+        "code": "success",
+        "package": "success",
+        "data": "success",
+        "model": "success"
+      },
+      "event": "pull_request",
+      "run_number": 25,
+      "scenario": "normal"
+    }
+  ],
+  "scope": "หลักฐาน CI และ Airflow บน source Petch 2f9b6c8; commit ที่เพิ่มรายงานไม่ได้เปลี่ยน runtime source",
+  "historical_failure_index": "../petch_acceptance_20260930/github_actions/acceptance_index.json",
+  "airflow": {
+    "run_id": "acceptance_petch_2f9b6c8_20261005_retry1",
+    "source_sha": "2f9b6c82ad01c7f38693fc2e6066bed0afe27607",
+    "state": "success",
+    "tasks_success": 16,
+    "tasks_total": 16,
+    "scenario": "normal",
+    "evidence": "airflow/",
+    "initial_download_failure": "airflow_download_failure/",
+    "collection_note": "Docker CLI บน Windows ค้าง จึงอ่านสถานะ Airflow CLI ผ่าน WSL และเก็บผลจาก container"
+  }
+}

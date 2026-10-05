@@ -14,7 +14,15 @@ services:
   init:
     <<: *common
     entrypoint: ["/bin/bash", "-c"]
-    command: ["cp -a /opt/project-template/. /project/ && mkdir -p /project/artifacts/orchestration /project/reports/orchestration"]
+    command:
+      - |
+        set -euo pipefail
+        # Keep run data and outputs; replace all source-managed workspace entries.
+        find /project -mindepth 1 -maxdepth 1 \
+          ! -name data ! -name artifacts ! -name reports \
+          -exec rm -rf -- {} +
+        cp -a /opt/project-template/. /project/
+        mkdir -p /project/artifacts/orchestration /project/reports/orchestration
   airflow:
     <<: *common
     command: standalone

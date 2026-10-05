@@ -1,0 +1,9 @@
+﻿{
+    "dag_id":  "demand_forecasting_e2e",
+    "run_id":  "acceptance_petch_ce5f95f_20260930",
+    "state":  "success",
+    "run_after":  "2026-09-30T11:06:49.510153+00:00",
+    "logical_date":  "",
+    "start_date":  "2026-09-30T11:06:50.256809+00:00",
+    "end_date":  "2026-09-30T11:16:36.165743+00:00"
+}

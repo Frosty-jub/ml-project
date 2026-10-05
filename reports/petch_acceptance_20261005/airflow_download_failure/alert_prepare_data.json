@@ -1,0 +1,6 @@
+{
+  "severity": "error",
+  "run_id": "acceptance_petch_2f9b6c8_20261005",
+  "stage": "prepare_data",
+  "error": "Command '['/opt/project-venv/bin/python', 'scripts/download_data.py']' returned non-zero exit status 1."
+}

@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "health": {
+    "status": "ok",
+    "model_loaded": true,
+    "model_name": "demand-forecasting-7d",
+    "model_version": "2",
+    "data_kind": "group_project",
+    "model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054"
+  },
+  "compared_records": 3,
+  "scope": "ตรวจ Registry/API ด้วยข้อมูลเดียวกัน; ไม่แนบ features รายแถวในรายงานสาธารณะ"
+}

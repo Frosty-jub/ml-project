@@ -1,0 +1,18 @@
+{
+  "records": [
+    {
+      "daily_sold_units": 0,
+      "days_since_first_sale": 577,
+      "sales_lag_1": 0,
+      "sales_lag_7": 0,
+      "sales_lag_14": 0,
+      "sales_lag_28": 0,
+      "sales_rolling_sum_7": 0,
+      "sales_rolling_sum_14": 0,
+      "sales_rolling_sum_28": 0,
+      "day_of_week": 4,
+      "month": 7,
+      "is_weekend": 0
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "executable": "/opt/project-venv/bin/python",
+  "prefix": "/opt/project-venv",
+  "sklearn_version": "1.7.2",
+  "sklearn_path": "/opt/project-venv/lib/python3.12/site-packages/sklearn/__init__.py"
+}

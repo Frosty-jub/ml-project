@@ -1,0 +1,67 @@
+{
+  "status": "failed",
+  "run_id": "acceptance_petch_2f9b6c8_20261005",
+  "scenario": "normal",
+  "steps": {
+    "initialize": {
+      "status": "success",
+      "started_at_utc": "2026-10-05T10:55:48.373501+00:00",
+      "finished_at_utc": "2026-10-05T10:55:50.221980+00:00",
+      "result": {
+        "workspace": "/project/artifacts/orchestration/runs/acceptance_petch_2f9b6c8_20261005/project",
+        "source_files": 78
+      }
+    },
+    "prepare_data": {
+      "status": "failed",
+      "started_at_utc": "2026-10-05T10:55:51.152167+00:00",
+      "error_type": "CalledProcessError",
+      "error": "Command '['/opt/project-venv/bin/python', 'scripts/download_data.py']' returned non-zero exit status 1."
+    },
+    "experiment_2": {
+      "status": "not_run"
+    },
+    "experiment_3": {
+      "status": "not_run"
+    },
+    "verify_full_folds": {
+      "status": "not_run"
+    },
+    "candidate_quality_gate": {
+      "status": "not_run"
+    },
+    "register_models": {
+      "status": "not_run"
+    },
+    "export_bundles": {
+      "status": "not_run"
+    },
+    "benchmark_candidates": {
+      "status": "not_run"
+    },
+    "approve_and_deploy": {
+      "status": "not_run"
+    },
+    "rollback_drill": {
+      "status": "not_run"
+    },
+    "verify_monitoring": {
+      "status": "not_run"
+    },
+    "simulate_drift": {
+      "status": "not_run"
+    },
+    "check_drift": {
+      "status": "not_run"
+    },
+    "retrain_candidate": {
+      "status": "not_run"
+    }
+  },
+  "production_after": null,
+  "production_unchanged": true,
+  "demo_limitations": [
+    "Team owner sign-off pending; automated policy approval is local demo only",
+    "Drift-to-retraining uses explicitly synthetic delayed labels; candidate is never auto-promoted"
+  ]
+}

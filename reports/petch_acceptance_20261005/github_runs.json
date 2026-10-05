@@ -1,0 +1,350 @@
+[
+  {
+    "run_number": 24,
+    "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36906463120",
+    "run_id": 36906463120,
+    "artifacts": [
+      {
+        "id": 11184737597,
+        "name": "verified-delivery-36906463120-1",
+        "digest": "sha256:ee6bf643bd8a09ee4a383d3e4224c4c6404a29ea7d6bb6a5459cbabefaa0aba6",
+        "expired": false
+      },
+      {
+        "id": 11184727626,
+        "name": "ci-evidence-36906463120-1",
+        "digest": "sha256:b5e69263ff28ae35b5a756dbf67d0342f9153a80d22d432e21d3de3ae1dc948a",
+        "expired": false
+      }
+    ],
+    "conclusion": "success",
+    "head_sha": "2f9b6c82ad01c7f38693fc2e6066bed0afe27607",
+    "event": "push",
+    "jobs": [
+      {
+        "name": "ตรวจโค้ด → ข้อมูล → โมเดล → Docker → ส่งม...",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-01T18:23:31Z",
+            "completed_at": "2026-10-01T18:23:32Z"
+          },
+          {
+            "name": "อ่านโค้ดจาก branch ที่กำลังตรวจ",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-01T18:23:32Z",
+            "completed_at": "2026-10-01T18:23:33Z"
+          },
+          {
+            "name": "กำหนดสถานการณ์และบันทึก commit",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-01T18:23:33Z",
+            "completed_at": "2026-10-01T18:23:33Z"
+          },
+          {
+            "name": "สร้าง environment จาก dependency lock ของโครงการ",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-01T18:23:33Z",
+            "completed_at": "2026-10-01T18:24:25Z"
+          },
+          {
+            "name": "เปิด container แยกสำหรับรอบ CI",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-01T18:24:25Z",
+            "completed_at": "2026-10-01T18:24:26Z"
+          },
+          {
+            "name": "ด่าน 1: คุณภาพโค้ดและ automated tests",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-01T18:24:26Z",
+            "completed_at": "2026-10-01T18:24:41Z"
+          },
+          {
+            "name": "ด่าน 2: ตรวจข้อมูลด้วย validator ของทีม",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-01T18:24:41Z",
+            "completed_at": "2026-10-01T18:27:52Z"
+          },
+          {
+            "name": "ด่าน 3: ฝึกและตรวจ model quality gate",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-01T18:27:52Z",
+            "completed_at": "2026-10-01T18:30:33Z"
+          },
+          {
+            "name": "ด่าน 4: API จริง, SLO, Monitoring และ rollback",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-10-01T18:30:33Z",
+            "completed_at": "2026-10-01T18:31:05Z"
+          },
+          {
+            "name": "เตรียมชุดส่งมอบจากโมเดลที่ผ่านทุกด่าน",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10,
+            "started_at": "2026-10-01T18:31:05Z",
+            "completed_at": "2026-10-01T18:31:05Z"
+          },
+          {
+            "name": "สร้าง image จากชุดส่งมอบและเปิดทั้ง candidate กับ fallback",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11,
+            "started_at": "2026-10-01T18:31:05Z",
+            "completed_at": "2026-10-01T18:31:52Z"
+          },
+          {
+            "name": "ด่าน 5: ตรวจชุดส่งมอบเทียบ Registry",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12,
+            "started_at": "2026-10-01T18:31:52Z",
+            "completed_at": "2026-10-01T18:31:58Z"
+          },
+          {
+            "name": "สรุปและคัดลอกหลักฐานแม้รอบล้มเหลว",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-10-01T18:31:58Z",
+            "completed_at": "2026-10-01T18:31:58Z"
+          },
+          {
+            "name": "เก็บหลักฐานการตรวจ",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14,
+            "started_at": "2026-10-01T18:31:58Z",
+            "completed_at": "2026-10-01T18:31:59Z"
+          },
+          {
+            "name": "ส่งมอบเฉพาะรอบที่ผ่าน",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15,
+            "started_at": "2026-10-01T18:31:59Z",
+            "completed_at": "2026-10-01T18:32:00Z"
+          },
+          {
+            "name": "ปิด container ชั่วคราวของรอบ CI",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16,
+            "started_at": "2026-10-01T18:32:00Z",
+            "completed_at": "2026-10-01T18:32:11Z"
+          },
+          {
+            "name": "Post อ่านโค้ดจาก branch ที่กำลังตรวจ",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 32,
+            "started_at": "2026-10-01T18:32:11Z",
+            "completed_at": "2026-10-01T18:32:11Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 33,
+            "started_at": "2026-10-01T18:32:11Z",
+            "completed_at": "2026-10-01T18:32:11Z"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "run_number": 25,
+    "url": "https://github.com/Frosty-jub/ml-project/actions/runs/36910343443",
+    "run_id": 36910343443,
+    "artifacts": [
+      {
+        "id": 11187620366,
+        "name": "ci-evidence-36910343443-1",
+        "digest": "sha256:d05e3829b66321302462217d0a391ac7e2473701e4bc071bb65c5c3f3a455ed9",
+        "expired": false
+      },
+      {
+        "id": 11186976309,
+        "name": "verified-delivery-36910343443-1",
+        "digest": "sha256:7af16d8159e66d735ce60b18d9b3059d39f10fdbea378b9ec250eaf541859be1",
+        "expired": false
+      }
+    ],
+    "conclusion": "success",
+    "head_sha": "2f9b6c82ad01c7f38693fc2e6066bed0afe27607",
+    "event": "pull_request",
+    "jobs": [
+      {
+        "name": "ตรวจโค้ด → ข้อมูล → โมเดล → Docker → ส่งม...",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-01T18:54:38Z",
+            "completed_at": "2026-10-01T18:54:39Z"
+          },
+          {
+            "name": "อ่านโค้ดจาก branch ที่กำลังตรวจ",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-01T18:54:39Z",
+            "completed_at": "2026-10-01T18:54:40Z"
+          },
+          {
+            "name": "กำหนดสถานการณ์และบันทึก commit",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-01T18:54:40Z",
+            "completed_at": "2026-10-01T18:54:40Z"
+          },
+          {
+            "name": "สร้าง environment จาก dependency lock ของโครงการ",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-01T18:54:40Z",
+            "completed_at": "2026-10-01T18:55:33Z"
+          },
+          {
+            "name": "เปิด container แยกสำหรับรอบ CI",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-01T18:55:33Z",
+            "completed_at": "2026-10-01T18:55:35Z"
+          },
+          {
+            "name": "ด่าน 1: คุณภาพโค้ดและ automated tests",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-01T18:55:35Z",
+            "completed_at": "2026-10-01T18:55:49Z"
+          },
+          {
+            "name": "ด่าน 2: ตรวจข้อมูลด้วย validator ของทีม",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-01T18:55:49Z",
+            "completed_at": "2026-10-01T18:58:50Z"
+          },
+          {
+            "name": "ด่าน 3: ฝึกและตรวจ model quality gate",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-01T18:58:50Z",
+            "completed_at": "2026-10-01T19:01:41Z"
+          },
+          {
+            "name": "ด่าน 4: API จริง, SLO, Monitoring และ rollback",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-10-01T19:01:41Z",
+            "completed_at": "2026-10-01T19:02:14Z"
+          },
+          {
+            "name": "เตรียมชุดส่งมอบจากโมเดลที่ผ่านทุกด่าน",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10,
+            "started_at": "2026-10-01T19:02:14Z",
+            "completed_at": "2026-10-01T19:02:15Z"
+          },
+          {
+            "name": "สร้าง image จากชุดส่งมอบและเปิดทั้ง candidate กับ fallback",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11,
+            "started_at": "2026-10-01T19:02:15Z",
+            "completed_at": "2026-10-01T19:03:04Z"
+          },
+          {
+            "name": "ด่าน 5: ตรวจชุดส่งมอบเทียบ Registry",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12,
+            "started_at": "2026-10-01T19:03:04Z",
+            "completed_at": "2026-10-01T19:03:11Z"
+          },
+          {
+            "name": "สรุปและคัดลอกหลักฐานแม้รอบล้มเหลว",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-10-01T19:03:11Z",
+            "completed_at": "2026-10-01T19:03:11Z"
+          },
+          {
+            "name": "เก็บหลักฐานการตรวจ",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14,
+            "started_at": "2026-10-01T19:03:11Z",
+            "completed_at": "2026-10-01T19:03:12Z"
+          },
+          {
+            "name": "ส่งมอบเฉพาะรอบที่ผ่าน",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15,
+            "started_at": "2026-10-01T19:03:12Z",
+            "completed_at": "2026-10-01T19:03:14Z"
+          },
+          {
+            "name": "ปิด container ชั่วคราวของรอบ CI",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16,
+            "started_at": "2026-10-01T19:03:14Z",
+            "completed_at": "2026-10-01T19:03:24Z"
+          },
+          {
+            "name": "Post อ่านโค้ดจาก branch ที่กำลังตรวจ",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 32,
+            "started_at": "2026-10-01T19:03:24Z",
+            "completed_at": "2026-10-01T19:03:25Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 33,
+            "started_at": "2026-10-01T19:03:25Z",
+            "completed_at": "2026-10-01T19:03:25Z"
+          }
+        ]
+      }
+    ]
+  }
+]

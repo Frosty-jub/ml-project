@@ -1,0 +1,6 @@
+{
+  "status": "failed",
+  "started_at_utc": "2026-10-05T10:55:51.152167+00:00",
+  "error_type": "CalledProcessError",
+  "error": "Command '['/opt/project-venv/bin/python', 'scripts/download_data.py']' returned non-zero exit status 1."
+}
