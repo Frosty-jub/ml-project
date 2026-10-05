@@ -10,7 +10,7 @@
 
 คำสั่งนี้ build จาก dependency lock, เปิด Airflow/candidate/production ใน Docker volume แยก, รัน DAG จากข้อมูลดิบผ่านการเทรนและ gate, ลงทะเบียนและ export โมเดล, ทดสอบ candidate, อนุมัติตาม policy สำหรับ local demo, สลับบริการ, สาธิต rollback แล้วคืนรุ่นที่อนุมัติ และเก็บหลักฐาน Monitoring/retraining หน้าจอ Airflow คือ http://127.0.0.1:18090 และ API ของชุด orchestration คือ http://127.0.0.1:18015/docs ผลรันถูกคัดลอกออกมาที่ `reports/orchestration/` ไม่ต้องติดตั้ง Python บน host
 
-อ่าน [คู่มือ Pipeline Orchestration](docs/pipeline_orchestration.md) สำหรับความหมายแต่ละ task, การเข้าสู่ Airflow, negative tests, delayed labels, การกู้คืน และข้อจำกัดการอนุมัติของเดโม การสาธิต drift ใช้ข้อมูลสังเคราะห์ที่ติดป้ายชัดเจนและไม่ถูกส่งขึ้นบริการจริง ส่วน CI/CD ทำผ่าน GitHub Actions โดยตรวจ code, data, model, integration, package และ delivery พร้อมรอบ failure fixture สำหรับ code/data/model ดู [คู่มือ CI/CD](docs/ci_cd_th.md) และ [ผล acceptance บน Petch](reports/petch_acceptance_20260930/report_th.md).
+อ่าน [คู่มือ Pipeline Orchestration](docs/pipeline_orchestration.md) สำหรับความหมายแต่ละ task, การเข้าสู่ Airflow, negative tests, delayed labels, การกู้คืน และข้อจำกัดการอนุมัติของเดโม การสาธิต drift ใช้ข้อมูลสังเคราะห์ที่ติดป้ายชัดเจนและไม่ถูกส่งขึ้นบริการจริง ส่วน CI/CD ทำผ่าน GitHub Actions โดยตรวจ code, data, model, integration, package และ delivery พร้อมรอบ failure fixture สำหรับ code/data/model ดู [คู่มือ CI/CD](docs/ci_cd_th.md) และ [ผล acceptance บน Petch](reports/petch_acceptance_20261005/report_th.md).
 
 ## Monitoring, Drift และ Retraining — งานคนที่ 5
 

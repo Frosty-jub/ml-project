@@ -1,0 +1,15 @@
+{
+  "approved": true,
+  "approval_mode": "existing_quality_and_serving_policy_for_local_demo",
+  "team_document_signoff": "pending",
+  "model": {
+    "model_name": "demand-forecasting-7d",
+    "model_version": "2",
+    "source_model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054",
+    "bundle_dir": "/project/artifacts/orchestration/bundles/v2-f4a0bdbd9741",
+    "model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054"
+  },
+  "policy_sha256": "fb33425eb7d46a1badb86c2e68b2ff2c6c15e8f7f33dbfbb33b59fb2cef99994",
+  "slo_sha256": "821a6ee8f7fb3a5a38501276a1930b7e53a3f3b792d2990443c3f75e714e4346",
+  "production_url": "http://production:8000"
+}

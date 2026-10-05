@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "started_at_utc": "2026-10-01T18:24:41.275565+00:00",
+  "finished_at_utc": "2026-10-01T18:24:42.696328+00:00",
+  "result": {
+    "workspace": "/project/artifacts/orchestration/runs/github-36906463120-1/project",
+    "source_files": 82
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "data_kind": "synthetic_demo_only",
+  "retraining_trigger": true,
+  "windows": [
+    {
+      "window": 0,
+      "rows": 280,
+      "start": "2026-01-15T00:00:00+00:00",
+      "end": "2026-01-21T00:00:00+00:00",
+      "labelled_rows": 280,
+      "alerts": [],
+      "drift": {
+        "sales_lag_1": {
+          "metric": "PSI",
+          "value": 0.062492
+        },
+        "sales_rolling_sum_7": {
+          "metric": "PSI",
+          "value": 0.035712
+        }
+      },
+      "metrics": {
+        "rows": 280,
+        "MAE": 1.1801112178341064,
+        "RMSE": 1.5138434884323053,
+        "WAPE": 2.8911673957307245
+      },
+      "status": "ok",
+      "consecutive_degraded_windows": 0
+    },
+    {
+      "window": 1,
+      "rows": 280,
+      "start": "2026-01-22T00:00:00+00:00",
+      "end": "2026-01-28T00:00:00+00:00",
+      "labelled_rows": 280,
+      "alerts": [],
+      "drift": {
+        "sales_lag_1": {
+          "metric": "PSI",
+          "value": 0.023557
+        },
+        "sales_rolling_sum_7": {
+          "metric": "PSI",
+          "value": 0.041992
+        }
+      },
+      "metrics": {
+        "rows": 280,
+        "MAE": 1.0952220530853383,
+        "RMSE": 1.4859455811875786,
+        "WAPE": 2.6189568829036327
+      },
+      "status": "ok",
+      "consecutive_degraded_windows": 0
+    },
+    {
+      "window": 2,
+      "rows": 280,
+      "start": "2026-01-29T00:00:00+00:00",
+      "end": "2026-02-04T00:00:00+00:00",
+      "labelled_rows": 280,
+      "alerts": [
+        {
+          "type": "performance_degradation",
+          "MAE": 15.004241975753631
+        },
+        {
+          "type": "suspected_concept_drift",
+          "reason": "MAE increased while monitored feature distribution stayed stable"
+        }
+      ],
+      "drift": {
+        "sales_lag_1": {
+          "metric": "PSI",
+          "value": 0.030618
+        },
+        "sales_rolling_sum_7": {
+          "metric": "PSI",
+          "value": 0.025668
+        }
+      },
+      "metrics": {
+        "rows": 280,
+        "MAE": 15.004241975753631,
+        "RMSE": 15.061816654661198,
+        "WAPE": 26.961209740246186
+      },
+      "status": "alert",
+      "consecutive_degraded_windows": 1
+    },
+    {
+      "window": 3,
+      "rows": 280,
+      "start": "2026-02-05T00:00:00+00:00",
+      "end": "2026-02-11T00:00:00+00:00",
+      "labelled_rows": 280,
+      "alerts": [
+        {
+          "type": "performance_degradation",
+          "MAE": 15.128377453717414
+        },
+        {
+          "type": "suspected_concept_drift",
+          "reason": "MAE increased while monitored feature distribution stayed stable"
+        }
+      ],
+      "drift": {
+        "sales_lag_1": {
+          "metric": "PSI",
+          "value": 0.057163
+        },
+        "sales_rolling_sum_7": {
+          "metric": "PSI",
+          "value": 0.055786
+        }
+      },
+      "metrics": {
+        "rows": 280,
+        "MAE": 15.128377453717414,
+        "RMSE": 15.20765600404479,
+        "WAPE": 26.208844919749552
+      },
+      "status": "alert",
+      "consecutive_degraded_windows": 2
+    }
+  ]
+}

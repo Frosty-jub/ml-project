@@ -1,0 +1,23 @@
+{
+  "status": "success",
+  "started_at_utc": "2026-10-01T18:24:41.225012+00:00",
+  "finished_at_utc": "2026-10-01T18:27:52.567485+00:00",
+  "result": {
+    "status": "passed",
+    "horizon_days": 7,
+    "full_daily_rows": 3078994,
+    "labeled_rows": 3044168,
+    "full_daily_skus": 4976,
+    "labeled_skus": 4975,
+    "first_date": "2009-12-01",
+    "last_observed_date": "2011-12-09",
+    "last_origin_date": "2011-12-02",
+    "duplicate_keys": 0,
+    "missing_required_values": 0,
+    "negative_or_fractional_units": 0,
+    "incorrect_targets": 0,
+    "daily_sha256": "ed279067b1aac74f3bc48a13c4a6c5b0094a26cbc35eec023404f6bd36e4ad56",
+    "labels_sha256": "0876bf4e0ef5da6b77ef4864dab298647147cc2c796f8f12370ed657ad521f6b",
+    "configuration_sha256": "5e63cd70535905fcd0bc9d538b39731f1acca72c2dfce36002a3ad361d2cd2ea"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "status": "success",
+  "started_at_utc": "2026-10-01T19:01:39.689296+00:00",
+  "finished_at_utc": "2026-10-01T19:01:41.028939+00:00",
+  "result": {
+    "passed": true,
+    "checks": {
+      "feature_schema": true,
+      "metrics_finite": true,
+      "beats_baseline": true,
+      "complete_folds": true,
+      "validation_protocol": true,
+      "aggregate_matches_folds": true,
+      "wins_required_folds": true,
+      "pretest_only": true,
+      "prediction_integrity": true,
+      "rejects_wrong_feature_order": true
+    },
+    "candidate_mae": 16.22751974883882,
+    "baseline_mae": 20.854926254439675,
+    "folds_won": 4,
+    "expected_folds": 4,
+    "model_sha256": "f4a0bdbd9741ece3c7311f3c8e9c7d594238d7b0665ba7e8e2d1bb5509ca9054",
+    "metadata_sha256": "aaace4c539aa45de246f4dbdaed63073fe07b0460a3c2f9aa73bd1588a129912",
+    "policy_sha256": "fb33425eb7d46a1badb86c2e68b2ff2c6c15e8f7f33dbfbb33b59fb2cef99994",
+    "validation_folds_sha256": "ad48125c00d88f9e6fd192bf7b0f50c92cab8339784dfe6c3c9322d14ffc04b1"
+  }
+}

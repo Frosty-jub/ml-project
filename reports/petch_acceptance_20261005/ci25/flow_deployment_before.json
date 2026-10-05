@@ -1,0 +1,15 @@
+{
+  "pointer": {
+    "model_name": "demand-forecasting-7d",
+    "model_version": "1",
+    "source_model_sha256": "4d45b3c5617f05ba401195107a2a466aaf815459a5aa5c6cb2ff5d2c6d8ddd5f",
+    "bundle_dir": "/project/artifacts/orchestration/bundles/v1-4d45b3c5617f",
+    "model_sha256": "4d45b3c5617f05ba401195107a2a466aaf815459a5aa5c6cb2ff5d2c6d8ddd5f",
+    "airflow_run_id": "github-36910343443-1",
+    "revision": "5c82fc59e5524b7ca8c984644f56000a"
+  },
+  "aliases": {
+    "champion": "1",
+    "production": "1"
+  }
+}

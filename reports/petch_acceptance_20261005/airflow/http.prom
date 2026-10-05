@@ -1,0 +1,101 @@
+# HELP serving_requests_total HTTP responses
+# TYPE serving_requests_total counter
+serving_requests_total{method="GET",route="/health",status="200"} 3.0
+serving_requests_total{method="GET",route="/schema",status="200"} 3.0
+serving_requests_total{method="POST",route="/predict",status="200"} 73.0
+serving_requests_total{method="GET",route="unmatched",status="200"} 1.0
+serving_requests_total{method="POST",route="/predict",status="422"} 2.0
+# HELP serving_requests_created HTTP responses
+# TYPE serving_requests_created gauge
+serving_requests_created{method="GET",route="/health",status="200"} 1.7911985449428082e+09
+serving_requests_created{method="GET",route="/schema",status="200"} 1.7911985449481342e+09
+serving_requests_created{method="POST",route="/predict",status="200"} 1.791198544961238e+09
+serving_requests_created{method="GET",route="unmatched",status="200"} 1.79119854715396e+09
+serving_requests_created{method="POST",route="/predict",status="422"} 1.7911985471613529e+09
+# HELP serving_request_duration_seconds HTTP handler latency
+# TYPE serving_request_duration_seconds histogram
+serving_request_duration_seconds_bucket{le="0.001",route="/health"} 1.0
+serving_request_duration_seconds_bucket{le="0.005",route="/health"} 1.0
+serving_request_duration_seconds_bucket{le="0.01",route="/health"} 2.0
+serving_request_duration_seconds_bucket{le="0.025",route="/health"} 2.0
+serving_request_duration_seconds_bucket{le="0.05",route="/health"} 2.0
+serving_request_duration_seconds_bucket{le="0.1",route="/health"} 2.0
+serving_request_duration_seconds_bucket{le="0.25",route="/health"} 3.0
+serving_request_duration_seconds_bucket{le="0.5",route="/health"} 3.0
+serving_request_duration_seconds_bucket{le="1.0",route="/health"} 3.0
+serving_request_duration_seconds_bucket{le="2.0",route="/health"} 3.0
+serving_request_duration_seconds_bucket{le="5.0",route="/health"} 3.0
+serving_request_duration_seconds_bucket{le="+Inf",route="/health"} 3.0
+serving_request_duration_seconds_count{route="/health"} 3.0
+serving_request_duration_seconds_sum{route="/health"} 0.11191728100004639
+serving_request_duration_seconds_bucket{le="0.001",route="/schema"} 2.0
+serving_request_duration_seconds_bucket{le="0.005",route="/schema"} 3.0
+serving_request_duration_seconds_bucket{le="0.01",route="/schema"} 3.0
+serving_request_duration_seconds_bucket{le="0.025",route="/schema"} 3.0
+serving_request_duration_seconds_bucket{le="0.05",route="/schema"} 3.0
+serving_request_duration_seconds_bucket{le="0.1",route="/schema"} 3.0
+serving_request_duration_seconds_bucket{le="0.25",route="/schema"} 3.0
+serving_request_duration_seconds_bucket{le="0.5",route="/schema"} 3.0
+serving_request_duration_seconds_bucket{le="1.0",route="/schema"} 3.0
+serving_request_duration_seconds_bucket{le="2.0",route="/schema"} 3.0
+serving_request_duration_seconds_bucket{le="5.0",route="/schema"} 3.0
+serving_request_duration_seconds_bucket{le="+Inf",route="/schema"} 3.0
+serving_request_duration_seconds_count{route="/schema"} 3.0
+serving_request_duration_seconds_sum{route="/schema"} 0.003784093000035682
+serving_request_duration_seconds_bucket{le="0.001",route="/predict"} 1.0
+serving_request_duration_seconds_bucket{le="0.005",route="/predict"} 14.0
+serving_request_duration_seconds_bucket{le="0.01",route="/predict"} 21.0
+serving_request_duration_seconds_bucket{le="0.025",route="/predict"} 75.0
+serving_request_duration_seconds_bucket{le="0.05",route="/predict"} 75.0
+serving_request_duration_seconds_bucket{le="0.1",route="/predict"} 75.0
+serving_request_duration_seconds_bucket{le="0.25",route="/predict"} 75.0
+serving_request_duration_seconds_bucket{le="0.5",route="/predict"} 75.0
+serving_request_duration_seconds_bucket{le="1.0",route="/predict"} 75.0
+serving_request_duration_seconds_bucket{le="2.0",route="/predict"} 75.0
+serving_request_duration_seconds_bucket{le="5.0",route="/predict"} 75.0
+serving_request_duration_seconds_bucket{le="+Inf",route="/predict"} 75.0
+serving_request_duration_seconds_count{route="/predict"} 75.0
+serving_request_duration_seconds_sum{route="/predict"} 0.9811644689996228
+serving_request_duration_seconds_bucket{le="0.001",route="unmatched"} 0.0
+serving_request_duration_seconds_bucket{le="0.005",route="unmatched"} 0.0
+serving_request_duration_seconds_bucket{le="0.01",route="unmatched"} 1.0
+serving_request_duration_seconds_bucket{le="0.025",route="unmatched"} 1.0
+serving_request_duration_seconds_bucket{le="0.05",route="unmatched"} 1.0
+serving_request_duration_seconds_bucket{le="0.1",route="unmatched"} 1.0
+serving_request_duration_seconds_bucket{le="0.25",route="unmatched"} 1.0
+serving_request_duration_seconds_bucket{le="0.5",route="unmatched"} 1.0
+serving_request_duration_seconds_bucket{le="1.0",route="unmatched"} 1.0
+serving_request_duration_seconds_bucket{le="2.0",route="unmatched"} 1.0
+serving_request_duration_seconds_bucket{le="5.0",route="unmatched"} 1.0
+serving_request_duration_seconds_bucket{le="+Inf",route="unmatched"} 1.0
+serving_request_duration_seconds_count{route="unmatched"} 1.0
+serving_request_duration_seconds_sum{route="unmatched"} 0.008825164999961999
+# HELP serving_request_duration_seconds_created HTTP handler latency
+# TYPE serving_request_duration_seconds_created gauge
+serving_request_duration_seconds_created{route="/health"} 1.791198544942857e+09
+serving_request_duration_seconds_created{route="/schema"} 1.791198544948157e+09
+serving_request_duration_seconds_created{route="/predict"} 1.7911985449612572e+09
+serving_request_duration_seconds_created{route="unmatched"} 1.7911985471539786e+09
+# HELP serving_predictions_total Successfully predicted rows
+# TYPE serving_predictions_total counter
+serving_predictions_total{model_version="1"} 1123.0
+serving_predictions_total{model_version="2"} 1126.0
+# HELP serving_predictions_created Successfully predicted rows
+# TYPE serving_predictions_created gauge
+serving_predictions_created{model_version="1"} 1.7911985449603777e+09
+serving_predictions_created{model_version="2"} 1.791198546609185e+09
+# HELP serving_prediction_failures_total Inference failures
+# TYPE serving_prediction_failures_total counter
+serving_prediction_failures_total 0.0
+# HELP serving_prediction_failures_created Inference failures
+# TYPE serving_prediction_failures_created gauge
+serving_prediction_failures_created 1.7911977160127282e+09
+# HELP serving_observation_write_failures_total Failed monitoring event writes
+# TYPE serving_observation_write_failures_total counter
+serving_observation_write_failures_total 0.0
+# HELP serving_observation_write_failures_created Failed monitoring event writes
+# TYPE serving_observation_write_failures_created gauge
+serving_observation_write_failures_created 1.7911977160127392e+09
+# HELP serving_model_ready 1 when model loaded, otherwise 0
+# TYPE serving_model_ready gauge
+serving_model_ready 1.0

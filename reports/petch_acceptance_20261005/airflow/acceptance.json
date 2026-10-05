@@ -1,0 +1,11 @@
+{
+  "run_id": "acceptance_petch_2f9b6c8_20261005_retry1",
+  "passed": true,
+  "scenario": "normal",
+  "tasks_success": 16,
+  "actual_state": "success",
+  "checked_at_utc": "2026-10-05T11:11:12.9928184Z",
+  "evidence_collection": "Airflow CLI via WSL nsenter; Windows Docker named-pipe client stalled",
+  "tasks_total": 16,
+  "expected_state": "success"
+}

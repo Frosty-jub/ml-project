@@ -1,0 +1,10 @@
+{
+  "status": "success",
+  "started_at_utc": "2026-10-01T18:55:35.753560+00:00",
+  "finished_at_utc": "2026-10-01T18:55:49.894277+00:00",
+  "result": {
+    "syntax_files": 51,
+    "project_unittests": "passed",
+    "serving_tests": "passed"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "started_at_utc": "2026-10-05T11:09:26.651060+00:00",
+  "finished_at_utc": "2026-10-05T11:09:28.757768+00:00",
+  "result": {
+    "data_kind": "synthetic_demo_only",
+    "purpose": "Demonstrate drift and delayed-label orchestration"
+  }
+}

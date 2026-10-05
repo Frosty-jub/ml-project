@@ -1,0 +1,8 @@
+{
+  "objective": "regression_l1",
+  "n_estimators": 60,
+  "learning_rate": 0.08,
+  "num_leaves": 15,
+  "verbosity": -1,
+  "n_jobs": 1
+}

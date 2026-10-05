@@ -1,0 +1,6 @@
+{
+  "severity": "error",
+  "run_id": "acceptance_petch_2f9b6c8_20261005",
+  "stage": "report",
+  "error": "Pipeline failed: summary and alert saved"
+}

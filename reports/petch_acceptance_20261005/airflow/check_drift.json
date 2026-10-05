@@ -1,0 +1,10 @@
+{
+  "status": "success",
+  "started_at_utc": "2026-10-05T11:09:29.605316+00:00",
+  "finished_at_utc": "2026-10-05T11:09:30.387725+00:00",
+  "result": {
+    "trigger": true,
+    "data_drift_without_labels_detected": true,
+    "data_kind": "synthetic_demo_only"
+  }
+}

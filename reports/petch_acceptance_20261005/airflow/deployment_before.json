@@ -1,0 +1,15 @@
+{
+  "pointer": {
+    "model_name": "demand-forecasting-7d",
+    "model_version": "1",
+    "source_model_sha256": "4d45b3c5617f05ba401195107a2a466aaf815459a5aa5c6cb2ff5d2c6d8ddd5f",
+    "bundle_dir": "/project/artifacts/orchestration/bundles/v1-4d45b3c5617f",
+    "model_sha256": "4d45b3c5617f05ba401195107a2a466aaf815459a5aa5c6cb2ff5d2c6d8ddd5f",
+    "airflow_run_id": "acceptance_petch_2f9b6c8_20261005_retry1",
+    "revision": "09320b133bbf44d893746895305ca254"
+  },
+  "aliases": {
+    "champion": "1",
+    "production": "1"
+  }
+}

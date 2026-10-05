@@ -1,0 +1,26 @@
+[
+  {
+    "request_id": "a980cb8ec6de4f27aa2536f33193365e",
+    "row_index": 0,
+    "sku_id": "10002",
+    "forecast_origin_date": "2011-07-01",
+    "request_kind": "historical_validation_replay",
+    "live_label_status": "not_live_forecast"
+  },
+  {
+    "request_id": "a980cb8ec6de4f27aa2536f33193365e",
+    "row_index": 1,
+    "sku_id": "10002",
+    "forecast_origin_date": "2011-07-02",
+    "request_kind": "historical_validation_replay",
+    "live_label_status": "not_live_forecast"
+  },
+  {
+    "request_id": "a980cb8ec6de4f27aa2536f33193365e",
+    "row_index": 2,
+    "sku_id": "10002",
+    "forecast_origin_date": "2011-07-03",
+    "request_kind": "historical_validation_replay",
+    "live_label_status": "not_live_forecast"
+  }
+]
