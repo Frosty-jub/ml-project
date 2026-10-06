@@ -2,7 +2,7 @@
 
 ## สรุปผล
 
-โค้ดบน `Petch` commit `2f9b6c82ad01c7f38693fc2e6066bed0afe27607` ผ่าน Airflow ครบ 16/16 tasks และ GitHub Actions รอบ normal #24 ครบ 6 stage แล้ว รายงานนี้เพิ่มเฉพาะเอกสารและหลักฐาน ไม่เปลี่ยนโค้ดที่ใช้รัน การ merge PR #9 ต้องรอผู้ตรวจรับงานและ checks ผ่านตามขั้นตอนที่ตกลงไว้
+โค้ดบน `Petch` commit `2f9b6c82ad01c7f38693fc2e6066bed0afe27607` ผ่าน Airflow ครบ 16/16 tasks และ GitHub Actions รอบ normal #24 ครบ 6 stage แล้ว รายงานนี้เพิ่มเฉพาะเอกสารและหลักฐาน ไม่เปลี่ยนโค้ดที่ใช้รัน นำงานเข้า `main` ผ่าน PR #9 แล้วที่ commit `0f8a230` และ [CI #28 หลัง merge](https://github.com/Frosty-jub/ml-project/actions/runs/37304153307) ผ่านครบแล้ว
 
 ## หลักฐานแต่ละรอบ
 
@@ -64,10 +64,10 @@ Run ID ที่ผ่าน: `acceptance_petch_2f9b6c8_20261005_retry1` เร�
 
 [Source revision](airflow/source_revision.json) บันทึก immutable snapshot SHA-256 `0b008085534805bb0b5c278b37aa0f8c591c8120b8351a3660031f6811cd9cfc` และ commit ที่ใช้จริง เก็บ logs และผลแต่ละ stage ในโฟลเดอร์ airflow ส่วน artifact ของ CI อยู่ใน ci24 และ ci25 พร้อม digest ใน [ดัชนีหลักฐาน](acceptance_index.json)
 
-## ข้อจำกัดและงานส่งตรวจ
+## ข้อจำกัดและสถานะการส่งมอบ
 
 - drift/retrain เป็น synthetic demo ไม่ใช่การยืนยัน drift ของข้อมูล production
 - การ approve ใน DAG เป็นการผ่าน policy ของ local demo ไม่ใช่การอนุมัติ PR โดยผู้ตรวจ
 - field `team_document_signoff` ที่ปรากฏในผลดิบเป็นค่าจากโค้ดเดิม เก็บหลักฐานตามจริง ไม่ได้เพิ่มข้อกำหนดให้ทีมลงนาม
 - ส่งรายงานนี้และหลักฐานผ่าน [PR #9](https://github.com/Frosty-jub/ml-project/pull/9) โดยแยก commit ของเอกสารจาก source ที่รันทดสอบ
-- เมื่อผู้ตรวจรับงานและ checks ผ่าน จึง merge และตรวจ CI บน main ตามขั้นตอน; ณ เวลาจัดทำรายงาน main เป็น default branch อยู่แล้ว
+- ส่งมอบโค้ดและหลักฐานเข้า `main` แล้ว และ `main` เป็น default branch
